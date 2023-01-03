@@ -5,6 +5,7 @@ import TimeAgo from './TimeAgo'
 import ReactionButtons from './ReactionButtons'
 
 const PostsList = () => {
+	console.log("## PostsList ##")
   const posts = useSelector(selectAllPosts)
 
 	const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
