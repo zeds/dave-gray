@@ -8,9 +8,15 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-			<AddPostForm />
-			<PostsList />
+
+<div class="container">
+
+				<div class="logo">item-1</div>
+				<div class="search">item-2</div>
+				<div class="nav">item-3</div>
+
+			{/*<AddPostForm />
+			<PostsList />*/}
     </div>
   )
 }
