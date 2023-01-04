@@ -11,6 +11,7 @@ npm i react-redux
 npm i @reduxjs/toolkit
 npm i date-fns
 npm i axios
+npm i react-router-dom
 ※ つかなわい？npm i react-scripts
 
 注意！[vite] Internal server error: Failed to parse source for import analysis because the content contains invalid JS syntax. If you are using JSX, make sure to name the file with the .jsx or .tsx extension.
