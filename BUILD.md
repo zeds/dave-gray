@@ -1,7 +1,8 @@
 cd 02_lesson
 npm create vite@latest .
+> React
+> JavaScript + SWC
 
-(Select React and JavaScript+SWC)
 ※I am not sure SWC is stable or not.
 
 npm i
@@ -23,6 +24,23 @@ strictモード
 https://ja.reactjs.org/docs/strict-mode.html
 <React.StrictMode>
 これを指定していると、中のコンポーネントが2度実行されます
+
+06_lesson：Built from scratch
+npm i @fortawesome/fontawesome-svg-core
+npm i @fortawesome/free-solid-svg-icons
+npm i @fortawesome/react-fontawesome
+npm i json-server -g
+
+[run json server]
+$ json-server --watch data/db.json --port 3500
+http://localhost:3500/todos
+
+@reduxjs/toolkit/query/react
+React ToolKit Query
+
+
+
+
 
 
 
