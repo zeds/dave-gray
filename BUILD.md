@@ -38,6 +38,10 @@ http://localhost:3500/todos
 @reduxjs/toolkit/query/react
 React ToolKit Query
 
+[Strapi]
+https://lusty.asia:1443/api/products
+
+
 
 
 
