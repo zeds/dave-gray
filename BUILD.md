@@ -49,6 +49,41 @@ https://lusty.asia:1443/api/products
 @reduxjs/toolkit/query/react
 React ToolKit Query
 
+[auth]
+Daveの声はしわがれ声で嫌いだけど、感謝しながら聴こう^^;
+https://www.youtube.com/watch?v=-JJFQ9bkUbo&list=PLldYJFgA6aTq-MvEwcD5NP1azPxAY1xgo&index=8&t=150s
+・JWT
+・Refresh Token
+
+GitHub: https://github.com/gitdagray/redux_jwt_auth
+
+
+npm create vite@latest .
+npm i @reduxjs/toolkit
+npm i react-redux
+npm i react-router-dom
+
+
+[backend] 失敗！mongodbが面倒！
+/Users/zebra/lesson/react/mern_stack_course/lesson_08-backend
+GitHub: https://github.com/gitdagray/mern_stack_course
+
+.envの設定
+https://www.youtube.com/watch?v=cUV3uYXEOxI
+2:50s
+
+mongodb
+https://www.youtube.com/watch?v=cUV3uYXEOxI
+5:40s
+https://account.mongodb.com/account/login
+database
+zeds
+yellow39
+
+
+
+
+ー以上
 
 
 
