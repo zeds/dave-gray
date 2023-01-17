@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../features/modal/modalSlice';
 
-
-
+import { useDeleteProductMutation } from '../features/products/productsSlice'
 
 const Modal = ({
 	open,
@@ -14,32 +13,33 @@ const Modal = ({
 	const dispatch = useDispatch();
 	const { body } = useSelector((store) => store.modal);
 
+	const [deleteProduct] = useDeleteProductMutation()
+
+
   return (
-    <aside className='modal-container'>
-      <div className='modal'>
+    <aside className='modal_container'>
+      <div className='modal_confirm'>
 			<p>{title}</p>
 			<p>{body}</p>
-        {/*<h4>remove all items from your shopping cart?</h4>*/}
-        <div className='btn-container'>
+
+        <div className='modal_confirm_button_container'>
           <button
             type='button'
-            className='btn confirm-btn'
+            className='modal_confirm_button modal_confirm_button_cancel'
             onClick={() => {
-					alert("confirm")
-            //  dispatch(clearCart());
               dispatch(closeModal());
             }}
           >
-            confirm
+            Cancel
           </button>
           <button
             type='button'
-            className='btn clear-btn'
+            className='modal_confirm_button modal_confirm_button_yes'
             onClick={() => {
               dispatch(closeModal());
             }}
           >
-            cancel
+            Yes
           </button>
         </div>
       </div>

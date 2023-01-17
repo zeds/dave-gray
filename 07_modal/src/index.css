@@ -39,11 +39,12 @@ input[type="checkbox"] {
 }
 
 button {
-  min-width: 50px;
-  min-height: 50px;
-  border: 1px solid #333;
-  border-radius: 10%;
+  /*min-width: 120px;
+  min-height: 100px;*/
   cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  background: red;
 }
 
 .trash {
@@ -90,7 +91,7 @@ input[type="text"] {
   background-color: limegreen;
 }
 
-.modal-container {
+.modal_container {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -102,8 +103,33 @@ input[type="text"] {
 	align-items: center;
 	justify-content: center;
  }
- 
-
-.modal {
-	background: red;
+.modal_confirm {
+	background: #F3FBFE;
+	padding: 20px;
+	border-radius: 5px;
 }
+.modal_confirm_button_container {
+	display: flex;
+	justify-content: space-around;
+}
+.modal_confirm_button {
+	min-width: 120px;
+	min-height: 40px;
+}
+.modal_confirm_button_cancel {
+	background: white;
+	color: #4385F3;
+	border: solid 2px #4385F3;
+}
+.modal_confirm_button_yes {
+	background: #4385F3;
+	color: white;
+	border: solid 2px #4385F3;
+}
+.modal_confirm_button_yes:focus, .modal_confirm_button_yes:hover {
+	filter:brightness(120%)
+ }
+ .modal_confirm_button_cancel:focus, .modal_confirm_button_cancel:hover {
+	filter:brightness(80%)
+ }
+ 
