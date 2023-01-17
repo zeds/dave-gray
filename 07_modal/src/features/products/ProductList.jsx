@@ -7,11 +7,22 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
+
+
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react"
+import Modal from '../../components/Modal'
+import { openModal } from '../modal/modalSlice';
+
 
 const ProductList = () => {
+	const dispatch = useDispatch();
+
 	const [newProduct, setNewProduct] = useState('')
 	const [newPrice, setNewPrice] = useState('')
+
+	const { isOpen } = useSelector((store) => store.modal);
+
 
 	const {
 		data: products,
@@ -45,6 +56,13 @@ const ProductList = () => {
 			}
 		}
 		addProduct({ body })
+  }
+
+//  削除
+  const handleDelete = (e) => {
+	console.log("e=", e)
+
+	dispatch(openModal(e.attributes.name));
   }
 
 
@@ -96,7 +114,8 @@ const ProductList = () => {
 							<span>　¥{Number(product.attributes.price).toLocaleString()}円</span>
 					  </div>
 					{/*削除ボタン*/}
-					  <button className="trash" onClick={() => deleteProduct({ id: product.id })}>
+						{/*<button className="trash" onClick={() => deleteProduct({ id: product.id })}>*/}
+					  <button className="trash" onClick={() => handleDelete({ ...product })}>
 							<FontAwesomeIcon icon={faTrash} />
 					  </button>
 				 </article>
@@ -109,6 +128,8 @@ const ProductList = () => {
 	return (
 		 <main>
 			  <h1>メルカリ商品一覧</h1>
+			  <Modal open={isOpen} title='削除してもよろしいですか？' />
+
 			  {newItemSection}
 			  {content}
 		 </main>
