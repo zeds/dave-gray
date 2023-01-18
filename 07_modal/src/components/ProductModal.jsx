@@ -59,7 +59,7 @@ const ProductModal = ({
 						id="checkbox"
 						checked={localPublish}
 						onChange={(e) => clickCheckbox(e)}
-					/>表示
+					/>公開
 			  </div>
 
 			<div className='modal_confirm_button_container'>
