@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isOpen: false,
-  body: '本文'
+  body: '初期値'
 };
 
 const modalSlice = createSlice({
@@ -11,7 +11,8 @@ const modalSlice = createSlice({
   reducers: {
     openModal: (state, action) => {
       state.isOpen = true;
-		state.body = action.payload
+			state.body = action.payload.body
+			state.id = action.payload.id
     },
     closeModal: (state, action) => {
       state.isOpen = false;

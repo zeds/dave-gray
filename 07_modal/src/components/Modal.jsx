@@ -1,20 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../features/modal/modalSlice';
 
-import { useDeleteProductMutation } from '../features/products/productsSlice'
-
 const Modal = ({
 	open,
-	title
+	title,
+	handleYes
 }) => {
 
 	if (!open) return null
 
+	//actionを呼び出す
 	const dispatch = useDispatch();
+
+	//storeからリアルタイムにstateを取得する
+	//このモーダルを呼び出す親がstate.bodyを設定する
 	const { body } = useSelector((store) => store.modal);
-
-	const [deleteProduct] = useDeleteProductMutation()
-
 
   return (
     <aside className='modal_container'>
@@ -35,9 +35,10 @@ const Modal = ({
           <button
             type='button'
             className='modal_confirm_button modal_confirm_button_yes'
-            onClick={() => {
-              dispatch(closeModal());
-            }}
+						onClick={() => {
+							handleYes()
+							dispatch(closeModal())
+						}}
           >
             Yes
           </button>

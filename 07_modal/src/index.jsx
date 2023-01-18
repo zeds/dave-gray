@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import { store } from './store';
+import { store } from './app/store';
 import { Provider } from 'react-redux';
 
 import './index.css'
@@ -12,6 +12,7 @@ import { productsSlice } from './features/products/productsSlice'
 
 ReactDOM.createRoot(document.getElementById('root'))
 	.render(
+		<>
 		<React.StrictMode>
 			{/*<ApiProvider api={apiSlice}>*/}
 				{/*<ApiProvider api={productsSlice}>*/}
@@ -19,5 +20,6 @@ ReactDOM.createRoot(document.getElementById('root'))
 						<App />
 					</Provider>
 				{/*</ApiProvider>*/}
-		</React.StrictMode>,
+		</React.StrictMode>
+		</>
 )

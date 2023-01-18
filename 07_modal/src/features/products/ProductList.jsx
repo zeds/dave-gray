@@ -12,7 +12,7 @@ import { faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react"
 import Modal from '../../components/Modal'
-import { openModal } from '../modal/modalSlice';
+import { openModal, closeModal } from '../modal/modalSlice';
 
 
 const ProductList = () => {
@@ -20,6 +20,7 @@ const ProductList = () => {
 
 	const [newProduct, setNewProduct] = useState('')
 	const [newPrice, setNewPrice] = useState('')
+	const [targetId, setTargetId] = useState(0)
 
 	const { isOpen } = useSelector((store) => store.modal);
 
@@ -60,11 +61,16 @@ const ProductList = () => {
 
 //  削除
   const handleDelete = (e) => {
-	console.log("e=", e)
-
-	dispatch(openModal(e.attributes.name));
+		setTargetId(e.id)
+		let action = {
+			body: e.attributes.name,
+		}
+		dispatch(openModal(action));
   }
 
+  function handleYes() {
+		deleteProduct({id:targetId})
+  }
 
 //  新規追加
 	const newItemSection =
@@ -128,7 +134,7 @@ const ProductList = () => {
 	return (
 		 <main>
 			  <h1>メルカリ商品一覧</h1>
-			  <Modal open={isOpen} title='削除してもよろしいですか？' />
+			  <Modal open={isOpen} handleYes={handleYes} title='削除してもよろしいですか？' />
 
 			  {newItemSection}
 			  {content}
