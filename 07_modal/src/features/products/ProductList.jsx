@@ -6,23 +6,21 @@ import {
 } from './productsSlice'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
-
+import { faTrash, faUpload, faPencilSquare } from '@fortawesome/free-solid-svg-icons'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react"
 import Modal from '../../components/Modal'
-import { openModal, closeModal } from '../modal/modalSlice';
-
+import ProductModal from '../../components/ProductModal';
+import { openModal, openEdit } from '../modal/modalSlice';
 
 const ProductList = () => {
 	const dispatch = useDispatch();
 
 	const [newProduct, setNewProduct] = useState('')
 	const [newPrice, setNewPrice] = useState('')
-	const [targetId, setTargetId] = useState(0)
 
-	const { isOpen } = useSelector((store) => store.modal);
+	const { isOpen, isOpenEdit, name } = useSelector((store) => store.modal);
 
 
 	const {
@@ -34,11 +32,8 @@ const ProductList = () => {
 	} = useGetProductsQuery()
 	const [addProduct] = useAddProductMutation()
 	const [updateProduct] = useUpdateProductMutation()
-	const [deleteProduct] = useDeleteProductMutation()
-	console.log("products=", products)
 
 	const handleUpdate = (e) => {
-		console.log("e=", e)
 		let body = {
 			data: {
 				publish: !e.attributes.publish
@@ -59,20 +54,27 @@ const ProductList = () => {
 		addProduct({ body })
   }
 
-//  削除
+//編集
+const handleEdit = (e) => {
+	let action = {
+		id: e.id,
+		name: e.attributes.name,
+		price: e.attributes.price,
+		publish: e.attributes.publish
+	}
+	dispatch(openEdit(action));
+}
+
+//削除
   const handleDelete = (e) => {
-		setTargetId(e.id)
 		let action = {
-			body: e.attributes.name,
+			id: e.id,
+			name: e.attributes.name,
 		}
 		dispatch(openModal(action));
   }
 
-  function handleYes() {
-		deleteProduct({id:targetId})
-  }
-
-//  新規追加
+//新規追加
 	const newItemSection =
 		 <form onSubmit={handleSubmit}>
 			  <label htmlFor="new-todo">Enter a new product item</label>
@@ -119,9 +121,12 @@ const ProductList = () => {
 							<label htmlFor={product.id}>{product.attributes.name}</label>
 							<span>　¥{Number(product.attributes.price).toLocaleString()}円</span>
 					  </div>
-					{/*削除ボタン*/}
-						{/*<button className="trash" onClick={() => deleteProduct({ id: product.id })}>*/}
-					  <button className="trash" onClick={() => handleDelete({ ...product })}>
+						{/*編集ボタン*/}
+						<button className="trash" onClick={() => handleEdit({ ...product })}>
+							<FontAwesomeIcon icon={faPencilSquare} />
+					  </button>
+						{/*削除ボタン*/}
+						<button className="trash" onClick={() => handleDelete({ ...product })}>
 							<FontAwesomeIcon icon={faTrash} />
 					  </button>
 				 </article>
@@ -134,7 +139,8 @@ const ProductList = () => {
 	return (
 		 <main>
 			  <h1>メルカリ商品一覧</h1>
-			  <Modal open={isOpen} handleYes={handleYes} title='削除してもよろしいですか？' />
+			  <Modal open={isOpen} title='削除してもよろしいですか？' />
+				<ProductModal open={isOpenEdit} title='商品情報編集'/>
 
 			  {newItemSection}
 			  {content}

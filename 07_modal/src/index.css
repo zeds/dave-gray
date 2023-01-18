@@ -5,10 +5,6 @@ body {
   font-size: 1.5rem;
 }
 
-input[type="text"], button {
-  font: inherit;
-}
-
 main {
   margin: auto;
   max-width: 600px;
@@ -26,21 +22,7 @@ article {
   border: 1px solid hsl(0, 0%, 58%);
 }
 
-.todo {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-input[type="checkbox"] {
-  min-width: 30px;
-  min-height: 30px;
-  margin-right: 1rem;
-}
-
 button {
-  /*min-width: 120px;
-  min-height: 100px;*/
   cursor: pointer;
   border-radius: 5px;
   font-weight: bold;
@@ -56,30 +38,9 @@ button {
   filter:brightness(120%)
 }
 
-form {
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid #333;
-  margin-bottom: 1rem;
-}
-
-form label {
-  position: absolute;
-  left: -10000px;
-}
-
 .new-todo {
   width: 100%;
   padding-right: 30px;
-}
-
-input[type="text"] {
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 10px;
-  border: 0.5px solid #333;
 }
 
 .submit {
@@ -111,6 +72,7 @@ input[type="text"] {
 .modal_confirm_button_container {
 	display: flex;
 	justify-content: space-around;
+	margin-top: 30px;
 }
 .modal_confirm_button {
 	min-width: 120px;
@@ -128,8 +90,47 @@ input[type="text"] {
 }
 .modal_confirm_button_yes:focus, .modal_confirm_button_yes:hover {
 	filter:brightness(120%)
- }
- .modal_confirm_button_cancel:focus, .modal_confirm_button_cancel:hover {
+}
+.modal_confirm_button_cancel:focus, .modal_confirm_button_cancel:hover {
 	filter:brightness(80%)
- }
- 
+}
+
+form {
+	display: block;
+}
+
+/*商品登録/編集*/
+.modal_product {
+	background: #F3FBFE;
+	padding: 20px;
+	border-radius: 5px;
+	display: block;
+	/*display: row;*/
+}
+/*全ての子要素のinputにstyleを適用*/
+.modal_product input {
+	display: block;
+	font: inherit;
+	margin-bottom: 20px;
+}
+.modal_product label {
+	display: block;
+	/*labelはインラインなのでblockマージンを使えないのでblockにしている*/
+	margin-top: 20px;
+}
+.modal_product_title {
+	text-align: center;
+	font-weight: bold;
+}
+.modal_product_name {
+}
+.modal_product_price {
+}
+.modal_product input[type="checkbox"]{
+	display: inline;
+	min-width: 30px;
+  min-height: 30px;
+	vertical-align: middle;
+	margin-top: 11px;
+	margin-left: -1px;
+}
