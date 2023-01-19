@@ -24,12 +24,19 @@ const ProductModal = ({
 	}
 
 	return (
-		<aside className='modal_container'>
+		<div className='modal_container'>
 
 			<div className="modal_product">
 				<div className='modal_product_title'>
 					{title}
 				</div>
+
+				商品名
+				<input type="text"></input>
+				価格
+				<input type="number"></input>
+				<input type="checkbox"></input>公開
+
 
 				<div className="modal_product_name">
 					<label htmlFor="product-name">商品名</label>
@@ -91,7 +98,7 @@ const ProductModal = ({
 				</button>
 			</div>
 		</div>
-	</aside>
+	</div>
 
 	)
 }

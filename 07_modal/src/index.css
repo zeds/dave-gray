@@ -38,7 +38,8 @@ button {
   filter:brightness(120%)
 }
 
-.new-todo {
+.
+ {
   width: 100%;
   padding-right: 30px;
 }
@@ -51,6 +52,13 @@ button {
 .submit:focus, .submit:hover {
   background-color: limegreen;
 }
+
+
+
+
+
+
+
 
 .modal_container {
 	position: fixed;
