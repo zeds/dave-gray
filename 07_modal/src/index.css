@@ -29,6 +29,23 @@ button {
   background: red;
 }
 
+/*出品ボタン*/
+.post {
+	display: flex;
+	justify-content: right;
+}
+.post button {
+	background: #4385F3;
+	color: white;
+	width: 100px;
+	height: 30px;
+	margin-bottom: 5px;
+	border: solid 2px #4385F3;
+}
+.post:focus, .post:hover {
+	filter:brightness(120%)
+}
+
 .trash {
   background-color: #fff;
   color: mediumvioletred;

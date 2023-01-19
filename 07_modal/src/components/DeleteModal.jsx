@@ -3,14 +3,15 @@ import { closeModal } from '../features/modal/modalSlice';
 import { useDeleteProductMutation } from '../features/products/productsSlice';
 
 const Modal = ({
-	open,
-	title
+	open
 }) => {
 
 	if (!open) return null
 
 	//actionを呼び出す
 	const dispatch = useDispatch();
+
+	const { title } = useSelector((store) => store.modal);
 
 	//削除API
 	const [deleteProduct] = useDeleteProductMutation()

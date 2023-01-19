@@ -7,7 +7,6 @@ export const productsSlice = createApi({
 	endpoints: (builder) => ({
 		getProducts: builder.query({
 			query: () => '/products',
-			//transformResponse: res => res.sort((a, b) => b.id - a.id),
 			providesTags: ['Products']
 		}),
 		addProduct: builder.mutation({

@@ -1,22 +1,24 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
-import { closeEdit } from '../features/modal/modalSlice';
-import { useUpdateProductMutation } from '../features/products/productsSlice';
+import { closeModal } from '../features/modal/modalSlice';
+import { useUpdateProductMutation, useAddProductMutation } from '../features/products/productsSlice';
 
 const ProductModal = ({
-	open,
-	title
+	open
 }) => {
 	if (!open) return
 	const dispatch = useDispatch();
 
-	const { id, name, price, publish } = useSelector((store) => store.modal);
+	const { title, id, name, price, publish, type } = useSelector((store) => store.modal);
 	const [localName, setLocalName] = useState(name)
 	const [localPrice, setLocalPrice] = useState(price)
 	const [localPublish, setLocalPublish] = useState(publish)
 
+	//新規API
+	const [addProduct] = useAddProductMutation()
+
 	//更新API
-	const [updateProduct] = useUpdateProductMutation()
+	const [updateProductt] = useUpdateProductMutation()
 
 	const clickCheckbox = (e) => {
 		let tmp = localPublish;
@@ -30,13 +32,6 @@ const ProductModal = ({
 				<div className='modal_product_title'>
 					{title}
 				</div>
-
-				商品名
-				<input type="text"></input>
-				価格
-				<input type="number"></input>
-				<input type="checkbox"></input>公開
-
 
 				<div className="modal_product_name">
 					<label htmlFor="product-name">商品名</label>
@@ -74,7 +69,7 @@ const ProductModal = ({
 					type='button'
 					className='modal_confirm_button modal_confirm_button_cancel'
 					onClick={() => {
-						dispatch(closeEdit());
+						dispatch(closeModal());
 					}}
 				>
 					キャンセル
@@ -90,8 +85,12 @@ const ProductModal = ({
 								publish: localPublish
 							}
 						}
-						updateProduct({ id: id, body})
-						dispatch(closeEdit())
+						if (type === 'edit') {
+							updateProductt({ id: id, body})
+						} else {
+							addProduct({ body })
+						}
+						dispatch(closeModal())
 					}}
 				>
 					投稿

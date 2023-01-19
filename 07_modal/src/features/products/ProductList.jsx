@@ -10,9 +10,12 @@ import { faTrash, faUpload, faPencilSquare } from '@fortawesome/free-solid-svg-i
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react"
-import Modal from '../../components/Modal'
+
+import DeleteModal from '../../components/DeleteModal'
 import ProductModal from '../../components/ProductModal';
-import { openModal, openEdit } from '../modal/modalSlice';
+
+
+import { openDelete, openProduct} from '../modal/modalSlice';
 
 const ProductList = () => {
 	const dispatch = useDispatch();
@@ -20,7 +23,7 @@ const ProductList = () => {
 	const [newProduct, setNewProduct] = useState('')
 	const [newPrice, setNewPrice] = useState('')
 
-	const { isOpen, isOpenEdit, name } = useSelector((store) => store.modal);
+	const { isDeleteOpen, isProductOpen } = useSelector((store) => store.modal);
 
 
 	const {
@@ -54,28 +57,48 @@ const ProductList = () => {
 		addProduct({ body })
   }
 
+//新規
+const clickNew = (e) => {
+	//e.preventDefault();
+	console.log("openNew")
+	let action = {
+		id: e.id,
+		name: '',
+		price: 0,
+		publish: false,
+		title: '商品情報-編集',
+		type: 'new'
+	}
+	dispatch(openProduct(action));
+}
+
 //編集
 const handleEdit = (e) => {
 	let action = {
 		id: e.id,
 		name: e.attributes.name,
 		price: e.attributes.price,
-		publish: e.attributes.publish
+		publish: e.attributes.publish,
+		title: '商品情報-編集',
+		type: 'edit'
 	}
-	dispatch(openEdit(action));
+	dispatch(openProduct(action));
 }
 
 //削除
   const handleDelete = (e) => {
+		console.log("削除")
 		let action = {
 			id: e.id,
 			name: e.attributes.name,
+			title: '削除しても宜しいですか？'
 		}
-		dispatch(openModal(action));
+		dispatch(openDelete(action));
   }
 
 //新規追加
 	const newItemSection =
+	<div>
 		 <form onSubmit={handleSubmit}>
 			  <label htmlFor="new-todo">Enter a new product item</label>
 			  <div className="new-todo">
@@ -99,6 +122,7 @@ const handleEdit = (e) => {
 					<FontAwesomeIcon icon={faUpload} />
 			  </button>
 		 </form>
+	</div>
 
 
 
@@ -139,10 +163,14 @@ const handleEdit = (e) => {
 	return (
 		 <main>
 			  <h1>メルカリ商品一覧</h1>
-			  <Modal open={isOpen} title='削除してもよろしいですか？' />
-				<ProductModal open={isOpenEdit} title='商品情報編集'/>
+
+			  <DeleteModal open={isDeleteOpen} />
+				<ProductModal open={isProductOpen} />
 
 			  {newItemSection}
+				<div className="post">
+					<button onClick={(e) => clickNew(e)}>出品</button>
+				</div>
 			  {content}
 		 </main>
 	)
