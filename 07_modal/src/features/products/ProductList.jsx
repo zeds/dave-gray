@@ -64,9 +64,9 @@ const clickNew = (e) => {
 	let action = {
 		id: e.id,
 		name: '',
-		price: 0,
-		publish: false,
-		title: '商品情報-編集',
+		price: 300,
+		publish: true,
+		title: '商品情報-新規',
 		type: 'new'
 	}
 	dispatch(openProduct(action));
@@ -132,28 +132,28 @@ const handleEdit = (e) => {
 	} else if (isSuccess) {
 		content = products.data.map(product => { //JSON.stringify(products)
 			return (
-				 <article key={product.id}>
-					{/*checkbox*/}
-					  <div className="product">
-							<input
-								 type="checkbox"
-								 checked={product.attributes.publish}
-								 id={product.id}
-								 onChange={() => handleUpdate({ ...product})}
-							/>
-					{/*商品名*/}
-							<label htmlFor={product.id}>{product.attributes.name}</label>
-							<span>　¥{Number(product.attributes.price).toLocaleString()}円</span>
-					  </div>
-						{/*編集ボタン*/}
-						<button className="trash" onClick={() => handleEdit({ ...product })}>
-							<FontAwesomeIcon icon={faPencilSquare} />
-					  </button>
-						{/*削除ボタン*/}
-						<button className="trash" onClick={() => handleDelete({ ...product })}>
-							<FontAwesomeIcon icon={faTrash} />
-					  </button>
-				 </article>
+				<article key={product.id}>
+					<div className='row_top'>
+						<input
+							type="checkbox"
+							checked={product.attributes.publish}
+							id={product.id}
+							onChange={() => handleUpdate({ ...product})}
+						/>
+						<label htmlFor={product.id}>{product.attributes.name}</label>
+					</div>
+					<div className='row_bottom'>
+						<span>　 ¥{Number(product.attributes.price).toLocaleString()}円</span>
+						<div className='row_icon'>
+							<button className="trash" onClick={() => handleEdit({ ...product })}>
+								<FontAwesomeIcon icon={faPencilSquare} />
+							</button>
+							<button className="trash" onClick={() => handleDelete({ ...product })}>
+								<FontAwesomeIcon icon={faTrash} size="lg" />
+							</button>
+						</div>
+					</div>
+				</article>
 			)
 	  })
 	} else if (isError) {
