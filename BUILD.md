@@ -125,9 +125,14 @@ https://www.youtube.com/watch?v=amf18mxNX18
 
 
 [11_tom]
-
+npm create vite@latest .
+> React
+> JavaScript + SWC
+npm i
 npm i @reduxjs/toolkit
 npm i react-redux
+
+npm run dev
 
 
 

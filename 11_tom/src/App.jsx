@@ -3,19 +3,26 @@ import ModalProfile from './components/ModalProfile'
 import { openProfile } from './features/modal/modalSlice'
 
 function App() {
-		const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	const { isProfileOpen } = useSelector((store) => store.modal);
 
 
-	//アロー関数
-	//const clickProfile = () => {
-	//	alert("クリックされた")
-	//}
-
 	//通常の関数
 	function clickProfile() {
 		dispatch(openProfile())
+
+		const person = {
+			firstName: "Nick",
+			lastName: "Anderson",
+			age: 35,
+			sex: "M"
+		}
+
+		console.log("age=", person['age'])
+		console.log("age=", person.age)
+
+
 	}
 
 

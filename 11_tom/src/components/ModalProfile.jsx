@@ -10,16 +10,32 @@ const ModalProfile = ({
 
 	const dispatch = useDispatch();
 
-
 	return (
-		<>
-			<div>ModalProfile</div>
-			<button
-				onClick={() => {
-					dispatch(closeProfile())
-				}}
-			>閉じる</button>
-		</>
+    <aside className='modal_container'>
+      <div className='modal_confirm'>
+			<p>Profile</p>
+        <div className='modal_confirm_button_container'>
+          <button
+            type='button'
+            className='modal_confirm_button modal_confirm_button_cancel'
+            onClick={() => {
+              dispatch(closeProfile());
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            type='button'
+            className='modal_confirm_button modal_confirm_button_yes'
+						onClick={() => {
+							dispatch(closeProfile())
+						}}
+          >
+            Yes
+          </button>
+        </div>
+      </div>
+    </aside>
 	)
 }
 
