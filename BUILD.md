@@ -57,11 +57,15 @@ https://www.youtube.com/watch?v=-JJFQ9bkUbo&list=PLldYJFgA6aTq-MvEwcD5NP1azPxAY1
 
 GitHub: https://github.com/gitdagray/redux_jwt_auth
 
-
 npm create vite@latest .
 npm i @reduxjs/toolkit
 npm i react-redux
 npm i react-router-dom
+
+app/api/apiSliceを変更
+Strapiのauth/localからjwt取得に成功！
+
+
 
 
 [backend] 失敗！mongodbが面倒！
@@ -81,15 +85,48 @@ zeds
 yellow39
 
 
+[09_auth]
+login時のmutationについて
+https://redux-toolkit.js.org/rtk-query/usage/examples
+のAuthenticationを参照
+Strapiのapi/auth/localに接続して、jwtを取得まで完了
+
+サンプル
+[../JWT_Authentication_React-react_node_jwt_login]
+https://codevoweb.com/react-redux-toolkit-jwt-authentication-and-authorization/
+
+GitHub: https://github.com/wpcodevo/JWT_Authentication_React/tree/react_node_jwt_login
+cd frontend
+yarn install
+yarn start
+※ Buildはできた。
+
+
+[10_layout]
+npm create vite@latest .
+> React
+> JavaScript + SWC
+npm i
+npm i -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+> edit tailwind.config.cjs
+> edit index.css for tailwindcss
+> delete App.css
+> rename main.jsx to index.jsx
+> edit index.html to load index.jsx
+
+
+npm run dev
+https://www.youtube.com/watch?v=74ys-dT94mA&t=115s
+
+
+[10_nav]
+https://www.youtube.com/watch?v=amf18mxNX18
+
+
+
+
+
 
 
 ー以上
-
-
-
-
-
-
-
-
-

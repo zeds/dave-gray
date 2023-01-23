@@ -1,21 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setCredentials, logOut } from '../../features/auth/authSlice'
 
-export const apiSlice = createApi({
-	reducerPath: 'api',
-	baseQuery: fetchBaseQuery({ baseUrl: 'https://lusty.asia:1443/api' }),
-	tagTypes: ['Products'], 
-	endpoints: (builder) => ({
-		login: builder.mutation({
-			query: (credentials) => ({
-				url: '/auth/local',
-				method: 'POST',
-				body: credentials
-			}),
-		})
-	})
-})
-
 //・access tokenがexpire
 //・get new token
 const baseQuery = fetchBaseQuery({
@@ -24,7 +9,7 @@ const baseQuery = fetchBaseQuery({
 	prepareHeaders: (headers, { getState }) => {
 		const token = getState().auth.token
 		headers.set('Content-type', 'application/json')
-
+		console.log("09_auth fetch");
 		if (token) {
 			console.log("tokenあり")
 			headers.set("Authorization", 'Bearer ${token')
@@ -59,11 +44,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 	return result
 }
 
-//export const apiSlice = createApi({
-//	baseQuery: baseQueryWithReauth,
-//	endpoints: builder => ({})
-//})
-
-export const {
-	useLoginMutation,
-} = apiSlice
+export const apiSlice = createApi({
+	baseQuery: baseQueryWithReauth,
+	endpoints: builder => ({})
+})
