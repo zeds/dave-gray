@@ -124,6 +124,11 @@ https://www.youtube.com/watch?v=74ys-dT94mA&t=115s
 https://www.youtube.com/watch?v=amf18mxNX18
 
 
+[11_tom]
+
+npm i @reduxjs/toolkit
+npm i react-redux
+
 
 
 
