@@ -1,0 +1,23 @@
+*{
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+.img{
+    padding: 10px;
+    margin: 1px 0;
+   position: relative;
+    width: 140px;
+}
+input{
+    position: absolute;
+    background: white;
+    border-color: #ccc;
+    color: black;
+    height: 28px; 
+    margin-left: 190px;
+    margin-bottom: 180px;
+
+   
+   
+}
