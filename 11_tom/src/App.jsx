@@ -7,22 +7,8 @@ function App() {
 
 	const { isProfileOpen } = useSelector((store) => store.modal);
 
-
-	//通常の関数
 	function clickProfile() {
 		dispatch(openProfile())
-
-		const person = {
-			firstName: "Nick",
-			lastName: "Anderson",
-			age: 35,
-			sex: "M"
-		}
-
-		console.log("age=", person['age'])
-		console.log("age=", person.age)
-
-
 	}
 
 

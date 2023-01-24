@@ -122,6 +122,15 @@ https://www.youtube.com/watch?v=74ys-dT94mA&t=115s
 
 [10_nav]
 https://www.youtube.com/watch?v=amf18mxNX18
+React.Fragment ショートハンドとして、<></>：Empty Tagsが使える
+Syntatic sugarと呼ばれている。
+しかし、大きな問題点として、Fragmentではkeyが使えるが<>では使えない
+Reactコンポーネントはルート要素が1つ(single element)でないといけないという制約がある。
+google fonts：https://fonts.google.com/
+
+
+[10_nav_2]
+https://www.youtube.com/watch?v=VRrEquQfh88
 
 
 [11_tom]
