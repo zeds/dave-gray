@@ -129,8 +129,15 @@ Reactコンポーネントはルート要素が1つ(single element)でないと�
 google fonts：https://fonts.google.com/
 
 
-[10_nav_2]
+[10_nav_html]
 https://www.youtube.com/watch?v=VRrEquQfh88
+Remixicon：https://remixicon.com/
+https://github.com/Remix-Design/RemixIcon
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+boxicons
+https://github.com/atisawd/boxicons
+
+
 
 
 [11_tom]
