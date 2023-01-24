@@ -143,3 +143,10 @@ header {
 		right: 2%;
 	}
 }
+@media (max-width: 640px) {
+	.main span {
+		display: none;
+		color: red;
+	}
+	
+}
