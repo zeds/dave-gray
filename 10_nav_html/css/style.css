@@ -27,7 +27,7 @@ header {
 	align-items: center;
 	justify-content: space-between;
 	background: transparent;
-	padding: 28px 12%;
+	padding: 28px 10px;
 	transition: all .50s ease;
 }
 .logo {
@@ -49,10 +49,10 @@ header {
 }
 .navbar a {
 	color: var(--text-color);
-	font-size: 1.1rem;
+	font-size: 1rem;
 	font-weight: 500;
 	padding: 5px 0;
-	margin: 0px 15px;
+	margin: 0px 10px;
 	transition: all .50s ease;
 }
 .navbar a:hover {
@@ -104,10 +104,10 @@ header {
 	}
 }*/
 
-@media (max-width: 1280px) {
+@media (max-width: 1024px) {
 	header {
 		padding: 14px 2%;
-		transition: .2s;
+		/*transition: .2s;*/
 	}
 	#menu-icon {
 		display: block;
@@ -123,16 +123,17 @@ header {
 		flex-direction: column;
 		justify-content: flex-start;
 		border-radius: 10px;
-		transition: all .50s ease;
+		/*transition: all .50s ease;*/
 	}
 	.navbar a {
 		display: block;
 		margin: 12px 0;
 		padding: 0px 25px;
-		transition: all .50s ease;
+		/*transition: all .50s ease;*/
 	}
 	.navbar a:hover {
 		color: var(--text-color);
+		background: red;
 		transform: translateY(5px);
 		font-size: 1.5rem;
 	}
@@ -146,7 +147,6 @@ header {
 @media (max-width: 640px) {
 	.main span {
 		display: none;
-		color: red;
 	}
 	
 }
