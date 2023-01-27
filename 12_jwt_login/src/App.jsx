@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import LoginModal from './components/LoginModal'
 import { openLogin } from './features/modal/modalSlice'
+import './App.css'
 
 function App() {
 	const dispatch = useDispatch();

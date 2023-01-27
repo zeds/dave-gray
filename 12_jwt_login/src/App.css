@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+:global(.myclass) {
+  background-color: red;
+}
+
 .container {
 	background: gray;
 	height: 100vh;
