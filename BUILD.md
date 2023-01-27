@@ -147,8 +147,20 @@ npm create vite@latest .
 npm i
 npm i @reduxjs/toolkit
 npm i react-redux
-
 npm run dev
+
+[12_jwt_login]
+login modalを作成し、Strapiにログインする。
+
+css module in React
+https://blog.openreplay.com/using-css-modules-in-react/
+Saasは、npmインストールすれば使える？
+globalは使える？
+
+
+React cssで悩む全ての人へ
+https://ramble.impl.co.jp/1414/#toc7
+
 
 
 

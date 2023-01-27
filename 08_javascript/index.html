@@ -17,6 +17,11 @@ const aboveTenSum = students
   .filter(grade => grade >= 10) // we filter the grades array to keep those 10 or above
   .reduce((prev, next) => prev + next, 0); // we sum all the grades 10 or above one by one
 
+var date = new Date() ;
+var a = date.getTime() ;
+console.log("a=", a)
+var b = Math.floor( a / 1000 ) ;
+console.log("b=", b)
 console.log(aboveTenSum)
 	</script>
 </head>

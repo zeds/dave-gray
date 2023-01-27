@@ -64,12 +64,18 @@ button {
   background-color: limegreen;
 }
 
+.container {
+	background: green;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
-
-
-
-
-
+}
+.container button {
+	width: 200px;
+	margin: 30px;
+}
 
 .modal_container {
 	position: fixed;

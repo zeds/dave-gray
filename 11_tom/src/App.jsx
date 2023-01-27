@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import ModalProfile from './components/ModalProfile'
+import ModalLogin from './components/ModalLogin';
 import { openProfile } from './features/modal/modalSlice'
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
     <div className="container">
 			<button onClick={() => clickProfile()}>プロフィール</button>
 			<ModalProfile open={isProfileOpen} />
+			<button onClick={() => clickProfile()}>ログイン</button>
+			<ModalLogin open={isProfileOpen} />
     </div>
   )
 }
