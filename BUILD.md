@@ -150,6 +150,32 @@ npm i react-redux
 npm run dev
 
 [12_jwt_login]
+npm create vite@latest .
+> React
+> JavaScript + SWC
+npm i
+npm i @reduxjs/toolkit
+npm i react-redux
+npm run dev
+> main.jsxをindex.jsxに名前変更
+> index.htmlでindex.jsxを読み込む
+> index.cssを削除
+> index.jsxでindex.cssインポートを削除
+> App.cssはグローバルに適用される。
+> LoginModal.jsx
+> LoginModal.module.css
+> features/modal/modalSlice.jsx
+> app/store.jsx
+> index.jsxにProviderを設定
+> LoginModalに、ログインフォームを作成
+　https://codepen.io/colorlib/pen/rxddKy
+注意！styleが、btn-redのようにハイフンで定義されている場合、
+　　className={style.['btn-red]}
+　　とします。
+
+
+
+
 login modalを作成し、Strapiにログインする。
 
 css module in React

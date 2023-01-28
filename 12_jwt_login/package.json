@@ -1,5 +1,5 @@
 {
-  "name": "12_jwt",
+  "name": "12_jwt_login",
   "private": true,
   "version": "0.0.0",
   "type": "module",

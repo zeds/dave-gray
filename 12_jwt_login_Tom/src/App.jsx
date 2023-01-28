@@ -16,6 +16,7 @@ function App() {
 
   return (
     <div className="App">
+			<p>あいうえお</p>
 			<LoginModal open={isLoginOpen}/>
 			<button onClick={() => clickLogin()}>ログイン</button>
     </div>

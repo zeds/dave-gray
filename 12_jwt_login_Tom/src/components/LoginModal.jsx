@@ -21,6 +21,7 @@ const LoginModal = ({
 
 <div className={style.login_page}>
   <div className={style.form}>
+	<p>かきくけこ</p>
     <form className={style.register_form}>
       <input type="text" placeholder="name"/>
       <input type="password" placeholder="password"/>

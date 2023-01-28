@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+p {
+	color: red;
+}
+
 .btn {
 	background: green;
 }
