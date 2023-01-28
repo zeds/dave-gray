@@ -22,11 +22,7 @@ const FacbookModal = ({
   <div className={style.form}>
 	<p>新規登録</p>
     <form>
-      <input type="text" placeholder="名前"/>
-      <input type="password" placeholder="パスワード"/>
-      <input type="text" placeholder="メールアドレス"/>
-	  <button onClick={() => clickFacbook()}>新規登録</button>
-      <p className={style.message}>Already registered? <a href="#">ログイン</a></p>
+      
     </form>
   </div>
 </div>

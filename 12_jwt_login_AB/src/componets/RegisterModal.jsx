@@ -14,6 +14,11 @@ const RegisterModal = ({
 	function clickCreate() {
 		dispatch(closeModal())
 	}
+	const [isRevealPassword, setIsRevealPassword] = useState(false);
+  
+	const togglePassword = () => {
+	  setIsRevealPassword((prevState) => !prevState);
+	}
 
 
 	return (
@@ -23,7 +28,20 @@ const RegisterModal = ({
 	<p>新規登録</p>
     <form className={style['register-form']}>
       <input type="text" placeholder="名前"/>
-      <input type="password" placeholder="パスワード"/>
+      <input type={isRevealPassword ? 'text':"password"}
+	  name="password"
+	   placeholder="パスワード"/>
+	    <span
+	onClick={togglePassword}
+        role="presentation"
+	className={classes.PasswordReveal}
+    >
+      {isRevealPassword ? (
+	 <i className="fas fa-eye" />
+      ) : (
+	 <i className="fas fa-eye-slash" />
+      )}
+     </span>
       <input type="text" placeholder="メールアドレス"/>
 			<button onClick={() => clickCreate()}>新規登録</button>
       <p className={style.message}>Already registered? <a href="#">ログイン</a></p>

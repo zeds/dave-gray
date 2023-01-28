@@ -37,7 +37,7 @@ function App() {
           </div>
           <div className="user2">
             <button onClick={() => clickRegister()}>新規登録</button>
-            <button onClick={() => clickFacbook()}>Facebookで新規登録</button>
+            <button onClick={() => clickFacbook()}><a href="https://www.facebook.com/">Facebookで新規登録</a></button>
           </div>
         
         </header>

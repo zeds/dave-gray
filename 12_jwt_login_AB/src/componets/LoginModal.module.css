@@ -73,3 +73,9 @@
     align-items: center;
     justify-content: center;
 }
+.PasswordReveal {
+  left: auto;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
