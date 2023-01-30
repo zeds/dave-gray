@@ -1,7 +1,7 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import style from './LoginModal.module.css'
-import { closeModal } from '../features/modal/modalSlice'
+import { useDispatch } from 'react-redux';
+import style from './Modal.module.css'
+import { openModal } from '../features/modal/modalSlice'
 
 const RegisterModal = ({
 	open
@@ -11,25 +11,24 @@ const RegisterModal = ({
 
 	const dispatch = useDispatch();
 
-	function clickCreate() {
-		dispatch(closeModal())
+	function clickRegister(e) {
+		e.preventDefault()
+		dispatch(openModal({name:'register',open:false}))
 	}
 
-
 	return (
-<div className={style.container}>
-
-  <div className={style.form}>
-	<p>新規登録</p>
-    <form className={style['register-form']}>
-      <input type="text" placeholder="name"/>
-      <input type="password" placeholder="password"/>
-      <input type="text" placeholder="email address"/>
-			<button onClick={() => clickCreate()}>新規登録</button>
-      <p className={style.message}>Already registered? <a href="#">Sign In</a></p>
-    </form>
-  </div>
-</div>
+		<div className={style.container}>
+			<div className={style.form}>
+			<p>Register</p>
+				<form onSubmit={clickRegister}>
+					<input type="text" placeholder="name"/>
+					<input type="password" placeholder="password"/>
+					<input type="text" placeholder="email address"/>
+					<button type="submit">register</button>
+					<p className={style.message}>Already registered? <a href="#">Sign In</a></p>
+				</form>
+			</div>
+		</div>
 	)
 }
 

@@ -2,6 +2,7 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+	border: none;
 }
 body {
   background: gray;
@@ -12,14 +13,15 @@ header {
 	padding: 0 10px;
 	justify-content: space-between;
 	align-items: center;
-	background:skyblue;
+	background: #00425A;
+	color: white;
+	font-weight: bold;
 }
 button {
 	height: 40px;
 	width: 100px;
 	margin-right: 10px;
 	border-radius: 5px;
-	border: none;
 }
 button:hover {
 	background: lightgray;

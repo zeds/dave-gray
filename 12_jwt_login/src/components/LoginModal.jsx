@@ -1,7 +1,7 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import style from './LoginModal.module.css'
-import { closeModal } from '../features/modal/modalSlice'
+import { useDispatch } from 'react-redux';
+import style from './Modal.module.css'
+import { openModal } from '../features/modal/modalSlice'
 
 const LoginModal = ({
 	open
@@ -11,24 +11,23 @@ const LoginModal = ({
 
 	const dispatch = useDispatch();
 
-	function clickLogin() {
-		dispatch(closeModal())
+	function clickLogin(e) {
+		e.preventDefault()
+		dispatch(openModal({name:'login',open:false}))
 	}
 
-
 	return (
-<div className={style.container}>
-
-  <div className={style.form}>
-	<p>ログイン</p>
-    <form>
-      <input type="text" placeholder="username"/>
-      <input type="password" placeholder="password"/>
-			<button onClick={() => clickLogin()}>ログイン</button>
-      <p className={style.message}>Not registered? <a href="#">Create an account</a></p>
-    </form>
-  </div>
-</div>
+		<div className={style.container}>
+			<div className={style.form}>
+				<p>Login</p>
+				<form onSubmit={clickLogin}>
+					<input type="text" placeholder="username"/>
+					<input type="password" placeholder="password"/>
+					<button type="submit">login</button>
+					<p className={style.message}>Not registered? <a href="#">Create an account</a></p>
+				</form>
+			</div>
+		</div>
 	)
 }
 

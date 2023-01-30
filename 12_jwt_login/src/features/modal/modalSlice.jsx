@@ -9,18 +9,19 @@ const modalSlice = createSlice ({
 	name: 'modal',
 	initialState,
 	reducers: {
-		openLogin: (state, action) => {
-			state.isLoginOpen = true
-		},
-		openRegister: (state, action) => {
-			state.isRegisterOpen = true
-		},
-		closeModal: (state, action) => {
-			state.isLoginOpen = false
-			state.isRegisterOpen = false
+		openModal: (state, action) => {
+			if (action.payload.name === 'login') {
+				state.isLoginOpen = action.payload.open
+				return
+			}
+			if (action.payload.name === 'register') {
+				state.isRegisterOpen = action.payload.open
+				return
+			}
+			alert("action is wrong")
 		}
 	}
 })
 
-export const { openLogin, openRegister, closeModal } = modalSlice.actions
-export default modalSlice.reducer
+export const { openModal } = modalSlice.actions
+export default modalSlice.reducer //use from store
