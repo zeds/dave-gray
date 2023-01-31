@@ -173,9 +173,6 @@ npm run dev
 　　className={style.['btn-red]}
 　　とします。
 
-
-
-
 login modalを作成し、Strapiにログインする。
 
 css module in React
@@ -186,11 +183,14 @@ globalは使える？
 React cssで悩む全ての人へ
 https://ramble.impl.co.jp/1414/#toc7
 
+[13_auth_Tom]
 
-[13_router]
+[router]
+Web Dev Simplified
+https://www.youtube.com/watch?v=SLfhMt5OUPI
 npm i react-router-dom
 
-
+[14_router_modal]
 
 
 ー以上

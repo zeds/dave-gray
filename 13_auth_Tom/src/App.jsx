@@ -19,7 +19,7 @@ function App() {
 
 	const [login, { isLoading }] = useLoginMutation()
 
-	const clickLogin = async (e) => {
+	const clickLogin = async () => {
 		const userData = await login(credentials).unwrap()
 		console.log("userData=", userData)
 		dispatch(setCredentials(userData))
