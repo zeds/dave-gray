@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import style from './Modal.module.css'
+import style from './MenuModal.module.css'
 import { openModal } from '../features/modal/modalSlice'
 
 export const MenuModal = ({
@@ -16,8 +16,15 @@ export const MenuModal = ({
 
 	return (
 		<div className={style.container}>
+			<div className={style.menu}>
+				<button onClick={()=>clickClose()}>閉じる</button>
+				<p>Company</p>
+				<p>Contact</p>
+
+
+			</div>
+
 			Menu
-			<button onClick={()=>clickClose()}>閉じる</button>
 		</div>
 	)
 }

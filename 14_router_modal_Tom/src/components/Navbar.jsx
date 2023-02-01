@@ -4,7 +4,7 @@ import { Link, useMatch, useResolvedPath } from 'react-router-dom'
 import style from './Navbar.module.css'
 import LoginModal from './LoginModal'
 import RegisterModal from './RegisterLogin';
-import { MenuModal } from './MenuModal';
+import MenuModal from './MenuModal';
 import { openModal } from '../features/modal/modalSlice'
 
 export const Navbar = () => {
