@@ -191,6 +191,9 @@ https://www.youtube.com/watch?v=SLfhMt5OUPI
 npm i react-router-dom
 
 [14_router_modal]
+npm i react-router-dom
+npm i @reduxjs/toolkit
+npm i react-redux
 
 
 ー以上
