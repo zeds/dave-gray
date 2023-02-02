@@ -198,6 +198,15 @@ npm i react-redux
 burger menu sample
 https://alvarotrigo.com/blog/slide-menus/
 
+useState：https://www.youtube.com/watch?v=Fhu5cu864ag
+sidebar navigation menu：https://www.youtube.com/watch?v=zQBd3hNXJgI
+
+sassを利用する
+https://www.freecodecamp.org/news/how-to-use-sass-with-css-modules-in-next-js/
+
+cssを操作するには、JavaScriptで、cssの要素を取得する必要があります。
+querySelectorで要素を取得しますが、ReactではuseRefを使います
+https://bobbyhadz.com/blog/react-document-queryselector
 
 
 ー以上

@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux';
-import style from './MenuModal.module.css'
+import style from './MenuModal.module.scss'
 import { openModal } from '../features/modal/modalSlice'
 
 export const MenuModal = ({
@@ -8,32 +8,25 @@ export const MenuModal = ({
 }) => {
 
 	if (!open) return null
-
-	const [colorContainer, setColorContainer] = useState(true)
-	//colorContainer = true
-	//setColorContainer(false)
-
 	const dispatch = useDispatch();
 
-	function changeColor(e) {
-		setColorContainer(!colorContainer)
-	}
-
-	function clickClose(e) {
-		dispatch(openModal({name:'menu',open:false}))
+	function clickLogin(e) {
+		e.preventDefault()
+		dispatch(openModal({name:'login',open:false}))
 	}
 
 	return (
-			<div className={colorContainer?style.color_container : style.container} id="container">
-				<div className={style.menu}>
-					<p>Company</p>
-					<p>Contact</p>
-				</div>
-				<button onClick={()=>changeColor()}>色変更</button>
-				<button onClick={()=>clickClose()}>閉じる</button>
-
-				Menu
+		<div className={style.container}>
+			<div className={style.form}>
+				<p>Login</p>
+				<form onSubmit={clickLogin}>
+					<input type="text" placeholder="username"/>
+					<input type="password" placeholder="password"/>
+					<button type="submit">login</button>
+					<p className={style.message}>Not registered? <a href="#">Create an account</a></p>
+				</form>
 			</div>
+		</div>
 	)
 }
 
