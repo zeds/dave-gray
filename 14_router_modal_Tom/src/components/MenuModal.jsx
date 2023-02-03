@@ -10,21 +10,19 @@ export const MenuModal = ({
 	if (!open) return null
 	const dispatch = useDispatch();
 
-	function clickLogin(e) {
-		e.preventDefault()
-		dispatch(openModal({name:'login',open:false}))
+	function clickClose() {
+		dispatch(openModal({name:'menu',open:false}))
 	}
 
 	return (
-		<div className={style.container}>
-			<div className={style.form}>
-				<p>Login</p>
-				<form onSubmit={clickLogin}>
-					<input type="text" placeholder="username"/>
-					<input type="password" placeholder="password"/>
-					<button type="submit">login</button>
-					<p className={style.message}>Not registered? <a href="#">Create an account</a></p>
-				</form>
+		<div onClick={(event)=> {
+			clickClose(event);
+		}} className={style.container}>
+			<div onClick={(event) => {
+				event.stopPropagation()
+			}}
+				className={style.menu}>
+				<button onClick={()=>clickClose()}>close</button>
 			</div>
 		</div>
 	)
