@@ -28,6 +28,14 @@
 	animation: moveInFromLeft 0.4s forwards;
 }
 
+.btn {
+	font-size: 20px;
+}
+
+p {
+	font-size: 20px;
+}
+
 @keyframes moveInFromLeft {
 	to {
 		transform: translateX(200px);
