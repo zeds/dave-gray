@@ -25,7 +25,16 @@
 	border:5px;
 	top:0;
 	left: -200px;
-	animation: moveInFromLeft 0.5s forwards;
+	animation: moveInFromLeft 0.4s forwards;
+	
+}
+.links{
+	display: flex;
+	flex-direction: column;
+}
+.link{
+	color: azure;
+	font-size: 25px;
 }
 
 .btn {

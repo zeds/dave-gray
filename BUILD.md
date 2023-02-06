@@ -209,4 +209,11 @@ querySelectorで要素を取得しますが、ReactではuseRefを使います
 https://bobbyhadz.com/blog/react-document-queryselector
 
 
+validation
+https://www.copycat.dev/blog/react-hook-form/
+npm i react-hook-form
+npm i @hookform/resolvers yup
+
+
+
 ー以上

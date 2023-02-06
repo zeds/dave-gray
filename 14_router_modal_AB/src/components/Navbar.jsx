@@ -2,11 +2,12 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom'
 import style from './Navbar.module.css'
-import { Icon } from '@iconify/react';
+// import style from './MenuModal.module.css'
 import LoginModal from './LoginModal'
 import RegisterModal from './RegisterLogin';
 import MenuModal from './MenuModal';
 import { openModal } from '../features/modal/modalSlice'
+import { Icon } from '@iconify/react';
 
 export const Navbar = () => {
 
@@ -29,15 +30,13 @@ export const Navbar = () => {
 
 	return (
 		<nav>
-			<div className={style.burger} onClickCapture={clickMenu}>
-				<div className={style.line1}></div>
-				<div className={style.line2}></div>
-				<div className={style.line3}></div>
-			</div>
-			<Link to="/" className="site-title">Welcome</Link>
+			<button className={style.button1} onClick={() => clickMenu()}><Icon icon="ic:outline-menu" width="40"color='red' /></button>
+			<Link to="/" className="site-title">ホーム</Link>
 			<ul>
 				<CustomLink to="/company">会社概要</CustomLink>
 				<CustomLink to="/contact">お問い合わせ</CustomLink>
+				<CustomLink to="/contact">採用情報</CustomLink>
+				<CustomLink to="/contact">アクセス</CustomLink>
 			</ul>
 			<div className={style.user}>
 				<button className={style.button} onClick={() => clickLogin()}>ログイン</button>
