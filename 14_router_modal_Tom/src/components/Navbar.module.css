@@ -39,6 +39,29 @@ ul {
 	align-items: center;
 }
 
+.burger {
+	width: 30px;
+	height: 40px;
+	/*background: gray;*/
+	cursor: pointer;
+
+}
+.line1 {
+	margin-top: 8px;
+	height: 4px;
+  background: white;
+}
+.line2 {
+	margin-top: 7px;
+	height: 4px;
+  background: white;
+}
+.line3 {
+	margin-top: 7px;
+	height: 4px;
+  background: white;
+}
+
 @media (max-width: 600px) {
 	nav ul {
 		display: none;

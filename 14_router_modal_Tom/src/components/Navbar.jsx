@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom'
 import style from './Navbar.module.css'
+import { Icon } from '@iconify/react';
 import LoginModal from './LoginModal'
 import RegisterModal from './RegisterLogin';
 import MenuModal from './MenuModal';
@@ -28,7 +29,11 @@ export const Navbar = () => {
 
 	return (
 		<nav>
-			<button className={style.button} onClick={() => clickMenu()}>⭕️</button>
+			<div className={style.burger} onClickCapture={clickMenu}>
+				<div className={style.line1}></div>
+				<div className={style.line2}></div>
+				<div className={style.line3}></div>
+			</div>
 			<Link to="/" className="site-title">Welcome</Link>
 			<ul>
 				<CustomLink to="/company">会社概要</CustomLink>
