@@ -73,6 +73,7 @@ const clickNew = (e) => {
 		type: 'new'
 	}
 	dispatch(openProduct(action));
+	//dispatch(newProduct(action));
 }
 
 //編集
@@ -88,6 +89,7 @@ const handleEdit = (e) => {
 		type: 'edit'
 	}
 	dispatch(openProduct(action));
+	//dispatch(editProduct(action));
 }
 
 //削除
