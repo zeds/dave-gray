@@ -34,7 +34,6 @@ const ProductList = () => {
 		isError,
 		error
 	} = useGetProductsQuery()
-
 	const [addProduct] = useAddProductMutation()
 	const [updateProduct] = useUpdateProductMutation()
 
@@ -74,7 +73,6 @@ const clickNew = (e) => {
 		type: 'new'
 	}
 	dispatch(openProduct(action));
-	//dispatch(newProduct(action));
 }
 
 //編集
@@ -90,7 +88,6 @@ const handleEdit = (e) => {
 		type: 'edit'
 	}
 	dispatch(openProduct(action));
-	//dispatch(editProduct(action));
 }
 
 //削除
@@ -103,6 +100,36 @@ const handleEdit = (e) => {
 		}
 		dispatch(openDelete(action));
   }
+
+//新規追加
+	const newItemSection =
+	<div>
+		 <form onSubmit={handleSubmit}>
+			  <label htmlFor="new-todo">Enter a new product item</label>
+			  <div className="new-todo">
+					<input
+						 type="text"
+						 id="new-todo"
+						 value={newProduct}
+						 onChange={(e) => setNewProduct(e.target.value)}
+						 placeholder="商品名"
+					/>
+					<input
+						 type="number"
+						 id="new-price"
+						 value={newPrice}
+						 onChange={(e) => setNewPrice(e.target.value)}
+						 placeholder="価格"
+					/>
+			  </div>
+
+			  <button className="submit">
+					<FontAwesomeIcon icon={faUpload} />
+			  </button>
+		 </form>
+	</div>
+
+
 
 	let content;
 	if (isLoading) {
@@ -138,6 +165,7 @@ const handleEdit = (e) => {
 			  <DeleteModal open={isDeleteOpen} />
 				<ProductModal open={isProductOpen} />
 
+			  {newItemSection}
 				<div className="post">
 					<button onClick={(e) => clickNew(e)}>出品</button>
 				</div>
