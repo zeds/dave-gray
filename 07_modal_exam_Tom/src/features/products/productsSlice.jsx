@@ -6,7 +6,7 @@ export const productsSlice = createApi({
 	tagTypes: ['Products'], 
 	endpoints: (builder) => ({
 		getProducts: builder.query({
-			query: () => '/products?sort=pos',
+			query: () => '/products?sort=stock',
 			providesTags: ['Products']
 		}),
 		addProduct: builder.mutation({

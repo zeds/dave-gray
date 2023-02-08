@@ -81,7 +81,7 @@ const ProductModal = ({
 					/>
 				</div>
 
-				<div>
+				{/*<div>
 					<input
 						type="checkbox"
 						id="checkbox"
@@ -89,7 +89,7 @@ const ProductModal = ({
 						onChange={(e) => clickCheckbox(e)}
 					/>公開
 			  </div>
-
+*/}
 			<div className='modal_confirm_button_container'>
 				<button
 					type='button'
