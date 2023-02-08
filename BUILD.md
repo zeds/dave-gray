@@ -49,6 +49,34 @@ https://lusty.asia:1443/api/products
 @reduxjs/toolkit/query/react
 React ToolKit Query
 
+[07_modal_router_exam_Tom]
+14_router_modal_Tomを参考にメニュー作成
+07_modal_exam_Tomをコピー
+07_modal_router_exam_Tom
+これにメニューをつけていきます。
+
+1.ライブラリインストール
+npm i react-router-dom
+npm i @iconify/react
+npm i react-hook-form
+npm i yup
+npm i @hookform/resolvers
+npm i sass
+
+2.index.jsxの編集
+
+3.App.jsxの編集
+pages/Home.jsx
+pages/Company.jsx
+pages/Home.jsx
+pages/Contact.jsx
+14_...のpagesをまるごとコピー
+
+App.cssをコピー
+
+
+
+
 [auth]
 Daveの声はしわがれ声で嫌いだけど、感謝しながら聴こう^^;
 https://www.youtube.com/watch?v=-JJFQ9bkUbo&list=PLldYJFgA6aTq-MvEwcD5NP1azPxAY1xgo&index=8&t=150s
