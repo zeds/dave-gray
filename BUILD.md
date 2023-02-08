@@ -214,6 +214,8 @@ https://www.copycat.dev/blog/react-hook-form/
 npm i react-hook-form
 npm i @hookform/resolvers yup
 
+yupとformikとは
+https://codezine.jp/article/detail/13518
 
 
 ー以上
