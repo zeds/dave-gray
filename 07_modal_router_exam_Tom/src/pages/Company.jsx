@@ -7,6 +7,7 @@ export const Company = () => {
 	return (
 		<div className={style.container}>
 			<div className={style.title}>Company</div>
+			我々は宇宙人だ
 		About Salesforce
 Learn about our history, products, and values.
 

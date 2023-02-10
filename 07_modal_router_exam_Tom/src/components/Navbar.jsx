@@ -36,6 +36,7 @@ export const Navbar = () => {
 			</div>
 			<Link to="/" className="site-title">Welcome</Link>
 			<ul>
+			<CustomLink to="/shopping">お買い物</CustomLink>
 				<CustomLink to="/company">会社概要</CustomLink>
 				<CustomLink to="/contact">お問い合わせ</CustomLink>
 			</ul>

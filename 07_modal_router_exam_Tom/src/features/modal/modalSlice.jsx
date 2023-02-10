@@ -19,7 +19,18 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
 		openModal: (state, action) => {
-			state.isMenuOpen = true;
+			if (action.payload.name === 'login') {
+				state.isLoginOpen = action.payload.open
+				return
+			}
+			if (action.payload.name === 'register') {
+				state.isRegisterOpen = action.payload.open
+				return
+			}
+			if (action.payload.name === 'menu') {
+				state.isMenuOpen = action.payload.open
+				return
+			}
 		},
     openDelete: (state, action) => {
       state.isDeleteOpen = true;

@@ -25,7 +25,6 @@ const ProductList = () => {
 
 	const { isDeleteOpen, isProductOpen } = useSelector((store) => store.modal);
 
-
 	const {
 		data: products,
 		isLoading,
@@ -68,7 +67,7 @@ const clickNew = (e) => {
 		price: 300,
 		stock: 0,
 		publish: true,
-		title: '商品情報-新規',		
+		title: '商品情報-新規だよー',		
 		type: 'new'
 	}
 	dispatch(openProduct(action));

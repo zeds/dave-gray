@@ -5,6 +5,12 @@ export const productsSlice = createApi({
 	baseQuery: fetchBaseQuery({ baseUrl: 'https://lusty.asia:1443/api' }),
 	tagTypes: ['Products'], 
 	endpoints: (builder) => ({
+		getProductById: builder.query({
+			query: (id) => ({
+				url: `/products/${id}`,
+				providesTags: ['Products']
+			})
+		}),
 		getProducts: builder.query({
 			query: () => '/products?sort=stock',
 			providesTags: ['Products']
@@ -37,6 +43,7 @@ export const productsSlice = createApi({
 })
 
 export const {
+	useGetProductByIdQuery,
 	useGetProductsQuery,
 	useAddProductMutation,
 	useUpdateProductMutation,
