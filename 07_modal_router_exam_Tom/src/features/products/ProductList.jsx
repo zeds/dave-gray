@@ -9,6 +9,7 @@ import { faTrash, faUpload, faPencilSquare } from '@fortawesome/free-solid-svg-i
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react"
+import { Link} from 'react-router-dom'
 
 import DeleteModal from '../../components/DeleteModal'
 import ProductModal from '../../components/ProductModal';
@@ -112,6 +113,7 @@ const handleEdit = (e) => {
 					<span>{product.attributes.name}</span>
 					<span>　 ¥{Number(product.attributes.price).toLocaleString()}円</span>
 					<span>{product.attributes.stock}</span>
+					<Link to={`/sales_by_product/${product.id}`} >売上</Link>
 					<button className="trash" onClick={() => handleEdit({ ...product })}>
 						<FontAwesomeIcon icon={faPencilSquare} />
 					</button>

@@ -12,6 +12,12 @@ export const productsSlice = createApi({
 				body: credentials
 			}),
 		}),
+		getProductHistory: builder.query({
+			query: (id) => ({
+				url: `/product-purchase-histories?filters[product][id][$eq]=${id}&populate=product,user`,
+				providesTags: ['ProductPurchaseHistory']
+			})
+		}),
 		getProductById: builder.query({
 			query: (id) => ({
 				url: `/products/${id}`,
@@ -51,6 +57,7 @@ export const productsSlice = createApi({
 
 export const {
 	useLoginMutation,
+	useGetProductHistoryQuery,
 	useGetProductByIdQuery,
 	useGetProductsQuery,
 	useAddProductMutation,
