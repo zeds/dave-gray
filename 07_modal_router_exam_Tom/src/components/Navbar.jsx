@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom'
 import style from './Navbar.module.css'
 import { Icon } from '@iconify/react';
-//import LoginModal from './LoginModal'
-//import RegisterModal from './RegisterLogin';
+import LoginModal from './LoginModal'
+import RegisterModal from './RegisterModal';
 import MenuModal from './MenuModal';
 import { openModal } from '../features/modal/modalSlice'
+import ThanksModal from './ThanksModal';
 
 export const Navbar = () => {
 
@@ -14,7 +15,7 @@ export const Navbar = () => {
 	const dispatch = useDispatch();
 
 	// read state
-	const { isLoginOpen, isRegisterOpen, isMenuOpen } = useSelector((store) => store.modal);
+	const { isLoginOpen, isRegisterOpen, isMenuOpen, isThanksOpen } = useSelector((store) => store.modal);
 
 	function clickLogin() {
 		dispatch(openModal({name:'login', open: true}))
@@ -34,9 +35,10 @@ export const Navbar = () => {
 				<div className={style.line2}></div>
 				<div className={style.line3}></div>
 			</div>
-			<Link to="/" className="site-title">Welcome</Link>
+			<Link to="/" className="site-title">ホーム</Link>
 			<ul>
 			<CustomLink to="/shopping">お買い物</CustomLink>
+				<CustomLink to="/admin">管理画面</CustomLink>
 				<CustomLink to="/company">会社概要</CustomLink>
 				<CustomLink to="/contact">お問い合わせ</CustomLink>
 			</ul>
@@ -44,9 +46,10 @@ export const Navbar = () => {
 				<button className={style.button} onClick={() => clickLogin()}>ログイン</button>
 				<button className={style.button} onClick={() => clickRegister()}>新規登録</button>
 			</div>
-			{/*<LoginModal open={isLoginOpen}/>
-			<RegisterModal open={isRegisterOpen}/>*/}
+			<LoginModal open={isLoginOpen}/>
+			<RegisterModal open={isRegisterOpen}/>
 			<MenuModal open={isMenuOpen} />
+			<ThanksModal open={isThanksOpen} />
 		</nav>
 	)
 }

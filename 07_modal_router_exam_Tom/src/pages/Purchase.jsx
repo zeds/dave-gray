@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import {
-	useGetProductByIdQuery,
-} from '../features/products/productsSlice'
+import {useGetProductByIdQuery } from '../features/products/productsSlice'
 import style from './Purchase.module.scss'
+
+import { useDispatch } from 'react-redux';
+import { openModal } from '../features/modal/modalSlice'
 
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
-
 
 import * as yup from "yup";
 const schema = yup
@@ -20,8 +20,14 @@ const schema = yup
   .required();
 
 
+	import {
+		useAddPurchaseHistoryMutation
+	} from '../features/product_purchase_history/productPurchaseHistorySlice'
 
+	
 export const Purchase = () => {
+
+	const dispatch = useDispatch();
 
 	const {
     register,
@@ -45,6 +51,8 @@ export const Purchase = () => {
 		error
 	} = useGetProductByIdQuery(productId)
 
+	const [addPurchase] = useAddPurchaseHistoryMutation()
+
 	console.log("product=", product)
 
 	if (isLoading) return <div>Loading...</div>
@@ -52,6 +60,22 @@ export const Purchase = () => {
 
   const onSubmit = (data) => {
 		setEmail(data.email)
+		//APIを呼び出す
+		let body = {
+			data: {
+				user: userId,
+				product: product.data.id,
+				price: product.data.attributes.price,
+				quantity: 1
+			}
+		}
+		addPurchase({ body })
+
+		dispatch(openModal({
+			name: 'thanks',
+			title:`${product.data.attributes.name}\nお買い上げありがとうございます。`,
+			open:true}))
+
   };
 
 
@@ -83,8 +107,8 @@ export const Purchase = () => {
 								onChange={(e) => setUserId(e.target.value)}
 								placeholder="ユーザーID"
 							/>
-					<section>
-						<input type='submit' />
+					<section className={style.send}>
+						<button type='submit'>メールを送る</button>
 					</section>
 
 				</form>

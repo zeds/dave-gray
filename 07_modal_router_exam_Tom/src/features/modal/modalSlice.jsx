@@ -4,6 +4,7 @@ const initialState = {
   isDeleteOpen: false,
 	isProductOpen: false,
 	isMenuOpen: false,
+	isThanksOpen: false,
 	title: '',
 	id: 0,
 	pos: 0,
@@ -31,6 +32,11 @@ const modalSlice = createSlice({
 				state.isMenuOpen = action.payload.open
 				return
 			}
+			if (action.payload.name === 'thanks') {
+				state.isThanksOpen = action.payload.open
+				state.title = action.payload.title
+				return
+			}
 		},
     openDelete: (state, action) => {
       state.isDeleteOpen = true;
@@ -41,6 +47,7 @@ const modalSlice = createSlice({
     closeModal: (state, action) => {
       state.isDeleteOpen = false;
       state.isProductOpen = false;
+      state.isThanksOpen = false;
     },
     openProduct: (state, action) => {
       state.isProductOpen = true;

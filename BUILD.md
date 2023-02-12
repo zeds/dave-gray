@@ -211,7 +211,12 @@ globalは使える？
 React cssで悩む全ての人へ
 https://ramble.impl.co.jp/1414/#toc7
 
+✅containerをクリックしても閉じないバージョン
+
 [13_auth_Tom]
+ログインボタンだけ。
+APIを呼び出して、ログインは成功している。
+✅インスペクターで結果をチェックすること。
 
 [router]
 Web Dev Simplified
@@ -244,6 +249,29 @@ npm i @hookform/resolvers yup
 
 yupとformikとは
 https://codezine.jp/article/detail/13518
+
+メニューを実装しただけ。
+ログイン、新規登録モーダルは開かない
+
+[14_router_modal_Tom]
+ログイン、新規登録モーダルを実装
+
+
+[16_sort]
+一覧を、名前順、価格順などでソートします。
+https://www.youtube.com/watch?v=g523Bj0y36Q
+npm create vite@latest .
+> React
+> JavaScript + SWC
+npm i
+
+ダミーJSON作成サイト
+https://www.mockaroo.com/
+
+First Nameをクリックすると、asc:ascending、dsc:descendingで
+並び替えがされる。
+
+
 
 
 ー以上

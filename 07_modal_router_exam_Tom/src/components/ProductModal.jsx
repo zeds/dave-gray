@@ -2,12 +2,13 @@ import { useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../features/modal/modalSlice';
 import { useUpdateProductMutation, useAddProductMutation } from '../features/products/productsSlice';
-import style from './Modal.module.css'
+import style from './Modal.module.scss'
 
 const ProductModal = ({
-	open
+	open // true / false
 }) => {
 	if (!open) return
+
 	const dispatch = useDispatch();
 
 	const { title, id, pos, name, price, publish, stock, type } = useSelector((store) => store.modal);

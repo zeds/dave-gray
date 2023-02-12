@@ -1,30 +1,23 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export const productsSlice = createApi({
+export const productPurchaseHistorySlice = createApi({
 	reducerPath: 'api',
 	baseQuery: fetchBaseQuery({ baseUrl: 'https://lusty.asia:1443/api' }),
 	tagTypes: ['Products'], 
 	endpoints: (builder) => ({
-		login: builder.mutation({
-			query: (credentials) => ({
-				url: '/auth/local',
-				method: 'POST',
-				body: credentials
-			}),
-		}),
-		getProductById: builder.query({
+		getPurchaseById: builder.query({
 			query: (id) => ({
-				url: `/products/${id}`,
-				providesTags: ['Products']
+				url: `/product-purchase-histories/${id}`,
+				providesTags: ['product-purchase-histories']
 			})
 		}),
 		getProducts: builder.query({
-			query: () => '/products?populate=*',
+			query: () => '/products?sort=stock',
 			providesTags: ['Products']
 		}),
-		addProduct: builder.mutation({
+		addPurchaseHistory: builder.mutation({
 			query: (product) => ({
-				url: '/products',
+				url: '/product-purchase-histories',
 				method: 'POST',
 				body: product.body
 			}),
@@ -50,10 +43,9 @@ export const productsSlice = createApi({
 })
 
 export const {
-	useLoginMutation,
-	useGetProductByIdQuery,
+	useGetPurchaseByIdQuery,
 	useGetProductsQuery,
-	useAddProductMutation,
+	useAddPurchaseHistoryMutation,
 	useUpdateProductMutation,
 	useDeleteProductMutation
-} = productsSlice
+} = productPurchaseHistorySlice
