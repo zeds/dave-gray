@@ -8,8 +8,10 @@ import {useGetProductHistoryQuery } from '../features/products/productsSlice'
 
 export const SalesByProduct = () => {
 
+	const [count, setCount] = useState(false)
 	///api/product-purchase-histories
 	const params = useParams();
+	console.log("params=", params.productId)
 
 	const {
 		data: products,
@@ -18,6 +20,7 @@ export const SalesByProduct = () => {
 		isError,
 		error
 	} = useGetProductHistoryQuery(params.productId)
+
 
 	let content
 	if (isLoading) {

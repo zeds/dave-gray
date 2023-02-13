@@ -75,8 +75,3 @@
 		grid-template-columns: repeat(3, 1fr);
 	}
 }
-@media screen and (1400px < width){
-	.grid_container {
-		grid-template-columns: repeat(4, 1fr);
-	}
-}
