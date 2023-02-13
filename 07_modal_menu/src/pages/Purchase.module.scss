@@ -1,0 +1,33 @@
+.container {
+	width: 100%;
+	height: 100vh;
+	background: skyblue;
+	display: flex;
+	justify-content: center;
+	padding: 20px;
+	.box {
+		width: 500px;
+		height: 500px;
+		background: lightgray;
+		padding: 20px;
+		form {
+			display: grid;
+			grid-template-columns: 150px 200px;
+			gap: 10px;
+			input {
+				width: 200px;
+			}
+			button {
+				border: none;
+				padding: 10px;
+				color: white;
+				width: 200px;	
+			}
+			.send{
+				margin-left: 160px;
+				margin-top: 20px;
+			}
+
+		}
+	}
+}
