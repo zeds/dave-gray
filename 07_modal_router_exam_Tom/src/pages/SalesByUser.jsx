@@ -1,15 +1,17 @@
 import React, {useState} from 'react'
 import { useParams, Link } from 'react-router-dom'
 import style from './SalesByProduct.module.scss'
-import {useGetProductHistoryQuery } from '../features/products/productsSlice'
+import {useGetUserHistoryQuery } from '../features/products/productsSlice'
 /*
 	productsSliceに購入履歴を呼び出すためのapiを追加する
 */
 
-export const SalesByProduct = () => {
+export const SalesByUser = () => {
 
+	const [count, setCount] = useState(false)
 	///api/product-purchase-histories
 	const params = useParams();
+	console.log("params=", params.email)
 
 	const {
 		data: products,
@@ -17,7 +19,8 @@ export const SalesByProduct = () => {
 		isSuccess,
 		isError,
 		error
-	} = useGetProductHistoryQuery(params.productId)
+	} = useGetUserHistoryQuery(params.email)
+
 
 	let content
 	if (isLoading) {
@@ -36,15 +39,15 @@ export const SalesByProduct = () => {
 			return (
 				<div className={style.grid_container} key={product.id}>
 					<div>
-						{product.attributes.product.data.id}
+						<Link to={`/sales_by_product/${product.attributes.product.data.id}`}>
+							{product.attributes.product.data.id}
+						</Link>
 					</div>
 					<div>
 						{product.attributes.product.data.attributes.name}
 					</div>
 					<div>
-						<Link to={`/sales_by_user/${product.attributes.user.data.attributes.email}`}>
 						{product.attributes.user.data.attributes.email}
-						</Link>
 					</div>
 					<div>
 						{product.attributes.quantity}
@@ -62,7 +65,7 @@ export const SalesByProduct = () => {
 
 	return (
 		<div className={style.container}>
-			商品別購入履歴
+			ユーザー別購入履歴
 			<div className={style.frame}>
 
 				{content}

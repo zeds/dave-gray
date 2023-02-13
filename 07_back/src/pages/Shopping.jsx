@@ -25,7 +25,7 @@ export const Shopping = () => {
 */
 //テスト終わり ================================
 
-	//初期表示では、価格が安い順に並べる price, name, stock
+	//初期表示では、価格が安い順に並べる
 	let [orderType, setOrderType] = useState('price')
 	const [order, setOrder] = useState("ASC")
 
