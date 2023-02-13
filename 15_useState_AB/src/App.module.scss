@@ -1,0 +1,29 @@
+.TextBox {
+	color: black;
+	position:absolute;
+	margin-bottom:30px;
+	width: 200px;
+	height: 100vh;
+	background: green;
+	border:5px;
+	top:10%;
+	left: -200px;
+	animation: moveInFromLeft 0.4s forwards;
+}
+
+@keyframes moveInFromLeft {
+	to {
+		transform: translateX(200px);
+	}
+	//0% {
+	//	opacity: 0;
+	//	transform: translateX(-100px);
+	//}
+	//80% {
+	//	transform: translateX(100px);
+	//}
+	//100% {
+	//	opacity: 1;
+	//	transition: translateX(100px);
+	//}
+}

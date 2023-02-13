@@ -5,8 +5,27 @@ export const productsSlice = createApi({
 	baseQuery: fetchBaseQuery({ baseUrl: 'https://lusty.asia:1443/api' }),
 	tagTypes: ['Products'], 
 	endpoints: (builder) => ({
+		login: builder.mutation({
+			query: (credentials) => ({
+				url: '/auth/local',
+				method: 'POST',
+				body: credentials
+			}),
+		}),
+		getProductHistory: builder.query({
+			query: (id) => ({
+				url: `/product-purchase-histories?filters[product][id][$eq]=${id}&populate=product,user`,
+				providesTags: ['ProductPurchaseHistory']
+			})
+		}),
+		getProductById: builder.query({
+			query: (id) => ({
+				url: `/products/${id}`,
+				providesTags: ['Products']
+			})
+		}),
 		getProducts: builder.query({
-			query: () => '/products?sort=pos',
+			query: () => '/products?populate=*',
 			providesTags: ['Products']
 		}),
 		addProduct: builder.mutation({
@@ -37,6 +56,9 @@ export const productsSlice = createApi({
 })
 
 export const {
+	useLoginMutation,
+	useGetProductHistoryQuery,
+	useGetProductByIdQuery,
 	useGetProductsQuery,
 	useAddProductMutation,
 	useUpdateProductMutation,
