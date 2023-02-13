@@ -1,0 +1,90 @@
+
+
+.pro{
+	background-color: aquamarine;
+	width: 400px;
+	height: 70px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	p{
+		font-size: 3rem;
+	}
+}
+.sort {
+	display: flex;
+	justify-content: end;
+	margin-right: 20px;
+	gap: 10px;
+	button {
+		background: skyblue;
+		border: none;
+		padding: 10px;
+		color: gray;
+	}
+}
+
+.grid_container {
+	width: 100%;
+	//background: skyblue;
+	padding: 20px;
+	display: grid;
+	gap: 10px;
+	font-size: 0.8rem;
+
+	.box {
+		background: lightgreen;
+		border: 1px solid;
+		padding: 5px;
+		.item_image {
+			//background: red;
+			display: flex;
+			justify-content: center;
+			img {
+				width: 80%;
+			}
+		}
+		.item_name {
+			margin-top: 10px;
+			margin-left: 10%;
+			background: blanchedalmond;
+			font-size: 1.2rem;
+		}
+		.item_price {
+			display: flex;
+			background: gainsboro;
+			justify-content: space-between;
+			margin-right: 10%;
+			margin-left: 10%;
+		}
+		.item_button {
+			display: flex;
+			justify-content: center;
+			text-align: center;
+			margin-top: 20px;
+			margin-bottom: 10px;
+			button {
+				background: green;
+				border: none;
+				padding: 5px;
+				color: white;
+			}
+		}
+	}
+}
+
+@media screen and (0px < width){
+	.grid_container {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+@media screen and (600px < width){
+	.grid_container {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+@media screen and (1000px < width){
+	.grid_container {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
