@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import {useGetProductByIdQuery } from '../features/products/productsSlice'
+import {useGetProductByIdQuery,useUpdateStockMutation } from '../features/products/productsSlice'
 import style from './Purchase.module.scss'
 
 import { useDispatch } from 'react-redux';
@@ -43,6 +43,9 @@ export const Purchase = () => {
 	const [userId, setUserId] = useState(0)
 	const [email, setEmail] = useState('tom.zed39@gmail.com')
 
+	//在庫を1減らす
+	const [updateStock] = useUpdateStockMutation()
+
 	const {
 		data: product,
 		isLoading,
@@ -56,9 +59,34 @@ export const Purchase = () => {
 	if (isLoading) return <div>Loading...</div>
 	if (!product) return <div>取得できませんでした</div>
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+
+
+		const response = await updateStock({ id: productId })
+		console.log("response=",response)
+
+		// data?はレスポンスにerrorが含まれていなくても評価してくれます optional
+		//成功時にはresponse={}
+		//失敗時には、responseに値が設定されている
+		if (response.data) {
+			console.log("response.status=", response.data.status)
+			console.log("response.message=", response.data.message)
+			dispatch(openModal({
+				name: 'thanks',
+				title: response.data.message,
+				open:true}))
+			return
+		}
+
 		setEmail(data.email)
-		//APIを呼び出す
+
+		dispatch(openModal({
+			name: 'thanks',
+			title:`${product.data.attributes.name}\nお買い上げありがとうございます。`,
+			open:true}))
+
+
+		//購入履歴作成APIを呼び出す
 		let body = {
 			data: {
 				user: userId,
@@ -69,23 +97,7 @@ export const Purchase = () => {
 		}
 		addPurchase({ body })
 
-		//商品の在庫を減らす
-		//let {
-		//	data: product,
-		//	isLoading,
-		//	isSuccess,
-		//	isError,
-		//	error
-		//} = useGetProductByIdQuery(productId)
 
-		//if (isSuccess) {
-		//	console.log("在庫数：",product.data.attributes.stock)
-		//}
-
-		dispatch(openModal({
-			name: 'thanks',
-			title:`${product.data.attributes.name}\nお買い上げありがとうございます。`,
-			open:true}))
 
   };
 
@@ -106,6 +118,7 @@ export const Purchase = () => {
 						<input
 							type='text'
 							id='email'
+							value='a@a.com'
 							placeholder='email' {...register("email")} />
 						<span>{errors.email?.message}</span>
 					</div>

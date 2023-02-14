@@ -70,12 +70,12 @@
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
-@media screen and (1000px < width){
+@media screen and (800px < width){
 	.grid_container {
 		grid-template-columns: repeat(3, 1fr);
 	}
 }
-@media screen and (1400px < width){
+@media screen and (1100px < width){
 	.grid_container {
 		grid-template-columns: repeat(4, 1fr);
 	}

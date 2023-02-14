@@ -17,6 +17,7 @@ export const Home = () => {
 				<p>Notionのstatusを参考にする？In progress/ Needs review/ Blocked/ Work complete</p>
 				<p>誰かにアサインする、アサインされた人は返事をする責任がある、（できません、着手しました）</p>
 				<p>完了予定日？</p>
+				<p>項目を編集保存した時に履歴を残す（誰が、いつ更新したか）</p>
 				<p>ログイン処理を実装、</p>
 				<p>Persistent User Login</p>
 				<p>他言語対応（英語、日本語、ベトナム語、韓国語）</p>

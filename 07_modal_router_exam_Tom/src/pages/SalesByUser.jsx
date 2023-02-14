@@ -8,7 +8,6 @@ import {useGetUserHistoryQuery } from '../features/products/productsSlice'
 
 export const SalesByUser = () => {
 
-	const [count, setCount] = useState(false)
 	///api/product-purchase-histories
 	const params = useParams();
 	console.log("params=", params.email)
