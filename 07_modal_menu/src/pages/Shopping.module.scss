@@ -20,11 +20,9 @@
 	font-size: 0.8rem;
 
 	.box {
-		//background: lightgreen;
 		border: 1px solid;
 		padding: 5px;
 		.item_image {
-			//background: red;
 			display: flex;
 			justify-content: center;
 			img {
@@ -70,13 +68,8 @@
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
-@media screen and (800px < width){
+@media screen and (1000px < width){
 	.grid_container {
 		grid-template-columns: repeat(3, 1fr);
-	}
-}
-@media screen and (1100px < width){
-	.grid_container {
-		grid-template-columns: repeat(4, 1fr);
 	}
 }
