@@ -41,7 +41,7 @@ export const Purchase = () => {
 	const params = useParams();
 	const [productId, setProductId] = useState(params.productId)
 	const [userId, setUserId] = useState(0)
-	const [email, setEmail] = useState('ahmadov.abror122333@gmail.com')
+	const [email, setEmail] = useState('Ab@gmail.com')
 
 	const {
 		data: product,
