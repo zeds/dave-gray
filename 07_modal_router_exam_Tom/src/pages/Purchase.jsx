@@ -65,6 +65,7 @@ export const Purchase = () => {
 		const response = await updateStock({ id: productId })
 		console.log("response=",response)
 
+
 		
 		// data?はレスポンスにerrorが含まれていなくても評価してくれます optional
 		//成功時にはresponse={}
