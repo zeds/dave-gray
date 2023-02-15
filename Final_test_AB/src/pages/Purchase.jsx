@@ -58,7 +58,31 @@ export const Purchase = () => {
 	if (isLoading) return <div>Loading...</div>
 	if (!product) return <div>取得できませんでした</div>
 
+<<<<<<< HEAD:Final_test_AB/src/pages/Purchase.jsx
   const onSubmit = (data) => {
+=======
+  const onSubmit = async (data) => {
+
+
+		const response = await updateStock({ id: productId })
+		console.log("response=",response)
+
+
+		
+		// data?はレスポンスにerrorが含まれていなくても評価してくれます optional
+		//成功時にはresponse={}
+		//失敗時には、responseに値が設定されている
+		if (response.data) {
+			console.log("response.status=", response.data.status)
+			console.log("response.message=", response.data.message)
+			dispatch(openModal({
+				name: 'thanks',
+				title: response.data.message,
+				open:true}))
+			return
+		}
+
+>>>>>>> 3f6c933ed01079d87b09da0654ea0407d1bf7244:07_modal_router_exam_Tom/src/pages/Purchase.jsx
 		setEmail(data.email)
 		//APIを呼び出す
 		let body = {
