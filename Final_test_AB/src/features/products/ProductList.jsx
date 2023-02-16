@@ -1,8 +1,7 @@
 import {
 	useGetProductsQuery,
 	useAddProductMutation,
-	useUpdateProductMutation,
-	useDeleteProductMutation
+	useUpdateProductMutation
 } from './productsSlice'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,9 +9,10 @@ import { faTrash, faUpload, faPencilSquare } from '@fortawesome/free-solid-svg-i
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react"
+import { Link} from 'react-router-dom'
 
-import DeleteModal from '../../components/DeleteModal'
-import ProductModal from '../../components/ProductModal';
+import DeleteModal from '../../components/Delete/DeleteModal'
+import ProductModal from '../../components/Product/ProductModal';
 import style from './ProductList.module.css'
 
 
@@ -25,7 +25,6 @@ const ProductList = () => {
 	const [newPrice, setNewPrice] = useState('')
 
 	const { isDeleteOpen, isProductOpen } = useSelector((store) => store.modal);
-
 
 	const {
 		data: products,
@@ -69,7 +68,7 @@ const clickNew = (e) => {
 		price: 300,
 		stock: 0,
 		publish: true,
-		title: '商品情報-新規',		
+		title: '商品情報-新規だよー',		
 		type: 'new'
 	}
 	dispatch(openProduct(action));
@@ -101,15 +100,12 @@ const handleEdit = (e) => {
 		dispatch(openDelete(action));
   }
 
-
-
 	let content;
 	if (isLoading) {
 		content = <p>Loading...</p>
 	} else if (isSuccess) {
 		content = products.data.map(product => { //JSON.stringify(products)
 			return (
-				<div className={style.container}>
 				<div className={style.grid_container} key={product.id}>
 				{/*<article key={product.id}>*/}
 					<div>{product.attributes.pos}</div>
@@ -117,6 +113,7 @@ const handleEdit = (e) => {
 					<span>{product.attributes.name}</span>
 					<span>　 ¥{Number(product.attributes.price).toLocaleString()}円</span>
 					<span>{product.attributes.stock}</span>
+					<Link to={`/sales_by_product/${product.id}`} >合計売上</Link>
 					<button className="trash" onClick={() => handleEdit({ ...product })}>
 						<FontAwesomeIcon icon={faPencilSquare} />
 					</button>
@@ -124,7 +121,6 @@ const handleEdit = (e) => {
 						<FontAwesomeIcon icon={faTrash} size="lg" />
 					</button>
 				{/*</article>*/}
-				</div>
 				</div>
 			)
 	  })
@@ -135,11 +131,11 @@ const handleEdit = (e) => {
 	return (
 		 <main>
 			  <h1>商品一覧</h1>
+			  
 
 			  <DeleteModal open={isDeleteOpen} />
 				<ProductModal open={isProductOpen} />
 
-			  {/* {newItemSection} */}
 				<div className="post">
 					<button onClick={(e) => clickNew(e)}>出品</button>
 				</div>

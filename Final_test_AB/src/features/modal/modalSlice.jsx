@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isDeleteOpen: false,
 	isProductOpen: false,
+	isMenuOpen: false,
+	isThanksOpen: false,
 	title: '',
 	id: 0,
 	pos: 0,
@@ -17,6 +19,25 @@ const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
+		openModal: (state, action) => {
+			if (action.payload.name === 'login') {
+				state.isLoginOpen = action.payload.open
+				return
+			}
+			if (action.payload.name === 'register') {
+				state.isRegisterOpen = action.payload.open
+				return
+			}
+			if (action.payload.name === 'menu') {
+				state.isMenuOpen = action.payload.open
+				return
+			}
+			if (action.payload.name === 'thanks') {
+				state.isThanksOpen = action.payload.open
+				state.title = action.payload.title
+				return
+			}
+		},
     openDelete: (state, action) => {
       state.isDeleteOpen = true;
 			state.id = action.payload.id
@@ -26,6 +47,7 @@ const modalSlice = createSlice({
     closeModal: (state, action) => {
       state.isDeleteOpen = false;
       state.isProductOpen = false;
+      state.isThanksOpen = false;
     },
     openProduct: (state, action) => {
       state.isProductOpen = true;
@@ -41,6 +63,6 @@ const modalSlice = createSlice({
   },
 });
 
-export const { openDelete, closeModal, openProduct } = modalSlice.actions;
+export const { openModal, openDelete, closeModal, openProduct } = modalSlice.actions;
 
 export default modalSlice.reducer;

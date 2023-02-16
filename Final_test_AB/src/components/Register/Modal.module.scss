@@ -1,0 +1,152 @@
+.modal_container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+ }
+.modal_confirm {
+	/*background: #F3FBFE;*/
+	width: 400px;
+	padding: 20px;
+	border-radius: 5px;
+}
+.modal_confirm_button_container {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 30px;
+}
+.modal_confirm_button {
+	min-width: 120px;
+	min-height: 40px;
+}
+.modal_confirm_button_cancel {
+	background: white;
+	color: #4385F3;
+	border: solid 2px #4385F3;
+}
+.modal_confirm_button_yes {
+	background: #4385F3;
+	color: white;
+	border: solid 2px #4385F3;
+}
+.modal_confirm_button_yes:focus, .modal_confirm_button_yes:hover {
+	filter:brightness(120%)
+}
+.modal_confirm_button_cancel:focus, .modal_confirm_button_cancel:hover {
+	filter:brightness(80%)
+}
+
+.modal_form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	p {
+		color: black;
+		margin-bottom: 20px;
+	}
+	input {
+		outline: 0;
+		background: #f2f2f2;
+		width: 100%;
+		border: 0;
+		margin: 0 0 15px;
+		padding: 15px;
+		box-sizing: border-box;
+		font-size: 14px;
+	}
+	button {
+		text-transform: uppercase;
+		outline: 0;
+		background: #4CAF50;
+		width: 100%;
+		border: 0;
+		padding: 15px;
+		color: #FFFFFF;
+		font-size: 14px;
+		-webkit-transition: all 0.3 ease;
+		transition: all 0.3 ease;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	a {
+		color: black;
+	}
+	.message {
+		font-size: 15px;
+	}
+}
+
+/*商品登録/編集*/
+.modal_box {
+	background: #F3FBFE;
+	width: 400px;
+	padding: 20px;
+	border-radius: 5px;
+	display: block;
+	color: black;
+	/*display: row;*/
+	.link {
+		color: black;
+	}
+}
+/*全ての子要素のinputにstyleを適用*/
+.modal_box input {
+	display: block;
+	font: inherit;
+	margin-bottom: 20px;
+}
+.modal_box label {
+	display: block;
+	/*labelはインラインなのでblockマージンを使えないのでblockにしている*/
+	margin-top: 20px;
+}
+.modal_product_title {
+	text-align: center;
+	font-weight: bold;
+}
+.modal_product_name {
+}
+.modal_product_price {
+}
+.modal_box input[type="checkbox"]{
+	display: inline;
+	min-width: 30px;
+  min-height: 30px;
+	vertical-align: middle;
+	margin-top: 11px;
+	margin-left: -1px;
+}
+.row_top input[type="checkbox"]{
+	display: inline;
+	min-width: 30px;
+  min-height: 30px;
+	vertical-align: middle;
+	margin-top: -2px;
+}
+.row_bottom {
+	display: flex;
+	justify-content: space-between;
+}
+.row_bottom span {
+	font-weight: bold;
+	color: red;
+	font-size: 20px;
+}
+.row_icon button {
+	width: 40px;
+	height: 40px;
+	margin-left: 8px;
+}
