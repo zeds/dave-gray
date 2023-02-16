@@ -14,16 +14,17 @@ export const Welcome = () => {
   const tokenAbbr = `${token.slice(0, 9)}...`;
 
   const content = (
-    //<section className={style.welcome}>
-    <section>
+    <div className={style.welcome}>
       <h1>{welcome}</h1>
-      <p>Token: {tokenAbbr}</p>
-      <p>Email: {user.email}</p>
-      <p>username: {user.username}</p>
-      <p>
-        <Link to="/userslist">Go to the Users List</Link>
-      </p>
-    </section>
+      <div className={style.info}>
+        <p>Token: {tokenAbbr}</p>
+        <p>Email: {user.email}</p>
+        <p>username: {user.username}</p>
+        <p>
+          <Link to="/userslist">Go to the Users List</Link>
+        </p>
+      </div>
+    </div>
   );
 
   return content;

@@ -1,5 +1,11 @@
 .welcome {
   background: gray;
+  margin: 0 auto;
   width: 600px;
   height: 100vh;
+  .info {
+    background: skyblue;
+    padding: 20px;
+    //display: flex;
+  }
 }
