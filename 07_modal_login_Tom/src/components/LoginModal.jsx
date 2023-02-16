@@ -59,8 +59,18 @@ export const LoginModal = ({ open }) => {
   const handlePwdInput = (e) => setPassword(e.target.value);
 
   return (
-    <div className={style.modal_container}>
-      <div className={style.modal_form}>
+    <div
+      onClick={(event) => {
+        dispatch(openModal({ name: "login", open: false }));
+      }}
+      className={style.modal_container}
+    >
+      <div
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+        className={style.modal_form}
+      >
         <p>Login</p>
         <form onSubmit={handleSubmit}>
           <input
