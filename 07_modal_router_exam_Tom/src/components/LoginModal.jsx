@@ -14,8 +14,8 @@ export const LoginModal = ({ open }) => {
   const userRef = useRef();
   const errRef = useRef();
 
-  const [identifier, setIdentifier] = useState("tom@gmail.com");
-  const [password, setPassword] = useState("yellow");
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const [login, { isLoading }] = useLoginMutation();
@@ -36,8 +36,8 @@ export const LoginModal = ({ open }) => {
 
     try {
       const credentials = {
-        identifier: "tom@gmail.com",
-        password: "yellow",
+        identifier: identifier,
+        password: password,
       };
 
       console.log("credentials=", credentials);
