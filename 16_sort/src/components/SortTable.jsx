@@ -24,9 +24,11 @@ export const SortTable = () => {
 
 	return (
 		<div className='container'>
-			<table className='table table-bordered'>
-				<thead>
-					<th onClick={()=>sorting("first_name")}>First Name</th>
+			<table>
+			{/*<table className='table table-bordered'>*/}
+			<thead>
+					{/*<th onClick={()=>sorting("first_name")}>First Name</th>*/}
+					<th onClick={()=>sorting("first_name")}>HOgehoge</th>
 					<th onClick={()=>sorting("last_name")}>Last Name</th>
 					<th onClick={()=>sorting("email")}>Email</th>
 					<th onClick={()=>sorting("gender")}>Gender</th>

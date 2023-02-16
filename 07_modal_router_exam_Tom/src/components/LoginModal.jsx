@@ -1,54 +1,89 @@
-import React, {useState} from 'react'
-import { useDispatch } from 'react-redux';
-import style from './Modal.module.scss'
-import { openModal } from '../features/modal/modalSlice'
-import { useLoginMutation } from '../features/products/productsSlice'
+import React, { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import style from "./Modal.module.scss";
 
-export const LoginModal = ({
-	open
-}) => {
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../features/auth/authSlice";
+import { useLoginMutation } from "../features/products/productsSlice";
 
-	if (!open) return null
-	const dispatch = useDispatch();
-	const [email, setEmail] = useState('tom@gmail.com')
-	const [login, { isLoading }] = useLoginMutation()
+import { openModal } from "../features/modal/modalSlice";
 
+export const LoginModal = ({ open }) => {
+  if (!open) return null;
 
-	const clickLogin2 = async () => {
-		//e.preventDefault()
+  const userRef = useRef();
+  const errRef = useRef();
 
-		console.log("hoge")
+  const [identifier, setIdentifier] = useState("tom@gmail.com");
+  const [password, setPassword] = useState("yellow");
+  const navigate = useNavigate();
 
-		//const userData = await login(credentials).unwrap()
-		//console.log("userData=", userData)
-		//dispatch(setCredentials(userData))
+  const [login, { isLoading }] = useLoginMutation();
+  const dispatch = useDispatch();
 
-		//alert("API response=",JSON.stringify(userData))
+  useEffect(() => {
+    //フォーカス
+    userRef.current.focus();
+  }, []); // []をつけると1度しか呼び出されない
 
+  //TODO
+  //useEffect(() => {
+  //	setErrMsg('')
+  //},[identifier, password])
 
-		//dispatch(openModal({name:'login',open:false}))
-	}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-	const clickLogin = () => {
-		alert("hehe")
-	}
+    try {
+      const credentials = {
+        identifier: "tom@gmail.com",
+        password: "yellow",
+      };
 
-	return (
-		<div className={style.modal_container}>
-			<div className={style.modal_form}>
-				<p>Login</p>
-				<form onSubmit={()=>clickLogin()}>
-					<input
-						value={email}
-						type="text"
-						placeholder="username"/>
-					<input type="password" placeholder="password"/>
-					<button type="submit">login</button>
-					<p className={style.message}>Not registered? <a href="#">Create an account</a></p>
-				</form>
-			</div>
-		</div>
-	)
-}
+      console.log("credentials=", credentials);
+      const userData = await login(credentials).unwrap();
+      //const userData = await login({ identifier, password }).unwrap()
+      console.log("auth userData=", userData);
+      //dispatch(setCredentials({ ...userData, user }))
+      dispatch(setCredentials(userData));
+      setIdentifier("");
+      setPassword("");
+      navigate("/welcome");
+      console.log("completed login");
+      dispatch(openModal({ name: "login", open: false }));
+    } catch (err) {
+      console.log("エラー!!!LoginModal");
+    }
+  };
+  const handleUserInput = (e) => setIdentifier(e.target.value);
+  const handlePwdInput = (e) => setPassword(e.target.value);
 
-export default LoginModal
+  return (
+    <div className={style.modal_container}>
+      <div className={style.modal_form}>
+        <p>Login</p>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            ref={userRef}
+            value={identifier}
+            onChange={handleUserInput}
+            placeholder="username"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={handlePwdInput}
+            placeholder="password"
+          />
+          <button type="submit">login</button>
+          <p className={style.message}>
+            Not registered? <a href="#">Create an account</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default LoginModal;
