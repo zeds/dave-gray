@@ -72,6 +72,11 @@ pages/Contact.jsx
 
 App.css をコピー
 
+login
+user,jwtはステートとcookieに格納する
+通常はステートのjwtを使うが、存在しなければcookieのjwtを使う
+
+
 [backend] 失敗！mongodb が面倒！
 /Users/zebra/lesson/react/mern_stack_course/lesson_08-backend
 GitHub: https://github.com/gitdagray/mern_stack_course
