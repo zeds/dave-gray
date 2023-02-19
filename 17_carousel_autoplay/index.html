@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="img-slider">
+      <div class="slide active">
+        <img src="./images/01s.jpg" alt="" />
+        <div class="info">
+          <h2>Slide 01</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo amet
+            dolorem quibusdam ea dolores porro! Fuga error officiis ducimus,
+            itaque, rem necessitatibus aperiam id aut ex quibusdam animi
+            architecto quos!
+          </p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="./images/02s.jpg" alt="" />
+        <div class="info">
+          <h2>Slide 02</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo amet
+            dolorem quibusdam ea dolores porro! Fuga error officiis ducimus,
+            itaque, rem necessitatibus aperiam id aut ex quibusdam animi
+            architecto quos!
+          </p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="./images/03s.jpg" alt="" />
+        <div class="info">
+          <h2>Slide 03</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo amet
+            dolorem quibusdam ea dolores porro! Fuga error officiis ducimus,
+            itaque, rem necessitatibus aperiam id aut ex quibusdam animi
+            architecto quos!
+          </p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="./images/04s.jpg" alt="" />
+        <div class="info">
+          <h2>Slide 04</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo amet
+            dolorem quibusdam ea dolores porro! Fuga error officiis ducimus,
+            itaque, rem necessitatibus aperiam id aut ex quibusdam animi
+            architecto quos!
+          </p>
+        </div>
+      </div>
+      <div class="navigation">
+        <div class="btn active"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      let slides = document.querySelectorAll(".slide");
+      let btns = document.querySelectorAll(".btn");
+      let currentSlide = 1;
+
+      // Javascript for image slider manual navigation
+      let manualNav = function (manual) {
+        slides.forEach((slide) => {
+          slide.classList.remove("active");
+
+          btns.forEach((btn) => {
+            btn.classList.remove("active");
+          });
+        });
+        slides[manual].classList.add("active");
+        btns[manual].classList.add("active");
+      };
+
+      btns.forEach((btn, i) => {
+        btn.addEventListener("click", () => {
+          manualNav(i);
+          currentSlide = i;
+        });
+      });
+
+      // Javascript for image slider autoplay navigation
+      let repeat = function (activeClass) {
+        let active = document.getElementsByClassName("active");
+        let i = 1;
+
+        let repeater = () => {
+          setTimeout(function () {
+            [...active].forEach((activeSlide) => {
+              activeSlide.classList.remove("active");
+            });
+            slides[i].classList.add("active");
+            btns[i].classList.add("active");
+            i++;
+
+            if (slides.length === i) {
+              i = 0;
+            }
+            if (i >= slides.length) {
+              return;
+            }
+            repeater();
+          }, 2000);
+        };
+        repeater();
+      };
+      repeat();
+    </script>
+  </body>
+</html>

@@ -73,9 +73,8 @@ pages/Contact.jsx
 App.css をコピー
 
 login
-user,jwtはステートとcookieに格納する
-通常はステートのjwtを使うが、存在しなければcookieのjwtを使う
-
+user,jwt はステートと cookie に格納する
+通常はステートの jwt を使うが、存在しなければ cookie の jwt を使う
 
 [backend] 失敗！mongodb が面倒！
 /Users/zebra/lesson/react/mern_stack_course/lesson_08-backend
@@ -269,5 +268,15 @@ https://www.mockaroo.com/
 
 First Name をクリックすると、asc:ascending、dsc:descending で
 並び替えがされる。
+
+[17_carousel_autoplay]
+carousel：回転木馬
+https://www.youtube.com/watch?v=bW8X-tt5AZQ&list=PLldYJFgA6aTq-MvEwcD5NP1azPxAY1xgo&index=16&t=619s
+
+Get HTML color codes, Hex color
+https://htmlcolorcodes.com/
+
+Clip path generator
+https://bennettfeely.com/clippy/
 
 ー以上
