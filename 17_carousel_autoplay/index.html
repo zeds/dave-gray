@@ -86,6 +86,7 @@
         btn.addEventListener("click", () => {
           manualNav(i);
           currentSlide = i;
+          console.log("click i = ", i);
         });
       });
 
@@ -101,16 +102,19 @@
             });
             slides[i].classList.add("active");
             btns[i].classList.add("active");
+
             i++;
+            console.log("timeout i=", i);
 
             if (slides.length === i) {
               i = 0;
             }
             if (i >= slides.length) {
+              console.log("my_i exit = ", i);
               return;
             }
             repeater();
-          }, 4000);
+          }, 2000);
         };
         repeater();
       };
