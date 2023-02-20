@@ -34,7 +34,12 @@ const ProductList = () => {
   const { isDeleteOpen, isProductOpen } = useSelector((store) => store.modal);
 
   useEffect(() => {
-    if (cookies.user.role_linkstaff === "public") {
+    console.log("user=", JSON.stringify(cookies.user));
+    //権限 admin, editorが必要
+    if (
+      cookies.user.role_linkstaff !== "admin" &&
+      cookies.user.role_linkstaff !== "editor"
+    ) {
       navigate("/welcome");
     }
   }, []); // []をつけると1度しか呼び出されない

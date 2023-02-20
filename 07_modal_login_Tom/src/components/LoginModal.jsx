@@ -1,3 +1,4 @@
+import jwt_decode from "jwt-decode";
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./Modal.module.scss";
@@ -16,6 +17,7 @@ export const LoginModal = ({ open }) => {
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoginFailed, setIsLoginFailed] = useState(false);
   const navigate = useNavigate();
 
   const [login, { isLoading }] = useLoginMutation();
@@ -45,6 +47,13 @@ export const LoginModal = ({ open }) => {
       //const userData = await login({ identifier, password }).unwrap()
       console.log("auth userData=", userData);
       //dispatch(setCredentials({ ...userData, user }))
+
+      // jwt decode
+      let decoded = jwt_decode(userData.jwt);
+      console.log("decoded=", decoded);
+      let dateTime = new Date(decoded * 1000);
+      console.log(dateTime.toLocaleDateString());
+
       dispatch(setCredentials(userData));
       setIdentifier("");
       setPassword("");
@@ -53,6 +62,8 @@ export const LoginModal = ({ open }) => {
       dispatch(openModal({ name: "login", open: false }));
     } catch (err) {
       console.log("エラー!!!LoginModal");
+      console.log("username,passwordが違います");
+      setIsLoginFailed(true);
     }
   };
   const handleUserInput = (e) => setIdentifier(e.target.value);
@@ -86,6 +97,9 @@ export const LoginModal = ({ open }) => {
             onChange={handlePwdInput}
             placeholder="password"
           />
+          {isLoginFailed ? (
+            <span>usernameまたはパスワードが違います</span>
+          ) : null}
           <button type="submit">login</button>
           <p className={style.message}>
             Not registered? <a href="#">Create an account</a>
