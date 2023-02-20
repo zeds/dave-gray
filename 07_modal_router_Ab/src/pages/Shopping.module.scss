@@ -60,7 +60,7 @@
 	}
 }
 
-@media (0px < width){
+@media screen and (0px < width){
 	.grid_container {
 		grid-template-columns: repeat(1, 1fr);
 	}
