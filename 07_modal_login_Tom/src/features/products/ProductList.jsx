@@ -40,7 +40,7 @@ const ProductList = () => {
       cookies.user.role_linkstaff !== "admin" &&
       cookies.user.role_linkstaff !== "editor"
     ) {
-      navigate("/welcome");
+      navigate("/profile");
     }
   }, []); // []をつけると1度しか呼び出されない
 

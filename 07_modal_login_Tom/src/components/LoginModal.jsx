@@ -57,7 +57,7 @@ export const LoginModal = ({ open }) => {
       dispatch(setCredentials(userData));
       setIdentifier("");
       setPassword("");
-      navigate("/welcome");
+      navigate("/profile");
       console.log("completed login");
       dispatch(openModal({ name: "login", open: false }));
     } catch (err) {
