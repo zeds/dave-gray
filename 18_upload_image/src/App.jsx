@@ -7,13 +7,12 @@ function App() {
 
   const [files, setFiles] = useState();
   const [movies, setMovies] = useState([]);
-
-  const initialValue = [{ id: 0, value: " --- Select a State ---" }];
+  const [movieId, setMovieId] = useState(0);
 
   useEffect(() => {
     console.log("useEffect");
     axios
-      .get("https://lusty.asia:1443/api/movies")
+      .get("https://lusty.asia:1443/api/movies?populate=image")
       .then((response) => {
         const data = response.data.data;
         console.log(data);
@@ -25,22 +24,26 @@ function App() {
       });
   }, []); //[]しないと、何度もuseEffectが呼び出されるので注意！
 
-  const clickCard = (e, id) => {
-    setFiles(e);
+  const clickInput = (file, id) => {
+    console.log("file=", file);
     console.log("id=", id);
+    setFiles(file);
+    setMovieId(id);
   };
 
-  const uploadImage = async (e) => {
-    e.preventDefault();
+  //movieIdの変更を監視
+  useEffect(() => {
+    console.log("file selected");
+    if (movieId !== 0) {
+      uploadImage();
+    }
+  }, [movieId]);
 
-    //console.log("movies=", movies);
-    //movies.map((movie) => {
-    //  console.log("title=", movie.attributes.title);
-    //});
-    //return;
+  const uploadImage = () => {
+    console.log("movieId=", movieId);
+    //e.preventDefault();
 
     const formData = new FormData();
-
     formData.append("files", files[0]);
 
     axios
@@ -55,7 +58,7 @@ function App() {
           },
         };
         axios
-          .put("https://lusty.asia:1443/api/movies/2", payload)
+          .put(`https://lusty.asia:1443/api/movies/${movieId}`, payload)
           .then((response) => {
             console.log("success movie");
           })
@@ -76,20 +79,23 @@ function App() {
     <>
       <div className="container">
         {movies.map((d) => (
-          <div className="card">
+          <div className="card" key={d.id}>
+            {/*{JSON.stringify(
+              d.attributes.image.data.attributes.formats.thumbnail
+            )}*/}
+            <img
+              src={`https://lusty.asia:1443${d.attributes.image.data.attributes.formats.thumbnail.url}`}
+              alt=""
+            />
             <div>{d.id}</div>
             <div>{d.attributes.title}</div>
             <input
               type="file"
-              onChange={(e) => clickCard(e.target.files, d.id)}
+              onChange={(e) => clickInput(e.target.files, d.id)}
             />
           </div>
         ))}
       </div>
-      <form onSubmit={uploadImage}>
-        <input type="file" onChange={(e) => setFiles(e.target.files)} />
-        <input type="submit" value="Submit" />
-      </form>
     </>
   );
 }
