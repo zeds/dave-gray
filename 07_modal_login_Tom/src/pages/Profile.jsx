@@ -7,17 +7,36 @@ import {
 } from "../features/auth/authSlice";
 import { Link } from "react-router-dom";
 import style from "./Profile.module.scss";
+import { PublicProfile } from "./PublicProfile";
 
 export const Profile = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
   let user = useSelector(selectCurrentUser);
   let token = useSelector(selectCurrentToken);
 
+  const obj = {
+    background: "/src/assets/surf-small.jpg",
+    avatar: "/src/assets/profile_rectangle.jpg",
+    username: "tom",
+    email: "tom@gmail.com",
+    birthday: "",
+    hitokoto: "フルスタックエンジニアです！",
+    expires: "2023/03/20 18:23:20",
+    icEmail: "/src/assets/icons/email.svg",
+    icSpeech: "/src/assets/icons/speech.svg",
+    icCalendarClock: "/src/assets/icons/calendar-clock.svg",
+  };
+  return <PublicProfile props={obj} />;
+
   if (user) {
     setCookie("user", user);
   } else {
     console.log("cookieのuserを使う");
     user = cookies.user;
+    //userがcookieにない時には、ログインしてくださいと表示
+    if (!user) {
+      return <div>ログインしてください</div>;
+    }
   }
 
   if (token) {
@@ -42,6 +61,7 @@ export const Profile = () => {
     <div className={style.welcome}>
       <h1>{welcome}</h1>
       <div className={style.info}>
+        <p>権限：{user.role_linkstaff}</p>
         <p>Token: {tokenAbbr}</p>
         <p>jwt_decode：{JSON.stringify(decoded)}</p>
         <p>有効期限：{dateTime.toString()}</p>

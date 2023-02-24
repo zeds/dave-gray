@@ -279,4 +279,10 @@ https://htmlcolorcodes.com/
 Clip path generator
 https://bennettfeely.com/clippy/
 
+[18_upload_image]
+https://dev.to/bassel17/how-to-upload-an-image-to-strapi-2hhg
+yarn add axios
+yarn install
+yarn run dev
+
 ー以上

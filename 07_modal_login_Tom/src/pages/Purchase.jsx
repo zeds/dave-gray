@@ -35,21 +35,13 @@ import { useAddPurchaseHistoryMutation } from "../features/product_purchase_hist
 export const Purchase = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
 
-  let user = useSelector(selectCurrentUser);
-  let token = useSelector(selectCurrentToken);
+  console.log("user, tokenを調べています");
 
-  if (user) {
-    setCookie("user", user);
-  } else {
-    console.log("cookieのuserを使う");
-    user = cookies.user;
-  }
+  const user = cookies.user;
+  const token = cookies.token;
 
-  if (token) {
-    setCookie("token", token);
-  } else {
-    console.log("cookieのtokenを使う");
-    token = cookies.token;
+  if (!user || !token) {
+    return <div>ログインしてください</div>;
   }
 
   const dispatch = useDispatch();

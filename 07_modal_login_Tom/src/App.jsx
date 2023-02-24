@@ -13,13 +13,15 @@ import { Profile } from "./pages/Profile";
 import { AuthRole } from "./components/AuthRole";
 
 const role = {
-  home: "admin editor public",
-  shopping: "admin editor public",
+  home: "",
+  shopping: "",
   company: "admin editor public",
-  contact: "admin editor public",
+  contact: "admin public",
   admin: "admin editor",
+  purchase: "admin editor public",
   sales_by_product: "admin editor",
   sales_by_user: "admin editor",
+  profile: "admin user",
 };
 
 function App() {
