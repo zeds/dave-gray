@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+}
+
+.container {
+  background: lightgray;
+  width: 100%;
+  height: 100vh;
+}
+
+main {
+  margin: auto;
+  max-width: 1024px;
+}
+
+h1 {
+  margin-bottom: 0.5rem;
+}
+
+article {
+  padding: 1rem;
+  /*display: flex;*/
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid hsl(0, 0%, 58%);
+}
+
+button {
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  background: red;
+}
+
+/*出品ボタン*/
+.post {
+  display: flex;
+  justify-content: right;
+}
+.post button {
+  background: #4385f3;
+  color: white;
+  width: 100px;
+  height: 30px;
+  margin-bottom: 5px;
+  border: solid 2px #4385f3;
+}
+.post:focus,
+.post:hover {
+  filter: brightness(120%);
+}
+
+.trash {
+  background-color: #fff;
+  color: mediumvioletred;
+}
+
+.trash:focus,
+.trash:hover {
+  filter: brightness(120%);
+}
+
+.submit {
+  background-color: gray;
+  color: #fff;
+}
+
+.submit:focus,
+.submit:hover {
+  background-color: limegreen;
+}
