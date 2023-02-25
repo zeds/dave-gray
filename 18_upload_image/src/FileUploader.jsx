@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import Camera from "/src/assets/camera.svg";
 
 import style from "./FileUploader.module.scss";
 
@@ -60,7 +61,7 @@ export const FileUploader = ({ callBackFromChild, movieId }) => {
   return (
     <>
       <button onClick={handleClick}>
-        <img src="/src/assets/camera.svg" />
+        <img src={Camera} />
       </button>
       <input
         type="file"
