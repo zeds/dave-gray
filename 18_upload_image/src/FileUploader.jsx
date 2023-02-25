@@ -3,6 +3,8 @@ import axios from "axios";
 
 import style from "./FileUploader.module.scss";
 
+//assetsを使うには、vercel.jsonを作成する
+
 export const FileUploader = ({ callBackFromChild, movieId }) => {
   //callBackFromChild({ isLoading: true });
   // Create a reference to the hidden file input element
