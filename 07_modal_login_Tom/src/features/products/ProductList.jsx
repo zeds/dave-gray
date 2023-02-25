@@ -23,8 +23,6 @@ import style from "./ProductList.module.css";
 import { openDelete, openProduct } from "../modal/modalSlice";
 
 const ProductList = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,17 +30,6 @@ const ProductList = () => {
   const [newPrice, setNewPrice] = useState("");
 
   const { isDeleteOpen, isProductOpen } = useSelector((store) => store.modal);
-
-  useEffect(() => {
-    console.log("user=", JSON.stringify(cookies.user));
-    //権限 admin, editorが必要
-    if (
-      cookies.user.role_linkstaff !== "admin" &&
-      cookies.user.role_linkstaff !== "editor"
-    ) {
-      navigate("/profile");
-    }
-  }, []); // []をつけると1度しか呼び出されない
 
   const {
     data: products,

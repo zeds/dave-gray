@@ -1,6 +1,24 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
 
+/**
+ Oh, bonus: you should not create an extra api
+  per resource. You should have one single createApi call
+  in your application in almost all cases - you can still split it up over multiple files using Code Splitting.
+
+・RTK-Query is a full cache solution - so you should usually not copy state of it. Let RTK-Query to manage it.
+・Use mutation to save it back to server.
+・Mutation are used to send data updated to the server and apply the changes to the local caches.
+・createApiはアプリに1つだけにした方が良さそうだ
+　しかし、dave-grayはusesApiSliceを既存のapiSliceにinjectしている。
+　45分から
+　https://www.youtube.com/watch?v=-JJFQ9bkUbo
+　users/usesApiSliceはproductsSliceにinjectして作成した。
+・postしたら、fetchしてlocalのcacheを変更する？
+
+	https://stackoverflow.com/questions/68612556/how-to-store-the-result-of-query-from-createapi-in-a-slice
+**/
+
 export const productsSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "https://lusty.asia:1443/api" }),

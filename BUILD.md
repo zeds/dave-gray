@@ -285,4 +285,11 @@ yarn add axios
 yarn install
 yarn run dev
 
+customize file upload button
+https://medium.com/@masakudamatsu/how-to-customize-the-file-upload-button-in-react-b3866a5973d8
+
+useState, useEffect をマスターしよう
+✅useEffect の正しい使い方
+https://qiita.com/keiya01/items/fc5c725fed1ec53c24c5
+
 ー以上

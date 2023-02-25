@@ -9,6 +9,7 @@ const authSlice = createSlice({
       const { user, jwt } = action.payload;
       state.user = user;
       state.token = jwt;
+      //TODO:ここでcookieに格納したかったけど、エラーになる
     },
     logOut: (state, action) => {
       state.user = null;

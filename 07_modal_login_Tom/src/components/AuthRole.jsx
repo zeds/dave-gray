@@ -13,6 +13,8 @@ import { Route, Routes } from "react-router-dom";
 export const AuthRole = ({ role, children }) => {
   const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
 
+  console.log("role=", role);
+
   //useEffect(() => {
   //  console.log("useEffect");
   //}, []); // []をつけると1度しか呼び出されない

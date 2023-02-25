@@ -2,6 +2,7 @@ import jwt_decode from "jwt-decode";
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./Modal.module.scss";
+import { useCookies } from "react-cookie";
 
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../features/auth/authSlice";
@@ -12,6 +13,7 @@ import { openModal } from "../features/modal/modalSlice";
 export const LoginModal = ({ open }) => {
   if (!open) return null;
 
+  const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
   const userRef = useRef();
   const errRef = useRef();
 
@@ -44,17 +46,22 @@ export const LoginModal = ({ open }) => {
 
       console.log("credentials=", credentials);
       const userData = await login(credentials).unwrap();
-      //const userData = await login({ identifier, password }).unwrap()
       console.log("auth userData=", userData);
-      //dispatch(setCredentials({ ...userData, user }))
+      dispatch(setCredentials(userData));
+      const user = userData.user;
+      const jwt = userData.jwt;
+
+      // cookieに格納
+      setCookie("user", user);
+      setCookie("jwt", jwt);
+      console.log("success setCredentials");
 
       // jwt decode
-      let decoded = jwt_decode(userData.jwt);
+      let decoded = jwt_decode(jwt);
       console.log("decoded=", decoded);
       let dateTime = new Date(decoded * 1000);
       console.log(dateTime.toLocaleDateString());
 
-      dispatch(setCredentials(userData));
       setIdentifier("");
       setPassword("");
       navigate("/profile");
@@ -89,7 +96,7 @@ export const LoginModal = ({ open }) => {
             ref={userRef}
             value={identifier}
             onChange={handleUserInput}
-            placeholder="username"
+            placeholder="email"
           />
           <input
             type="password"

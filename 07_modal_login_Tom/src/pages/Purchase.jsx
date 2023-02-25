@@ -33,17 +33,6 @@ const schema = yup
 import { useAddPurchaseHistoryMutation } from "../features/product_purchase_history/productPurchaseHistorySlice";
 
 export const Purchase = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
-
-  console.log("user, tokenを調べています");
-
-  const user = cookies.user;
-  const token = cookies.token;
-
-  if (!user || !token) {
-    return <div>ログインしてください</div>;
-  }
-
   const dispatch = useDispatch();
 
   const {

@@ -8,11 +8,28 @@ import {
 import { Link } from "react-router-dom";
 import style from "./Profile.module.scss";
 import { PublicProfile } from "./PublicProfile";
+import { useGetMoviesQuery } from "../features/users/usersApiSlice";
+
+/**
+・開いた時に、users APIを呼び出して最新の情報を取得する。
+・APIを呼び出す時には、JWTを使う。/api/users/me
+ */
 
 export const Profile = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
   let user = useSelector(selectCurrentUser);
   let token = useSelector(selectCurrentToken);
+
+  const {
+    data: movies,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetMoviesQuery();
+
+  if (isSuccess) {
+    console.log("movies=", movies);
+  }
 
   const obj = {
     background: "/src/assets/surf-small.jpg",
@@ -27,24 +44,6 @@ export const Profile = () => {
     icCalendarClock: "/src/assets/icons/calendar-clock.svg",
   };
   return <PublicProfile props={obj} />;
-
-  if (user) {
-    setCookie("user", user);
-  } else {
-    console.log("cookieのuserを使う");
-    user = cookies.user;
-    //userがcookieにない時には、ログインしてくださいと表示
-    if (!user) {
-      return <div>ログインしてください</div>;
-    }
-  }
-
-  if (token) {
-    setCookie("token", token);
-  } else {
-    console.log("cookieのtokenを使う");
-    token = cookies.token;
-  }
 
   const welcome = user ? `Profile ${user.username}!` : "Welcome!";
   const tokenAbbr = `${token.slice(0, 9)}...`;

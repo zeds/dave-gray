@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./PublicProfile.module.scss";
-import { useUpdateUserMutation } from "../features/users/usersSlice";
+import { useUpdateUserMutation } from "../features/users/usersApiSlice";
 
 // props
 export const PublicProfile = ({ props }) => {
