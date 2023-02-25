@@ -22,7 +22,7 @@ function App() {
   };
 
   useEffect(() => {
-    //uploadにTODO失敗した時の処理？
+    //uploadにTODO失敗した時の処理が必要？
     fetchPost();
   }, []);
 
