@@ -4,7 +4,6 @@ import { useUpdateUserMutation } from "../features/users/usersApiSlice";
 
 // props
 export const PublicProfile = ({ props }) => {
-  console.log("props.background=", props.background);
   const [background, setBackground] = useState(props.background);
   const [avatar, setAvatar] = useState(props.avatar);
   const [isEdit, setIsEdit] = useState(false);

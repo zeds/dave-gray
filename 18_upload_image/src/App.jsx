@@ -1,14 +1,52 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-import { FileUploader } from "./FileUploader";
+import { ImageUploader } from "./ImageUploader";
 
 function App() {
   console.log("App");
 
   const [movies, setMovies] = useState([]);
 
+  const hogeArray = [
+    { id: 1, name: "tom" },
+    { id: 2, name: "Ab" },
+    { id: 3, name: "Andrey" },
+  ];
+
+  hogeArray.map((item) => {
+    console.log("item=", item.id);
+  });
+
+  //for (let i = 0; i < hogeArray.length; i++) {
+  //  console.log("name=", hogeArray[i].name);
+  //}
+
+  const test = () => {
+    child(myFunc, 4);
+  };
+  const myFunc = (item) => {
+    console.log("item=", item);
+    if (item === "アイス") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const child = (func, id) => {
+    console.log("child id=", id);
+    let ret = func("アイス");
+    if (ret) {
+      console.log("子供はアイスが買えた");
+    } else {
+      console.log("子供が買えなかった");
+    }
+  };
+
   const fetchPost = async () => {
+    test();
+    console.log("fetchPost");
     try {
       const response = await axios.get(
         "https://lusty.asia:1443/api/movies?populate=image"
@@ -42,7 +80,7 @@ function App() {
             />
             <div>{d.id}</div>
             <div>{d.attributes.title}</div>
-            <FileUploader callBackFromChild={parentFunction} movieId={d.id} />
+            <ImageUploader callBackFromChild={parentFunction} movieId={d.id} />
           </div>
         ))}
       </div>

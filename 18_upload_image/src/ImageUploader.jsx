@@ -2,11 +2,11 @@ import React, { useState, useRef } from "react";
 import axios from "axios";
 import Camera from "/src/assets/camera.svg";
 
-import style from "./FileUploader.module.scss";
+import style from "./ImageUploader.module.scss";
 
 //assetsを使うには、vercel.jsonを作成する
 
-export const FileUploader = ({ callBackFromChild, movieId }) => {
+export const ImageUploader = ({ callBackFromChild, movieId }) => {
   //callBackFromChild({ isLoading: true });
   // Create a reference to the hidden file input element
   const hiddenFileInput = useRef(null);
@@ -20,11 +20,11 @@ export const FileUploader = ({ callBackFromChild, movieId }) => {
   // Call a function (passed as a prop from the parent component)
   // to handle the user-selected file
   const handleChange = (e) => {
-    const fileUploaded = e.target.files[0];
-    console.log("file=", fileUploaded);
+    const imageUploaded = e.target.files[0];
+    console.log("file=", imageUploaded);
 
     const formData = new FormData();
-    formData.append("files", fileUploaded);
+    formData.append("files", imageUploaded);
 
     axios
       .post("https://lusty.asia:1443/api/upload", formData)
@@ -41,7 +41,7 @@ export const FileUploader = ({ callBackFromChild, movieId }) => {
           .put(`https://lusty.asia:1443/api/movies/${movieId}`, payload)
           .then((response) => {
             console.log("success movie");
-            callBackFromChild(fileUploaded);
+            callBackFromChild(imageUploaded);
           })
           .catch((error) => {
             console.log("error movie");
@@ -54,8 +54,6 @@ export const FileUploader = ({ callBackFromChild, movieId }) => {
 
         //handle error
       });
-
-    //props.handleFile(fileUploaded);
   };
 
   return (

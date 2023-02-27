@@ -47,7 +47,7 @@ export const LoginModal = ({ open }) => {
       console.log("credentials=", credentials);
       const userData = await login(credentials).unwrap();
       console.log("auth userData=", userData);
-      dispatch(setCredentials(userData));
+      //dispatch(setCredentials(userData));
       const user = userData.user;
       const jwt = userData.jwt;
 
@@ -78,16 +78,16 @@ export const LoginModal = ({ open }) => {
 
   return (
     <div
+      className={style.modal_container}
       onClick={(event) => {
         dispatch(openModal({ name: "login", open: false }));
       }}
-      className={style.modal_container}
     >
       <div
+        className={style.modal_form}
         onClick={(event) => {
           event.stopPropagation();
         }}
-        className={style.modal_form}
       >
         <p>Login</p>
         <form onSubmit={handleSubmit}>

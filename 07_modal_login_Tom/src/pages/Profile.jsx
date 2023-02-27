@@ -1,35 +1,47 @@
+import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { useCookies } from "react-cookie";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectCurrentUser,
   selectCurrentToken,
 } from "../features/auth/authSlice";
+import { setCredentials, logOut } from "../features/auth/authSlice";
+
 import { Link } from "react-router-dom";
 import style from "./Profile.module.scss";
 import { PublicProfile } from "./PublicProfile";
-import { useGetMoviesQuery } from "../features/users/usersApiSlice";
+import {
+  useGetMoviesQuery,
+  useGetMeQuery,
+} from "../features/users/usersApiSlice";
 
 /**
 ・開いた時に、users APIを呼び出して最新の情報を取得する。
 ・APIを呼び出す時には、JWTを使う。/api/users/me
+・ログアウトボタン
+・useStateで、コンポーネントの中での変数の値を保持、更新する
+・too many renderの例題
+　https://bobbyhadz.com/blog/react-too-many-re-renders-react-limits-the-number
+・profileと、ユーザー一覧を開いている場合、両方ともに、stateを見る
+　profileを開いた時に、APIを呼び出して新しい情報を取得したらstateを更新
+　ユーザー一覧も自動的に表示が更新されるハズ！？
+・エラー：Cannot update a component (`Profile`) while rendering a different component (`Profile`)
+
+
+
+
+❌<button onClick={setCounter(counter + 1)}>Increment</button>
+⭕️<button onClick={() => setCounter(counter + 1)}>Increment</button>
+
  */
 
 export const Profile = () => {
+  const dispatch = useDispatch();
+
   let user = useSelector(selectCurrentUser);
   let token = useSelector(selectCurrentToken);
-
-  const {
-    data: movies,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useGetMoviesQuery();
-
-  if (isSuccess) {
-    console.log("movies=", movies);
-  }
+  const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
 
   const obj = {
     background: "/src/assets/surf-small.jpg",
@@ -43,7 +55,35 @@ export const Profile = () => {
     icSpeech: "/src/assets/icons/speech.svg",
     icCalendarClock: "/src/assets/icons/calendar-clock.svg",
   };
-  return <PublicProfile props={obj} />;
+
+  const {
+    data: response,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetMeQuery(cookies.jwt);
+  //} = useGetMoviesQuery();
+
+  if (isSuccess) {
+    console.log("isSuccess response=", response);
+    const payload = {
+      user: response,
+      jwt: cookies.jwt,
+    };
+    dispatch(setCredentials);
+    //dispatch(logOut);
+  }
+
+  if (isError) {
+    return <>API呼び出しで失敗しました</>;
+  }
+
+  return (
+    <>
+      <PublicProfile props={obj} />
+    </>
+  );
 
   const welcome = user ? `Profile ${user.username}!` : "Welcome!";
   const tokenAbbr = `${token.slice(0, 9)}...`;

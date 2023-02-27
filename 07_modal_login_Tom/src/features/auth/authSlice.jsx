@@ -1,14 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  user: null,
+  jwt: null,
+};
+
 const authSlice = createSlice({
   name: "auth",
-  initialState: { user: null, token: null },
+  initialState: initialState,
   reducers: {
     setCredentials: (state, action) => {
-      console.log("action=", action);
-      const { user, jwt } = action.payload;
-      state.user = user;
-      state.token = jwt;
+      state.user = null;
+      state.token = null;
+      //console.log("action=", action);
+      //const { user, jwt } = action.payload;
+      //state.user = user;
+      //state.jwt = jwt;
       //TODO:ここでcookieに格納したかったけど、エラーになる
     },
     logOut: (state, action) => {

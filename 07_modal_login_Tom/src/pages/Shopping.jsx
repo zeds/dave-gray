@@ -26,7 +26,7 @@ export const Shopping = () => {
 */
   //テスト終わり ================================
 
-  //初期表示では、価格が安い順に並べる price, name, stock
+  //初期表示では、価格が安い順に並べる price, name, stock, osusume
   let [orderType, setOrderType] = useState("price");
   const [order, setOrder] = useState("ASC");
 
@@ -141,6 +141,7 @@ export const Shopping = () => {
           <option value="price">価格順</option>
           <option value="name">名前順</option>
           <option value="stock">在庫順</option>
+          <option value="osusume">オススメ</option>
         </select>
       </div>
       <div className={style.grid_container}>{content}</div>
