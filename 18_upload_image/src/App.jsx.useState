@@ -1,0 +1,22 @@
+import { useEffect, useMemo, useState } from "react";
+
+export default function App() {
+  const [address, setAddress] = useState({ country: "", city: "" });
+
+  // 👇️ get memoized value
+  const obj = useMemo(() => {
+    return { country: "Chile", city: "Santiago" };
+  }, []);
+
+  useEffect(() => {
+    setAddress(obj);
+    console.log("useEffect called");
+  }, [obj]);
+
+  return (
+    <div>
+      <h1>Country: {address.country}</h1>
+      <h1>City: {address.city}</h1>
+    </div>
+  );
+}

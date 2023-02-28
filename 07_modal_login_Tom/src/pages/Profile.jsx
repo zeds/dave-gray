@@ -28,11 +28,13 @@ import {
 　ユーザー一覧も自動的に表示が更新されるハズ！？
 ・エラー：Cannot update a component (`Profile`) while rendering a different component (`Profile`)
 
-
-
-
 ❌<button onClick={setCounter(counter + 1)}>Increment</button>
 ⭕️<button onClick={() => setCounter(counter + 1)}>Increment</button>
+
+[テスト]
+・loginしたら、state.user, state.jwtが更新されている
+・
+
 
  */
 

@@ -14,10 +14,9 @@ function App() {
     { id: 3, name: "Andrey" },
   ];
 
-  hogeArray.map((item) => {
-    console.log("item=", item.id);
-  });
-
+  //hogeArray.map((item) => {
+  //  console.log("item=", item.id);
+  //});
   //for (let i = 0; i < hogeArray.length; i++) {
   //  console.log("name=", hogeArray[i].name);
   //}
@@ -27,21 +26,23 @@ function App() {
   };
   const myFunc = (item) => {
     console.log("item=", item);
-    if (item === "アイス") {
-      return true;
-    } else {
-      return false;
+    if (item === "アイス買っていいですか？") {
+      return "ダメです!";
     }
+    if (item === "チョコ買っていいですか？") {
+      return "虫歯になるからダメです！";
+    }
+    return "何言ってるかわからない";
   };
 
   const child = (func, id) => {
     console.log("child id=", id);
-    let ret = func("アイス");
-    if (ret) {
-      console.log("子供はアイスが買えた");
-    } else {
-      console.log("子供が買えなかった");
-    }
+    let ret = func("アイス買っていいですか？");
+    console.log(ret);
+    ret = func("チョコ買っていいですか？");
+    console.log(ret);
+    ret = func("タバコ買っていいですか？");
+    console.log(ret);
   };
 
   const fetchPost = async () => {
