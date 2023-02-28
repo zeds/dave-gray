@@ -1,4 +1,4 @@
-import React, { useState, useRef, CSSProperties } from "react";
+import React, { useState, useRef } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 import axios from "axios";
 import Camera from "/src/assets/camera.svg";
@@ -6,12 +6,6 @@ import Camera from "/src/assets/camera.svg";
 import style from "./ImageUploader.module.scss";
 
 //assetsを使うには、vercel.jsonを作成する
-
-//const override: CSSProperties = {
-//  display: "block",
-//  margin: "0 auto",
-//  borderColor: "red",
-//};
 
 export const ImageUploader = ({ callBackFromChild, movieId }) => {
   //callBackFromChild({ isLoading: true });
@@ -35,6 +29,7 @@ export const ImageUploader = ({ callBackFromChild, movieId }) => {
     const formData = new FormData();
     formData.append("files", imageUploaded);
 
+    //spinner
     setLoading(true);
 
     axios
@@ -47,25 +42,32 @@ export const ImageUploader = ({ callBackFromChild, movieId }) => {
           data: {
             image: imageId,
           },
-        };
+        }; // users.avatar_urlを変更してみる。
         axios
           .put(`https://lusty.asia:1443/api/movies/${movieId}`, payload)
           .then((response) => {
             console.log("success movie");
+
+            //spinner
             setLoading(false);
 
+            // Call Parents Function
             callBackFromChild(imageUploaded);
           })
           .catch((error) => {
-            setLoading(false);
             console.log("error movie");
+
+            //spinner
+            setLoading(false);
 
             //handle error
           });
       })
       .catch((error) => {
-        setLoading(false);
         console.log("error upload");
+
+        //spinner
+        setLoading(false);
 
         //handle error
       });
@@ -74,11 +76,10 @@ export const ImageUploader = ({ callBackFromChild, movieId }) => {
   return (
     <>
       <div className="sweet-loading">
-        <button onClick={() => setLoading(!loading)}>Toggle Loader</button>
-
-        <button onClick={handleClick}>
+        <button className={style.camera_button} onClick={handleClick}>
           <img src={Camera} />
           <PulseLoader
+            speedMultiplier={0.6}
             size={15}
             color={color}
             loading={loading}

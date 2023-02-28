@@ -282,12 +282,14 @@ https://bennettfeely.com/clippy/
 [18_upload_image]
 npm create vite@latest .
 yarn add axios
+yarn add sass
 yarn add react-spinners
 yarn install
 yarn run dev
 
 ✅react-spinners
 https://www.npmjs.com/package/react-spinners
+https://www.youtube.com/watch?v=Fje1kcOKU5U
 
 https://dev.to/bassel17/how-to-upload-an-image-to-strapi-2hhg
 

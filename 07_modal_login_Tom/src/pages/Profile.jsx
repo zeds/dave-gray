@@ -40,6 +40,7 @@ import {
 
 export const Profile = () => {
   const dispatch = useDispatch();
+  const [isAvatar, setIsAvatar] = useState(false);
 
   let user = useSelector(selectCurrentUser);
   let token = useSelector(selectCurrentToken);
@@ -47,7 +48,7 @@ export const Profile = () => {
 
   const obj = {
     background: "/src/assets/surf-small.jpg",
-    avatar: "/src/assets/profile_rectangle.jpg",
+    avatar: "https://lusty.asia:1443/uploads/_19202a6421.jpeg",
     username: "tom",
     email: "tom@gmail.com",
     birthday: "",
@@ -67,13 +68,21 @@ export const Profile = () => {
   } = useGetMeQuery(cookies.jwt);
   //} = useGetMoviesQuery();
 
+  const test = () => {
+    setIsAvatar(true);
+  };
+
   if (isSuccess) {
     console.log("isSuccess response=", response);
-    const payload = {
-      user: response,
-      jwt: cookies.jwt,
-    };
-    dispatch(setCredentials);
+    //const payload = {
+    //  user: response,
+    //  jwt: cookies.jwt,
+    //};
+    //dispatch(setCredentials);
+
+    obj.avatar = "https://lusty.asia:1443" + response.avatar_url;
+    console.log("obj.avatar=", obj.avatar);
+    test();
     //dispatch(logOut);
   }
 
@@ -81,11 +90,7 @@ export const Profile = () => {
     return <>API呼び出しで失敗しました</>;
   }
 
-  return (
-    <>
-      <PublicProfile props={obj} />
-    </>
-  );
+  return <>{isAvatar ? <PublicProfile props={obj} /> : <div>Loading</div>}</>;
 
   const welcome = user ? `Profile ${user.username}!` : "Welcome!";
   const tokenAbbr = `${token.slice(0, 9)}...`;

@@ -10,39 +10,101 @@ import { useLoginMutation } from "../features/products/productsSlice";
 
 import { openModal } from "../features/modal/modalSlice";
 
-/**
-・useRefの使い方
-　https://zenn.dev/dove/articles/e2d962e9d69e20
-・useRefを<input ref={}>で設定するとエラーになってしまう。なぜ？
-　Internal React error: Expected static flag was missing. Please notify the React team.
-
-
-
-**/
-
 export const LoginModal = ({ open }) => {
   if (!open) return null;
 
-  const emailInput = useRef(null);
+  const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
+  const userRef = useRef();
+
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const [login, { isLoading }] = useLoginMutation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (emailInput.current) {
-      emailInput.current.focus();
+    //フォーカス
+    userRef.current.focus();
+  }, []); // []をつけると1度しか呼び出されない
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const credentials = {
+        identifier: identifier,
+        password: password,
+      };
+
+      console.log("credentials=", credentials);
+      const userData = await login(credentials).unwrap();
+      console.log("auth userData=", userData);
+
+      //dispatch(setCredentials(userData));
+
+      const user = userData.user;
+      const jwt = userData.jwt;
+
+      // cookieに格納
+      setCookie("user", user);
+      setCookie("jwt", jwt);
+      console.log("success setCredentials");
+
+      // jwt decode
+      let decoded = jwt_decode(jwt);
+      console.log("decoded=", decoded);
+      let dateTime = new Date(decoded * 1000);
+      console.log(dateTime.toLocaleDateString());
+
+      setIdentifier("");
+      setPassword("");
+      navigate("/profile");
+      console.log("completed login");
+      dispatch(openModal({ name: "login", open: false }));
+    } catch (err) {
+      console.log("エラー!!!LoginModal");
+      console.log("username,passwordが違います");
     }
-  }, []);
+  };
+  const handleUserInput = (e) => setIdentifier(e.target.value);
+  const handlePwdInput = (e) => setPassword(e.target.value);
 
   return (
-    <form>
-      <label>
-        Email
-        <input name="email" type="email" ref={emailInput} />
-      </label>
-      <label>
-        Password
-        <input name="email" type="email" />
-      </label>
-      <button type="submit">Login</button>
-    </form>
+    <div
+      className={style.modal_container}
+      onClick={(event) => {
+        dispatch(openModal({ name: "login", open: false }));
+      }}
+    >
+      <div
+        className={style.modal_form}
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+      >
+        <p>Login</p>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            ref={userRef}
+            value={identifier}
+            onChange={handleUserInput}
+            placeholder="email"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={handlePwdInput}
+            placeholder="password"
+          />
+          <button type="submit">login</button>
+          <p className={style.message}>
+            Not registered? <a href="#">Create an account</a>
+          </p>
+        </form>
+      </div>
+    </div>
   );
 };
 

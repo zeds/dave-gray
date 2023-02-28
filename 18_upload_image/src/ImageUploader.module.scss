@@ -1,7 +1,7 @@
-* {
-  background: white;
+.camera_button {
+  background: transparent;
 }
 
-button {
-  cursor: pointer;
+.camera_button:hover {
+  background: skyblue;
 }
