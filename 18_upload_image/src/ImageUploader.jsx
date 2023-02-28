@@ -1,5 +1,5 @@
 import React, { useState, useRef, CSSProperties } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
+import PulseLoader from "react-spinners/PulseLoader";
 import axios from "axios";
 import Camera from "/src/assets/camera.svg";
 
@@ -18,7 +18,7 @@ export const ImageUploader = ({ callBackFromChild, movieId }) => {
   // Create a reference to the hidden file input element
   const hiddenFileInput = useRef(null);
   let [loading, setLoading] = useState(false);
-  let [color, setColor] = useState("##ff0000");
+  let [color, setColor] = useState("#36d7b7");
 
   // Programatically click the hidden file input element
   // when the Button component is clicked
@@ -57,12 +57,14 @@ export const ImageUploader = ({ callBackFromChild, movieId }) => {
             callBackFromChild(imageUploaded);
           })
           .catch((error) => {
+            setLoading(false);
             console.log("error movie");
 
             //handle error
           });
       })
       .catch((error) => {
+        setLoading(false);
         console.log("error upload");
 
         //handle error
@@ -76,11 +78,10 @@ export const ImageUploader = ({ callBackFromChild, movieId }) => {
 
         <button onClick={handleClick}>
           <img src={Camera} />
-          <ClipLoader
+          <PulseLoader
+            size={15}
             color={color}
             loading={loading}
-            //cssOverride={override}
-            size={15}
             aria-label="Loading Spinner"
             data-testid="loader"
           />

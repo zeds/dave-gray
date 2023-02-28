@@ -280,10 +280,16 @@ Clip path generator
 https://bennettfeely.com/clippy/
 
 [18_upload_image]
-https://dev.to/bassel17/how-to-upload-an-image-to-strapi-2hhg
+npm create vite@latest .
 yarn add axios
+yarn add react-spinners
 yarn install
 yarn run dev
+
+✅react-spinners
+https://www.npmjs.com/package/react-spinners
+
+https://dev.to/bassel17/how-to-upload-an-image-to-strapi-2hhg
 
 customize file upload button
 https://medium.com/@masakudamatsu/how-to-customize-the-file-upload-button-in-react-b3866a5973d8
