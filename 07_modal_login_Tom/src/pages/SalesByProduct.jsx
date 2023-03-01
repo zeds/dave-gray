@@ -8,67 +8,67 @@ import {useGetProductHistoryQuery } from '../features/products/productsSlice'
 
 export const SalesByProduct = () => {
 
-	///api/product-purchase-histories
-	const params = useParams();
+    ///api/product-purchase-histories
+    const params = useParams()
 
-	const {
-		data: products,
-		isLoading,
-		isSuccess,
-		isError,
-		error
-	} = useGetProductHistoryQuery(params.productId)
+    const {
+        data: products,
+        isLoading,
+        isSuccess,
+        isError,
+        error
+    } = useGetProductHistoryQuery(params.productId)
 
-	let content
-	if (isLoading) {
-		content = <p>Loading...</p>
-	} else if (isSuccess) {
-		let count = products.data.length;
-		if ( !count ){
-			return(<div>
-				<div>売上はありません</div>
-					<Link to='/admin'>戻る</Link>
-				</div>
-			)
-		}
-		content = products.data.map(product => {
+    let content
+    if (isLoading) {
+        content = <p>Loading...</p>
+    } else if (isSuccess) {
+        let count = products.data.length
+        if ( !count ){
+            return(<div>
+                <div>売上はありません</div>
+                <Link to='/admin'>戻る</Link>
+            </div>
+            )
+        }
+        content = products.data.map(product => {
 
-			return (
-				<div className={style.grid_container} key={product.id}>
-					<div>
-						{product.attributes.product.data.id}
-					</div>
-					<div>
-						{product.attributes.product.data.attributes.name}
-					</div>
-					<div>
-						<Link to={`/sales_by_user/${product.attributes.user.data.attributes.email}`}>
-						{product.attributes.user.data.attributes.email}
-						</Link>
-					</div>
-					<div>
-						{product.attributes.quantity}
-					</div>
-					<div>
-						{product.attributes.createdAt}
-					</div>
-				</div>
-			)
-		})
-	} else if (isError) {
-		content = <p>{error}</p>
-	}
+            return (
+                <div className={style.grid_container} key={product.id}>
+                    <div>
+                        {product.attributes.product.data.id}
+                    </div>
+                    <div>
+                        {product.attributes.product.data.attributes.name}
+                    </div>
+                    <div>
+                        <Link to={`/sales_by_user/${product.attributes.user.data.attributes.email}`}>
+                            {product.attributes.user.data.attributes.email}
+                        </Link>
+                    </div>
+                    <div>
+                        {product.attributes.quantity}
+                    </div>
+                    <div>
+                        {product.attributes.createdAt}
+                    </div>
+                </div>
+            )
+        })
+    } else if (isError) {
+        content = <p>{error}</p>
+    }
 
 
-	return (
-		<div className={style.container}>
+    return (
+        <div className={style.container}>
 			商品別購入履歴
-			<div className={style.frame}>
+            <div className={style.frame}>
 
-				{content}
-				<Link to='/admin'>戻る</Link>
+                {content}
+                <Link to='/admin'>戻る</Link>
 
-				{/*<div>product_id</div>
+                {/*<div>product_id</div>
 				<div>商品名</div>
 				<div>購入者 email</div>
 				<div>個数</div>
@@ -81,8 +81,8 @@ export const SalesByProduct = () => {
 				<div>購入日時</div>
 
 				{content}*/}
-			</div>
+            </div>
 
-		</div>
-	)
+        </div>
+    )
 }

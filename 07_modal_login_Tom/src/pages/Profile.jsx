@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import jwt_decode from "jwt-decode";
-import { useCookies } from "react-cookie";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from 'react'
+import jwt_decode from 'jwt-decode'
+import { useCookies } from 'react-cookie'
+import { useDispatch, useSelector } from 'react-redux'
 import {
-  selectCurrentUser,
-  selectCurrentToken,
-} from "../features/auth/authSlice";
-import { setCredentials, logOut } from "../features/auth/authSlice";
+    selectCurrentUser,
+    selectCurrentToken,
+} from '../features/auth/authSlice'
+import { setCredentials, logOut } from '../features/auth/authSlice'
 
-import { Link } from "react-router-dom";
-import style from "./Profile.module.scss";
-import { PublicProfile } from "./PublicProfile";
+import { Link } from 'react-router-dom'
+import style from './Profile.module.scss'
+import { PublicProfile } from './PublicProfile'
 import {
-  useGetMoviesQuery,
-  useGetMeQuery,
-} from "../features/users/usersApiSlice";
+    useGetMoviesQuery,
+    useGetMeQuery,
+} from '../features/users/usersApiSlice'
 
 /**
 ・開いた時に、users APIを呼び出して最新の情報を取得する。
@@ -68,109 +68,109 @@ import {
  */
 
 export const Profile = () => {
-  const dispatch = useDispatch();
-  const [isAvatar, setIsAvatar] = useState(false);
+    const dispatch = useDispatch()
+    const [isAvatar, setIsAvatar] = useState(false)
 
-  let user = useSelector(selectCurrentUser);
-  let token = useSelector(selectCurrentToken);
-  const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
-  const [open, setOpen] = useState(false);
+    let user = useSelector(selectCurrentUser)
+    let token = useSelector(selectCurrentToken)
+    const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
+    const [open, setOpen] = useState(false)
 
-  const obj = {
-    background: "/src/assets/surf-small.jpg",
-    avatar: "https://lusty.asia:1443/uploads/_19202a6421.jpeg",
-    username: "tom",
-    email: "tom@gmail.com",
-    birthday: "",
-    hitokoto: "フルスタックエンジニアです！",
-    expires: "2023/03/20 18:23:20",
-    icEmail: "/src/assets/icons/email.svg",
-    icSpeech: "/src/assets/icons/speech.svg",
-    icCalendarClock: "/src/assets/icons/calendar-clock.svg",
-  };
-
-  const {
-    data: response,
-    isLoading,
-    isFetching,
-    isSuccess,
-    isError,
-    error,
-  } = useGetMeQuery(cookies.jwt);
-  //} = useGetMoviesQuery();
-
-  if (isLoading) {
-    console.log("isLoading");
-    return <div>Loading...</div>;
-  }
-  if (isFetching) {
-    console.log("isFetching");
-    return <div>Fetching...</div>;
-  }
-  if (isError) {
-    console.log({ error });
-    return <div>{error.status}</div>;
-  }
-
-  if (isSuccess) {
-    console.log("isSuccess response=", response);
-    //const payload = {
-    //  user: response,
-    //  jwt: cookies.jwt,
-    //};
-    //dispatch(setCredentials);
-
-    obj.avatar = "https://lusty.asia:1443" + response.avatar_url;
-    console.log("obj.avatar=", obj.avatar);
-    //dispatch(logOut);
-    if (open === false) {
-      setOpen(true);
+    const obj = {
+        background: '/src/assets/surf-small.jpg',
+        avatar: 'https://lusty.asia:1443/uploads/_19202a6421.jpeg',
+        username: 'tom',
+        email: 'tom@gmail.com',
+        birthday: '',
+        hitokoto: 'フルスタックエンジニアです！',
+        expires: '2023/03/20 18:23:20',
+        icEmail: '/src/assets/icons/email.svg',
+        icSpeech: '/src/assets/icons/speech.svg',
+        icCalendarClock: '/src/assets/icons/calendar-clock.svg',
     }
-  }
 
-  if (isError) {
-    return <>API呼び出しで失敗しました</>;
-  }
+    const {
+        data: response,
+        isLoading,
+        isFetching,
+        isSuccess,
+        isError,
+        error,
+    } = useGetMeQuery(cookies.jwt)
+    //} = useGetMoviesQuery();
 
-  const toggle = () => setOpen(!open);
+    if (isLoading) {
+        console.log('isLoading')
+        return <div>Loading...</div>
+    }
+    if (isFetching) {
+        console.log('isFetching')
+        return <div>Fetching...</div>
+    }
+    if (isError) {
+        console.log({ error })
+        return <div>{error.status}</div>
+    }
 
-  return (
-    <>
-      <button onClick={toggle}>{open ? "close" : "open"}</button>
-      <div className={open ? style.isOpen : style.isClose}>
-        <PublicProfile props={obj} />
-      </div>
-    </>
-  );
+    if (isSuccess) {
+        console.log('isSuccess response=', response)
+        //const payload = {
+        //  user: response,
+        //  jwt: cookies.jwt,
+        //};
+        //dispatch(setCredentials);
 
-  const welcome = user ? `Profile ${user.username}!` : "Welcome!";
-  const tokenAbbr = `${token.slice(0, 9)}...`;
+        obj.avatar = 'https://lusty.asia:1443' + response.avatar_url
+        console.log('obj.avatar=', obj.avatar)
+        //dispatch(logOut);
+        if (open === false) {
+            setOpen(true)
+        }
+    }
 
-  // jwt decode
-  const decoded = jwt_decode(token);
-  console.log("decoded=", decoded);
+    if (isError) {
+        return <>API呼び出しで失敗しました</>
+    }
 
-  // unix timeをDateに変換
-  let dateTime = new Date(decoded.exp * 1000);
-  console.log("dateTime=", dateTime);
+    const toggle = () => setOpen(!open)
 
-  const content = (
-    <div className={style.welcome}>
-      <h1>{welcome}</h1>
-      <div className={style.info}>
-        <p>権限：{user.role_linkstaff}</p>
-        <p>Token: {tokenAbbr}</p>
-        <p>jwt_decode：{JSON.stringify(decoded)}</p>
-        <p>有効期限：{dateTime.toString()}</p>
-        <p>ID：{user.id}</p>
-        <p>Email: {user.email}</p>
-        <p>username: {user.username}</p>
-        <p>
-          <Link to="/userslist">Go to the Users List</Link>
-        </p>
-      </div>
-    </div>
-  );
+    return (
+        <>
+            <button onClick={toggle}>{open ? 'close' : 'open'}</button>
+            <div className={open ? style.isOpen : style.isClose}>
+                <PublicProfile props={obj} />
+            </div>
+        </>
+    )
 
-  return content;
-};
+    const welcome = user ? `Profile ${user.username}!` : 'Welcome!'
+    const tokenAbbr = `${token.slice(0, 9)}...`
+
+    // jwt decode
+    const decoded = jwt_decode(token)
+    console.log('decoded=', decoded)
+
+    // unix timeをDateに変換
+    let dateTime = new Date(decoded.exp * 1000)
+    console.log('dateTime=', dateTime)
+
+    const content = (
+        <div className={style.welcome}>
+            <h1>{welcome}</h1>
+            <div className={style.info}>
+                <p>権限：{user.role_linkstaff}</p>
+                <p>Token: {tokenAbbr}</p>
+                <p>jwt_decode：{JSON.stringify(decoded)}</p>
+                <p>有効期限：{dateTime.toString()}</p>
+                <p>ID：{user.id}</p>
+                <p>Email: {user.email}</p>
+                <p>username: {user.username}</p>
+                <p>
+                    <Link to="/userslist">Go to the Users List</Link>
+                </p>
+            </div>
+        </div>
+    )
+
+    return content
+}

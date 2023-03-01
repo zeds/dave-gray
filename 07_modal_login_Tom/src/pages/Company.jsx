@@ -4,9 +4,9 @@ import style from './pages.module.css'
 export const Company = () => {
 
 
-	return (
-		<div className={style.container}>
-			<div className={style.title}>Company</div>
+    return (
+        <div className={style.container}>
+            <div className={style.title}>Company</div>
 			我々は宇宙人だ
 		About Salesforce
 Learn about our history, products, and values.
@@ -21,6 +21,6 @@ Salesforce Ventures(opens in a new window)
 Investor Relations(opens in a new window)
 Legal
 		
-		</div>
-	)
+        </div>
+    )
 }
