@@ -1,9 +1,8 @@
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeModal } from '../features/modal/modalSlice'
-import { useDeleteProductMutation } from '../features/products/productsSlice'
 import style from './Modal.module.scss'
 import { Link } from 'react-router-dom'
-
+import { openModal } from '../features/modal/modalSlice'
 
 const ThanksModal = ({
     open
@@ -19,7 +18,7 @@ const ThanksModal = ({
 
     //storeからリアルタイムにstateを取得する
     //このモーダルを呼び出す親がstate.nameを設定する
-    const { id, name } = useSelector((store) => store.modal)
+    const { name } = useSelector((store) => store.modal)
 
     function clickLink() {
         dispatch(openModal({name:'thanks',open:false}))

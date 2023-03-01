@@ -12,7 +12,7 @@ const RegisterModal = ({ open }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const [register, { isLoading }] = useRegisterMutation()
+    const [register] = useRegisterMutation()
 
     const clickRegister = async (e) => {
         e.preventDefault()
@@ -23,7 +23,7 @@ const RegisterModal = ({ open }) => {
                 password: password,
             }
             console.log('credentials=', credentials)
-            const userData = await register(credentials).unwrap()
+            //const userData = await register(credentials).unwrap()
             dispatch(openModal({ name: 'register', open: false }))
             dispatch(openModal({ name: 'login', open: true }))
         } catch (err) {

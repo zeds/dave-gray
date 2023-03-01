@@ -5,7 +5,6 @@ import style from './Modal.module.scss'
 import { useCookies } from 'react-cookie'
 
 import { useDispatch } from 'react-redux'
-import { setCredentials } from '../features/auth/authSlice'
 import { useLoginMutation } from '../features/products/productsSlice'
 
 import { openModal } from '../features/modal/modalSlice'
@@ -13,18 +12,18 @@ import { openModal } from '../features/modal/modalSlice'
 export const LoginModal = ({ open }) => {
     if (!open) return null
 
-    const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
+    const [setCookie] = useCookies(['cookie-name'])
     const userRef = useRef()
 
     const [identifier, setIdentifier] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
 
-    const [login, { isLoading }] = useLoginMutation()
+    const [login] = useLoginMutation()
     const dispatch = useDispatch()
 
     useEffect(() => {
-        //フォーカス
+    //フォーカス
         userRef.current.focus()
     }, []) // []をつけると1度しか呼び出されない
 
@@ -73,7 +72,7 @@ export const LoginModal = ({ open }) => {
     return (
         <div
             className={style.modal_container}
-            onClick={(event) => {
+            onClick={() => {
                 dispatch(openModal({ name: 'login', open: false }))
             }}
         >

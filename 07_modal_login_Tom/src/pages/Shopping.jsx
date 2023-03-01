@@ -5,12 +5,9 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
     useGetProductsQuery,
-    useGetUserHistoryQuery,
 } from '../features/products/productsSlice'
 
 import image_product from '../assets/product.png'
-
-import MockData from './MockData.json'
 
 export const Shopping = () => {
     //テスト ================================

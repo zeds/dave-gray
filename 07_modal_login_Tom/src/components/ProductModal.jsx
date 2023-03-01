@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeModal } from '../features/modal/modalSlice'
@@ -21,7 +22,7 @@ const ProductModal = ({
     const [localName, setLocalName] = useState(name)
     const [localPrice, setLocalPrice] = useState(price)
     const [localStock, setLocalStock] = useState(stock)
-    const [localPublish, setLocalPublish] = useState(publish)
+    const [localPublish] = useState(publish)
 
     console.log('pos=', localPos)
 
@@ -31,10 +32,10 @@ const ProductModal = ({
     //更新API
     const [updateProduct] = useUpdateProductMutation()
 
-    const clickCheckbox = (e) => {
-        let tmp = localPublish
-        setLocalPublish(!tmp)
-    }
+    //const clickCheckbox = () => {
+    //    let tmp = localPublish
+    //    setLocalPublish(!tmp)
+    //}
 
     return (
         <div className={style.modal_container}>
@@ -42,45 +43,45 @@ const ProductModal = ({
                 <div className={style.modal_product_title}>{title}</div>
 
                 <div className={style.modal_product_pos}>
-                    <label htmlFor="product-pos">表示位置</label>
+                    <label htmlFor='product-pos'>表示位置</label>
                     <input
-                        type="number"
-                        id="product-pos"
+                        type='number'
+                        id='product-pos'
                         value={localPos}
                         onChange={(e) => setLocalPos(e.target.value)}
-                        placeholder="表示位置"
+                        placeholder='表示位置'
                     />
                 </div>
 
                 <div className={style.modal_product_name}>
-                    <label htmlFor="product-name">商品名</label>
+                    <label htmlFor='product-name'>商品名</label>
                     <input
-                        type="text"
-                        id="product-name"
+                        type='text'
+                        id='product-name'
                         value={localName}
                         onChange={(e) => setLocalName(e.target.value)}
-                        placeholder="商品名は100文字まで"
+                        placeholder='商品名は100文字まで'
                     />
                 </div>
 
                 <div className={style.modal_product_price}>
-                    <label htmlFor="product-price">価格</label>
+                    <label htmlFor='product-price'>価格</label>
                     <input
-                        type="number"
-                        id="product-price"
+                        type='number'
+                        id='product-price'
                         value={localPrice}
                         onChange={(e) => setLocalPrice(e.target.value)}
-                        placeholder="300円以上"
+                        placeholder='300円以上'
                     />
                 </div>
                 <div className={style.modal_product_stock}>
-                    <label htmlFor="product-stock">在庫数</label>
+                    <label htmlFor='product-stock'>在庫数</label>
                     <input
-                        type="number"
-                        id="product-stock"
+                        type='number'
+                        id='product-stock'
                         value={localStock}
                         onChange={(e) => setLocalStock(e.target.value)}
-                        placeholder="在庫数"
+                        placeholder='在庫数'
                     />
                 </div>
 
@@ -95,7 +96,7 @@ const ProductModal = ({
 */}
                 <div className={style.modal_confirm_button_container}>
                     <button
-                        type="button"
+                        type='button'
                         className={`${style.modal_confirm_button} ${style.modal_confirm_button_cancel}`}
                         onClick={() => {
                             dispatch(closeModal())
@@ -104,7 +105,7 @@ const ProductModal = ({
             キャンセル
                     </button>
                     <button
-                        type="button"
+                        type='button'
                         className={`${style.modal_confirm_button} ${style.modal_confirm_button_yes}`}
                         onClick={() => {
                             let body = {

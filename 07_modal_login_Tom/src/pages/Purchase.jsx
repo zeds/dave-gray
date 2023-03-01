@@ -1,12 +1,5 @@
 import React, { useState } from 'react'
-import { useCookies } from 'react-cookie'
-
-import { useDispatch, useSelector } from 'react-redux'
-
-import {
-    selectCurrentUser,
-    selectCurrentToken,
-} from '../features/auth/authSlice'
+import { useDispatch } from 'react-redux'
 
 import { useParams } from 'react-router-dom'
 import {
@@ -36,15 +29,15 @@ export const Purchase = () => {
     const dispatch = useDispatch()
 
     const {
-        register,
-        handleSubmit,
+        //register,
+        //handleSubmit,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
     })
 
     const params = useParams()
-    const [productId, setProductId] = useState(params.productId)
+    const [productId] = useState(params.productId)
 
     //在庫を1減らす
     const [updateStock] = useUpdateStockMutation()
@@ -52,9 +45,6 @@ export const Purchase = () => {
     const {
         data: product,
         isLoading,
-        isSuccess,
-        isError,
-        error,
     } = useGetProductByIdQuery(productId)
 
     const [addPurchase] = useAddPurchaseHistoryMutation()

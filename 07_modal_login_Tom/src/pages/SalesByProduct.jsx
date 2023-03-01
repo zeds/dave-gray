@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import style from './SalesByProduct.module.scss'
 import {useGetProductHistoryQuery } from '../features/products/productsSlice'

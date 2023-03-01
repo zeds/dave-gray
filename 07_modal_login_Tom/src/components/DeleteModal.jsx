@@ -1,12 +1,10 @@
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeModal } from '../features/modal/modalSlice'
 import { useDeleteProductMutation } from '../features/products/productsSlice'
 import style from './Modal.module.scss'
 
-const Modal = ({
-    open
-}) => {
-
+const Modal = ({ open }) => {
     if (!open) return null
 
     //actionを呼び出す
@@ -28,7 +26,7 @@ const Modal = ({
                 <p>{name}</p>
                 <div className={style.modal_confirm_button_container}>
                     <button
-                        type='button'
+                        type="button"
                         className={`${style.modal_confirm_button} ${style.modal_confirm_button_cancel}`}
                         onClick={() => {
                             dispatch(closeModal())
@@ -37,10 +35,10 @@ const Modal = ({
             Cancel
                     </button>
                     <button
-                        type='button'
+                        type="button"
                         className={`${style.modal_confirm_button} ${style.modal_confirm_button_yes}`}
                         onClick={() => {
-                            deleteProduct({id: id})
+                            deleteProduct({ id: id })
                             dispatch(closeModal())
                         }}
                     >

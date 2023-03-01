@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useCookies } from 'react-cookie'
-import { Route, Routes } from 'react-router-dom'
 
 //権限OK：childrenを表示
 //権限NG：アクセスできません
@@ -11,7 +10,7 @@ import { Route, Routes } from 'react-router-dom'
 
 // role="admin editor"
 export const AuthRole = ({ role, children }) => {
-    const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
+    const [cookies] = useCookies(['cookie-name'])
 
     console.log('role=', role)
 
