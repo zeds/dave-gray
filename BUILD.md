@@ -47,7 +47,8 @@ https://lusty.asia:1443/api/products
 @reduxjs/toolkit/query/react
 React ToolKit Query
 
-[07_modal_router_exam_Tom]
+❌[07_modal_router_exam_Tom]
+⭕️[07_modal_login_Tom]
 14_router_modal_Tom を参考にメニュー作成
 07_modal_exam_Tom をコピー
 07_modal_router_exam_Tom
@@ -56,6 +57,8 @@ React ToolKit Query
 1.ライブラリインストール
 npm i react-router-dom
 npm i @iconify/react
+npm i react-spinners
+
 npm i react-hook-form
 npm i yup
 npm i @hookform/resolvers

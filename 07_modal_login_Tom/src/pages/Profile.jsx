@@ -120,6 +120,8 @@ export const Profile = () => {
         //};
         //dispatch(setCredentials);
 
+				//TODO:cookieのuserも更新した方がいい
+
         obj.avatar = 'https://lusty.asia:1443' + response.avatar_url
         console.log('obj.avatar=', obj.avatar)
         //dispatch(logOut);
@@ -136,7 +138,6 @@ export const Profile = () => {
 
     return (
         <>
-            <button onClick={toggle}>{open ? 'close' : 'open'}</button>
             <div className={open ? style.isOpen : style.isClose}>
                 <PublicProfile props={obj} />
             </div>

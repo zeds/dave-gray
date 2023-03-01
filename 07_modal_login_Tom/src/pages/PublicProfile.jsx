@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import style from './PublicProfile.module.scss'
 import { useUpdateUserMutation } from '../features/users/usersApiSlice'
+import { ImageUploader } from '../components/ImageUploader'
 
 // props
 export const PublicProfile = ({ props }) => {
@@ -30,6 +31,13 @@ export const PublicProfile = ({ props }) => {
         updateUser({ id: 59, body })
     }
 
+		const parentFunction = (e) => {
+			console.log('e=', e)
+			console.log('ファイルがアップロードされました')
+			//fetchPost()
+	}
+
+
     return (
         <>
             <div className={style.container}>
@@ -38,6 +46,8 @@ export const PublicProfile = ({ props }) => {
                     <div className={style.avatar}>
                         <img src={avatar} />
                     </div>
+										<ImageUploader callBackFromChild={parentFunction} movieId={1} />
+
                     <p>{props.username}</p>
                     {!isEdit ? (
                         <button onClick={() => changeEdit(true)}>Edit profile</button>

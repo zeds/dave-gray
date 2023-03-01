@@ -12,8 +12,10 @@ import { openModal } from '../features/modal/modalSlice'
 export const LoginModal = ({ open }) => {
     if (!open) return null
 
-    const [setCookie] = useCookies(['cookie-name'])
+    const [cookie, setCookie] = useCookies(['cookie-name'])
     const userRef = useRef()
+		console.log("cookies=",cookie)
+		//setCookie("hoge","value")
 
     const [identifier, setIdentifier] = useState('')
     const [password, setPassword] = useState('')
