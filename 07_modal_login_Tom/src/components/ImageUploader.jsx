@@ -4,10 +4,13 @@ import axios from 'axios'
 import Camera from '/src/assets/camera.svg'
 
 import style from './ImageUploader.module.scss'
+import { useCookies } from 'react-cookie'
 
 //assetsを使うには、vercel.jsonを作成する
 
 export const ImageUploader = ({ callBackFromChild, movieId }) => {
+	const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
+
     //callBackFromChild({ isLoading: true });
     // Create a reference to the hidden file input element
     const hiddenFileInput = useRef(null)
@@ -49,7 +52,11 @@ export const ImageUploader = ({ callBackFromChild, movieId }) => {
 								console.log("payload=", payload)
 							axios
                     //.put(`https://lusty.asia:1443/api/movies/${movieId}?populate=image`, payload)
-                    .put(`https://lusty.asia:1443/api/users/59`, payload)
+                    .put(`https://lusty.asia:1443/api/users/59`,payload, {
+											headers: {
+												Authorization : `Bearer ${cookies.jwt}`
+											}
+										})
                     .then((response) => {
                         console.log('success movie response=',response)
 
