@@ -75,6 +75,7 @@ import { ImageUploader } from '../components/ImageUploader'
 export const Profile = () => {
 	const [background, setBackground] = useState('/src/assets/surf-small.jpg')
 	const [avatar, setAvatar] = useState('/src/assets/default_avatar.svg')
+	const [userId, setUserId] = useState(0)
 
 	const dispatch = useDispatch()
 
@@ -124,10 +125,12 @@ export const Profile = () => {
 	if (isSuccess) {
 			console.log('isSuccess response=', response)
 
+
 			//TODO:cookieのuserも更新した方がいい
 			obj = response
 
 			if (open === false) {
+				setUserId(response.id)
 				setOpen(true)
 				if (obj.avatar_url){
 					setAvatar('https://lusty.asia:1443' + obj.avatar_url)
@@ -141,6 +144,7 @@ export const Profile = () => {
 
 	const parentFunction = (ret) => {
 		console.log('ファイルがアップロードされました')
+		alert(JSON.stringify(ret))
 		let image_url = ret.data.avatar_url
 		console.log('ret url =', image_url)
 		setAvatar('https://lusty.asia:1443' + image_url)
@@ -159,7 +163,7 @@ export const Profile = () => {
 						<div className={style.avatar}>
 								<img src={avatar} />
 						</div>
-						<ImageUploader callBackFromChild={parentFunction} movieId={1} />
+						<ImageUploader callBackFromChild={parentFunction} userId={userId} />
 					</div>
 				</div>
 			</div>

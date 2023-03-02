@@ -8,7 +8,7 @@ import { useCookies } from 'react-cookie'
 
 //assetsを使うには、vercel.jsonを作成する
 
-export const ImageUploader = ({ callBackFromChild, movieId }) => {
+export const ImageUploader = ({ callBackFromChild, userId }) => {
 	const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
 
     //callBackFromChild({ isLoading: true });
@@ -52,7 +52,7 @@ export const ImageUploader = ({ callBackFromChild, movieId }) => {
 								console.log("payload=", payload)
 							axios
                     //.put(`https://lusty.asia:1443/api/movies/${movieId}?populate=image`, payload)
-                    .put(`https://lusty.asia:1443/api/users/59`,payload, {
+                    .put(`https://lusty.asia:1443/api/users/${userId}`,payload, {
 											headers: {
 												Authorization : `Bearer ${cookies.jwt}`
 											}
@@ -88,6 +88,7 @@ export const ImageUploader = ({ callBackFromChild, movieId }) => {
     return (
         <>
             <div className="sweet-loading">
+
                 <button className={style.camera_button} onClick={handleClick}>
                     <img src={Camera} />
                     <PulseLoader
