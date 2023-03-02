@@ -6,19 +6,19 @@ import {
     selectCurrentUser,
     selectCurrentToken,
 } from '../features/auth/authSlice'
-import { setCredentials, logOut } from '../features/auth/authSlice'
 
-import { Link } from 'react-router-dom'
 import style from './Profile.module.scss'
 import { PublicProfile } from './PublicProfile'
 import {
-    useGetMoviesQuery,
     useGetMeQuery,
 } from '../features/users/usersApiSlice'
+import { ImageUploader } from '../components/ImageUploader'
+
 
 /**
 ・開いた時に、users APIを呼び出して最新の情報を取得する。
 ・APIを呼び出す時には、JWTを使う。/api/users/me
+・ユーザー情報を取得して、PublicProfileに渡す
 ・ログアウトボタン
 ・useStateで、コンポーネントの中での変数の値を保持、更新する
 ・too many renderの例題
@@ -48,7 +48,12 @@ import {
 ・useStateはトップレベルで呼び出す。条件分岐内で呼び出してはいけない。Reactがhookの順序がわからなくなってしまう。
 ・Hooksのルールを強制できる、eslint-plugin-react-hooks
 　https://www.npmjs.com/package/eslint-plugin-react-hooks
-　　
+・render内で
+　<button onClick={handleHoge()}>HOGEButton</button>
+　と描くと、無限ループになる。
+  <button onClick={() => handleHoge()}>HOGEButton</button>
+	のようにアロー関数で書く
+	https://qiita.com/TK_WebSE/items/0602c90b81bea741f15c
 
 [RTK query]
 　https://redux-toolkit.js.org/rtk-query/usage/queries
@@ -58,120 +63,106 @@ import {
 　APIが呼び出されてしまった。なぜ？？ただし、strapiのAPIは呼び出されていなかった。
 　cachingだけ見ているようだ。
 　https://dev.to/raaynaldo/rtk-query-tutorial-crud-51hl
-
-
 ・RTK queryを使うと、isLoading、isSuccessなどのstate管理をしなくて済む
 ・caching：なぜcachingが必要か？
 　データーを2回目にダウンロードするとき、updateされてる時だけにしたい。
+・ユーザーの画像などが変更された時に、ユーザー情報の再読み込みはどうやればいい？
+・
 　
 
  */
 
 export const Profile = () => {
-    const dispatch = useDispatch()
-    const [isAvatar, setIsAvatar] = useState(false)
+	const [background, setBackground] = useState('/src/assets/surf-small.jpg')
+	const [avatar, setAvatar] = useState('/src/assets/default_avatar.svg')
 
-    let user = useSelector(selectCurrentUser)
-    let token = useSelector(selectCurrentToken)
-    const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
-    const [open, setOpen] = useState(false)
+	const dispatch = useDispatch()
 
-    const obj = {
-        background: '/src/assets/surf-small.jpg',
-        avatar: 'https://lusty.asia:1443/uploads/_19202a6421.jpeg',
-        username: 'tom',
-        email: 'tom@gmail.com',
-        birthday: '',
-        hitokoto: 'フルスタックエンジニアです！',
-        expires: '2023/03/20 18:23:20',
-        icEmail: '/src/assets/icons/email.svg',
-        icSpeech: '/src/assets/icons/speech.svg',
-        icCalendarClock: '/src/assets/icons/calendar-clock.svg',
-    }
+	let user = useSelector(selectCurrentUser)
+	let token = useSelector(selectCurrentToken)
+	const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
+	const [open, setOpen] = useState(false)
 
-    const {
-        data: response,
-        isLoading,
-        isFetching,
-        isSuccess,
-        isError,
-        error,
-    } = useGetMeQuery(cookies.jwt)
-    //} = useGetMoviesQuery();
+	let obj = {
+		hitokoto: '',
+		username: '',
+		email: '',
+		description: '',
+		lang_code: '',
+		lang_main: '',
+		role_linkstaff: '',
+		avatar_url: '/src/assets/default_avatar.svg',
+		expires: '2023/03/20 18:23:20',
+		icEmail: '/src/assets/icons/email.svg',
+		icSpeech: '/src/assets/icons/speech.svg',
+		icCalendarClock: '/src/assets/icons/calendar-clock.svg',
+	}
 
-    if (isLoading) {
-        console.log('isLoading')
-        return <div>Loading...</div>
-    }
-    if (isFetching) {
-        console.log('isFetching')
-        return <div>Fetching...</div>
-    }
-    if (isError) {
-        console.log({ error })
-        return <div>{error.status}</div>
-    }
+	const {
+			data: response,
+			isLoading,
+			isFetching,
+			isSuccess,
+			isError,
+			error,
+	} = useGetMeQuery(cookies.jwt)
+	//} = useGetMoviesQuery();
 
-    if (isSuccess) {
-        console.log('isSuccess response=', response)
-        //const payload = {
-        //  user: response,
-        //  jwt: cookies.jwt,
-        //};
-        //dispatch(setCredentials);
+	if (isLoading) {
+			console.log('isLoading')
+			return <div>Loading...</div>
+	}
+	if (isFetching) {
+			console.log('isFetching')
+			return <div>Fetching...</div>
+	}
+	if (isError) {
+			console.log({ error })
+			return <div>{error.status}</div>
+	}
 
-				//TODO:cookieのuserも更新した方がいい
+	if (isSuccess) {
+			console.log('isSuccess response=', response)
 
-        obj.avatar = 'https://lusty.asia:1443' + response.avatar_url
-        console.log('obj.avatar=', obj.avatar)
-        //dispatch(logOut);
-        if (open === false) {
-            setOpen(true)
-        }
-    }
+			//TODO:cookieのuserも更新した方がいい
+			obj = response
 
-    if (isError) {
-        return <>API呼び出しで失敗しました</>
-    }
+			if (open === false) {
+				setOpen(true)
+				if (obj.avatar_url){
+					setAvatar('https://lusty.asia:1443' + obj.avatar_url)
+				}
+			}
+	}
 
-    const toggle = () => setOpen(!open)
+	if (isError) {
+			return <>API呼び出しで失敗しました</>
+	}
 
-    return (
-        <>
-            <div className={open ? style.isOpen : style.isClose}>
-                <PublicProfile props={obj} />
-            </div>
-        </>
-    )
+	const parentFunction = (ret) => {
+		console.log('ファイルがアップロードされました')
+		let image_url = ret.data.data.attributes.image.data.attributes.url
+		console.log('ret url =', image_url)
+		setAvatar('https://lusty.asia:1443' + image_url)
 
-    const welcome = user ? `Profile ${user.username}!` : 'Welcome!'
-    const tokenAbbr = `${token.slice(0, 9)}...`
+		//fetchPost()
+	}
 
-    // jwt decode
-    const decoded = jwt_decode(token)
-    console.log('decoded=', decoded)
 
-    // unix timeをDateに変換
-    let dateTime = new Date(decoded.exp * 1000)
-    console.log('dateTime=', dateTime)
+	return (
+		<>
+			<div className={open ? style.isOpen : style.isClose}>
 
-    const content = (
-        <div className={style.welcome}>
-            <h1>{welcome}</h1>
-            <div className={style.info}>
-                <p>権限：{user.role_linkstaff}</p>
-                <p>Token: {tokenAbbr}</p>
-                <p>jwt_decode：{JSON.stringify(decoded)}</p>
-                <p>有効期限：{dateTime.toString()}</p>
-                <p>ID：{user.id}</p>
-                <p>Email: {user.email}</p>
-                <p>username: {user.username}</p>
-                <p>
-                    <Link to="/userslist">Go to the Users List</Link>
-                </p>
-            </div>
-        </div>
-    )
-
-    return content
+				<div className={style.container}>
+					{background ? <img src={background} /> : null}
+					<div className={style.card}>
+						<div className={style.avatar}>
+								<img src={avatar} />
+						</div>
+						<ImageUploader callBackFromChild={parentFunction} movieId={1} />
+					</div>
+				</div>
+			</div>
+		</>
+	)
 }

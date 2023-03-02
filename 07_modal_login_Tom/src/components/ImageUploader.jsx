@@ -43,7 +43,7 @@ export const ImageUploader = ({ callBackFromChild, movieId }) => {
                     },
                 } // users.avatar_urlを変更してみる。
                 axios
-                    .put(`https://lusty.asia:1443/api/movies/${movieId}`, payload)
+                    .put(`https://lusty.asia:1443/api/movies/${movieId}?populate=image`, payload)
                     .then((response) => {
                         console.log('success movie response=',response)
 
@@ -51,7 +51,7 @@ export const ImageUploader = ({ callBackFromChild, movieId }) => {
                         setLoading(false)
 
                         // Call Parents Function
-                        callBackFromChild(imageUploaded)
+                        callBackFromChild(response)
                     })
                     .catch((error) => {
                         console.log('error movie:',error)

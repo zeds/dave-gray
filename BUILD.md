@@ -47,8 +47,7 @@ https://lusty.asia:1443/api/products
 @reduxjs/toolkit/query/react
 React ToolKit Query
 
-❌[07_modal_router_exam_Tom]
-⭕️[07_modal_login_Tom]
+[07_modal_login_Tom]
 14_router_modal_Tom を参考にメニュー作成
 07_modal_exam_Tom をコピー
 07_modal_router_exam_Tom
@@ -302,5 +301,52 @@ https://medium.com/@masakudamatsu/how-to-customize-the-file-upload-button-in-rea
 useState, useEffect をマスターしよう
 ✅useEffect の正しい使い方
 https://qiita.com/keiya01/items/fc5c725fed1ec53c24c5
+
+
+[20_eslint]
+✅eslint
+　https://eslint.org/docs/latest/use/getting-started
+　https://www.youtube.com/watch?v=wHd76UPvyRM
+✅npm i -g eslint
+　あまり、グローバルは汚したくないが入れておく
+　※npm list -g
+　※npm uninstall -g eslint --save
+✅npm init @eslint/config
+> How would you like to use ESLint? : style
+> What type of modules does your project use? : JavaScript modules
+> Which framework does your project use? : React
+> Does your project use TypeScript? : No
+> Where does our code run? : Browser
+> How would you like to define a style for your project? Answer questions.
+> What format do you want your confit file to be in? : JSON
+> What style of indentation do you use? : 4
+> What quotes do you use for strings? : Single
+> What line endings do you use? : Unix LF or CR+LF
+> Do you require semicolons? : No
+> eslint-plugin-react@latest eslint@latest
+　Would you like to install them now? : Yes
+> Which package manager do you want to use? : npm
+✅.eslintrc.json
+・"indent"を4から2に変更
+  "indent": [
+            "error",
+            4
+        ],
+・"settings"を追加
+	"settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+✅package.jsonの"scripts"に追加
+		"lint": "eslint src --ext .js,.jsx src/",
+    "lint:fix": "npm run lint -- --fix"
+✅npm run lint
+✅npm run lint:fix
+
+✅VSCode ESLint extention v2.4.0
+✅Error Lens v3.7.0
+
+
 
 ー以上

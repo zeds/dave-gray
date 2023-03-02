@@ -1,21 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import style from './PublicProfile.module.scss'
 import { useUpdateUserMutation } from '../features/users/usersApiSlice'
 import { ImageUploader } from '../components/ImageUploader'
 
 // props
 export const PublicProfile = ({ props }) => {
-    const [background, setBackground] = useState(props.background)
-    const [avatar, setAvatar] = useState(props.avatar)
+    const [background, setBackground] = useState('/src/assets/surf-small.jpg')
+    const [avatar, setAvatar] = useState('/src/assets/default_avatar.svg')
     const [isEdit, setIsEdit] = useState(false)
 
     const [username, setUsername] = useState(props.username)
     const [email, setEmail] = useState(props.email)
     const [hitokoto, setHitokoto] = useState(props.hitokoto)
 
-    if (!props.avatar) {
-        //setAvatar("/src/images/avatar.svg");
-    }
+		useEffect(() => {
+			if (props.avatar_url) {
+				console.log("avatar_url=", props.avatar_url)
+				setAvatar('https://lusty.asia:1443' + props.avatar_url)
+			}
+		}, []) // []をつけると1度しか呼び出されない
 
     const changeEdit = (stat) => {
         setIsEdit(stat)
@@ -34,7 +37,7 @@ export const PublicProfile = ({ props }) => {
 		const parentFunction = (e) => {
 			console.log('e=', e)
 			console.log('ファイルがアップロードされました')
-			//fetchPost()
+			fetchPost()
 	}
 
 
