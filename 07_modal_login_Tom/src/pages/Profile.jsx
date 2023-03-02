@@ -141,7 +141,7 @@ export const Profile = () => {
 
 	const parentFunction = (ret) => {
 		console.log('ファイルがアップロードされました')
-		let image_url = ret.data.data.attributes.image.data.attributes.url
+		let image_url = ret.data.avatar_url
 		console.log('ret url =', image_url)
 		setAvatar('https://lusty.asia:1443' + image_url)
 

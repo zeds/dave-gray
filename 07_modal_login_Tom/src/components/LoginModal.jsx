@@ -12,21 +12,21 @@ import { openModal } from '../features/modal/modalSlice'
 export const LoginModal = ({ open }) => {
     if (!open) return null
 
-    const [cookie, setCookie] = useCookies(['cookie-name'])
-    const userRef = useRef()
-		console.log("cookies=",cookie)
-		//setCookie("hoge","value")
-
     const [identifier, setIdentifier] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
 
     const [login] = useLoginMutation()
     const dispatch = useDispatch()
+    const [cookie, setCookie] = useCookies(['cookie-name'])
+    const userRef = useRef()
+		//console.log("cookies=",cookie)
+		//setCookie("hoge","value")
+
 
     useEffect(() => {
-    //フォーカス
-        userRef.current.focus()
+    	//フォーカス
+      userRef.current.focus()
     }, []) // []をつけると1度しか呼び出されない
 
     const handleSubmit = async (e) => {
@@ -68,8 +68,6 @@ export const LoginModal = ({ open }) => {
             console.log('username,passwordが違います')
         }
     }
-    const handleUserInput = (e) => setIdentifier(e.target.value)
-    const handlePwdInput = (e) => setPassword(e.target.value)
 
     return (
         <div
@@ -90,13 +88,13 @@ export const LoginModal = ({ open }) => {
                         type="text"
                         ref={userRef}
                         value={identifier}
-                        onChange={handleUserInput}
+                        onChange={(e) => setIdentifier(e.target.value)}
                         placeholder="email"
                     />
                     <input
                         type="password"
                         value={password}
-                        onChange={handlePwdInput}
+                        onChange={(e) => setPassword(e.target.value)}
                         placeholder="password"
                     />
                     <button type="submit">login</button>

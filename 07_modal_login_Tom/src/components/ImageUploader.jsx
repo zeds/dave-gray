@@ -37,13 +37,19 @@ export const ImageUploader = ({ callBackFromChild, movieId }) => {
                 console.log('response=', response)
 
                 const imageId = response.data[0].id
+                const avatar_url = response.data[0].url
+                //const payload = {
+                //    data: {
+                //        image: imageId,
+                //    },
+                //}
                 const payload = {
-                    data: {
-                        image: imageId,
-                    },
-                } // users.avatar_urlを変更してみる。
-                axios
-                    .put(`https://lusty.asia:1443/api/movies/${movieId}?populate=image`, payload)
+									avatar_url: avatar_url
+								}
+								console.log("payload=", payload)
+							axios
+                    //.put(`https://lusty.asia:1443/api/movies/${movieId}?populate=image`, payload)
+                    .put(`https://lusty.asia:1443/api/users/59`, payload)
                     .then((response) => {
                         console.log('success movie response=',response)
 
