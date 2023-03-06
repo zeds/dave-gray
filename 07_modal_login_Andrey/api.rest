@@ -1,0 +1,6 @@
+###
+GET https://lusty.asia:1443/api/products
+
+###
+GET http://localhost:3500/todos
+
