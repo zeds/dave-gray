@@ -55,9 +55,11 @@ React ToolKit Query
 
 1.ライブラリインストール
 npm i react-router-dom
+npm i react-redux
+npm i @reduxjs/toolkit
+
 npm i @iconify/react
 npm i react-spinners
-
 npm i react-hook-form
 npm i yup
 npm i @hookform/resolvers
@@ -319,7 +321,7 @@ https://qiita.com/keiya01/items/fc5c725fed1ec53c24c5
 > Where does our code run? : Browser
 > How would you like to define a style for your project? Answer questions.
 > What format do you want your confit file to be in? : JSON
-> What style of indentation do you use? : 4
+> What style of indentation do you use? : 4 ✅tabにした
 > What quotes do you use for strings? : Single
 > What line endings do you use? : Unix LF or CR+LF
 > Do you require semicolons? : No
@@ -343,6 +345,9 @@ https://qiita.com/keiya01/items/fc5c725fed1ec53c24c5
     "lint:fix": "npm run lint -- --fix"
 ✅npm run lint
 ✅npm run lint:fix
+✅error  'children' is missing in props validation
+　https://forhjy.medium.com/react-solution-for-children-is-missing-in-props-validation-eslint-react-prop-types-2e11bc6043c7
+　ignore
 
 ✅VSCode ESLint extention v2.4.0
 ✅Error Lens v3.7.0
