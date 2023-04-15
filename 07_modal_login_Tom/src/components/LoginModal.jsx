@@ -10,8 +10,8 @@ import { useLoginMutation } from '../features/products/productsSlice'
 import { openModal } from '../features/modal/modalSlice'
 
 export const LoginModal = () => {
-	const identifierRef = useRef()
-	const passwordRef = useRef()
+  const identifierRef = useRef()
+  const passwordRef = useRef()
   const navigate = useNavigate()
 
   const [login] = useLoginMutation()
@@ -82,7 +82,7 @@ export const LoginModal = () => {
           />
           <input
             type="password"
-						ref={passwordRef}
+            ref={passwordRef}
             placeholder="password"
           />
           <button type="submit">login</button>

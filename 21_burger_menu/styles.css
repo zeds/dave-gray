@@ -4,12 +4,16 @@
   box-sizing: border-box;
 }
 
+#aaa {
+	color: red;
+}
+
 body {
   margin: 0;
 }
 
 :root {
-  --bar-width: 60px;
+  --bar-width: 50px;
   --bar-height: 8px;
   --hamburger-gap: 6px;
   --foreground: #333;
@@ -41,8 +45,8 @@ body {
 .hamburger-menu:has(input:focus-visible)::before,
 .hamburger-menu:has(input:focus-visible)::after,
 .hamburger-menu input:focus-visible {
-  border: 1px solid var(--background);
-  box-shadow: 0 0 0 1px var(--foreground);
+  /*border: 1px solid var(--background);*/
+  /*box-shadow: 0 0 0 1px var(--foreground);*/
 }
 
 .hamburger-menu::before,
@@ -80,7 +84,7 @@ body {
 }
 
 .hamburger-menu input:checked {
-  opacity: 0;
+ 	opacity: 0;
   width: 0;
 }
 

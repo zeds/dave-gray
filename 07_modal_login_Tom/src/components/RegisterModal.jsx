@@ -6,9 +6,9 @@ import { useRegisterMutation } from '../features/products/productsSlice'
 
 const RegisterModal = () => {
   const dispatch = useDispatch()
-	const usernameRef = useRef()
-	const emailRef = useRef()
-	const passwordRef = useRef()
+  const usernameRef = useRef()
+  const emailRef = useRef()
+  const passwordRef = useRef()
 
   const [register] = useRegisterMutation()
 
@@ -33,31 +33,31 @@ const RegisterModal = () => {
 
   return (
     <div className={style.modal_container}
-			onClick={() => {
-				dispatch(openModal({ name: 'register', open: false }))
-			}}
+      onClick={() => {
+        dispatch(openModal({ name: 'register', open: false }))
+      }}
 
-			>
+    >
       <div className={style.modal_form}
-				onClick={(event) => {
-					event.stopPropagation()
-				}}
-			>
+        onClick={(event) => {
+          event.stopPropagation()
+        }}
+      >
         <p>Register</p>
         <form onSubmit={clickRegister}>
           <input
             type="text"
-						ref={usernameRef}
+            ref={usernameRef}
             placeholder="name"
           />
           <input
             type="text"
-						ref={emailRef}
+            ref={emailRef}
             placeholder="email address"
           />
           <input
             type="password"
-						ref={passwordRef}
+            ref={passwordRef}
             placeholder="password"
           />
           <button type="submit">register</button>

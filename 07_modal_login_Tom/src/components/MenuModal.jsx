@@ -30,20 +30,17 @@ export const MenuModal = () => {
         </a>
         <TextLinkIcon
           iconify="ic:round-mail-outline"
-          text="お買い物"
           link="/shopping"
-        />
+        >お買い物</TextLinkIcon>
         <TextLinkIcon
           iconify="ic:round-mail-outline"
-          text="管理画面"
           link="/admin"
-        />
-        <TextLinkIcon iconify="mdi:company" text="会社概要" link="/company" />
+					>管理画面</TextLinkIcon>
+        <TextLinkIcon iconify="mdi:company" link="/company" >会社概要</TextLinkIcon>
         <TextLinkIcon
           iconify="ic:round-mail-outline"
-          text="お問い合わせ"
           link="/contact"
-        />
+				>お問い合わせ</TextLinkIcon>
         <div>
           <ul></ul>
         </div>

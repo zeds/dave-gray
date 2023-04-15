@@ -61,56 +61,56 @@ export const Shopping = () => {
     let cp = [...products.data]
     let sp
 
-		switch(orderType) {
-			case 'price':
-				if (order === 'ASC') {
-					sp = cp.sort((a, b) =>
-						parseInt(a.attributes.price) > parseInt(b.attributes.price) ? 1 : -1
-					)
-				} else {
-					sp = cp.sort((a, b) =>
-						parseInt(a.attributes.price) < parseInt(b.attributes.price) ? 1 : -1
-					)
-				}
-				break
-			case 'stock':
-        if (order === 'ASC') {
-          sp = cp.sort((a, b) =>
-            a.attributes.stock > b.attributes.stock ? 1 : -1
-          )
-        } else {
-          sp = cp.sort((a, b) =>
-            a.attributes.stock < b.attributes.stock ? 1 : -1
-          )
-        }
-				break
-			case 'name':
-				if (order === 'ASC') {
-					sp = cp.sort((a, b) =>
-						a.attributes.name.toLowerCase() < b.attributes.name.toLowerCase()
-							? 1
-							: -1
-					)
-				} else {
-					sp = cp.sort((a, b) =>
-						a.attributes.name.toLowerCase() > b.attributes.name.toLowerCase()
-							? 1
-							: -1
-					)
-				}
-				break
-			case 'osusume':
-        if (order === 'ASC') {
-          sp = cp.sort((a, b) =>
-            a.attributes.pos > b.attributes.pos ? 1 : -1
-          )
-          console.log('sp=', sp)
-        } else {
-          sp = cp.sort((a, b) =>
-            a.attributes.pos < b.attributes.pos ? 1 : -1
-          )
-        }
-				break
+    switch(orderType) {
+    case 'price':
+      if (order === 'ASC') {
+        sp = cp.sort((a, b) =>
+          parseInt(a.attributes.price) > parseInt(b.attributes.price) ? 1 : -1
+        )
+      } else {
+        sp = cp.sort((a, b) =>
+          parseInt(a.attributes.price) < parseInt(b.attributes.price) ? 1 : -1
+        )
+      }
+      break
+    case 'stock':
+      if (order === 'ASC') {
+        sp = cp.sort((a, b) =>
+          a.attributes.stock > b.attributes.stock ? 1 : -1
+        )
+      } else {
+        sp = cp.sort((a, b) =>
+          a.attributes.stock < b.attributes.stock ? 1 : -1
+        )
+      }
+      break
+    case 'name':
+      if (order === 'ASC') {
+        sp = cp.sort((a, b) =>
+          a.attributes.name.toLowerCase() < b.attributes.name.toLowerCase()
+            ? 1
+            : -1
+        )
+      } else {
+        sp = cp.sort((a, b) =>
+          a.attributes.name.toLowerCase() > b.attributes.name.toLowerCase()
+            ? 1
+            : -1
+        )
+      }
+      break
+    case 'osusume':
+      if (order === 'ASC') {
+        sp = cp.sort((a, b) =>
+          a.attributes.pos > b.attributes.pos ? 1 : -1
+        )
+        console.log('sp=', sp)
+      } else {
+        sp = cp.sort((a, b) =>
+          a.attributes.pos < b.attributes.pos ? 1 : -1
+        )
+      }
+      break
     }
 
     content = sp.map((product) => {
