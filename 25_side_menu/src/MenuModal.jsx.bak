@@ -1,0 +1,65 @@
+import React, {useState} from "react";
+import styled from "styled-components";
+import { useTransition } from "react-transition-state";
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  margin: 0px;
+  padding: 0;
+  background: gray;
+`;
+
+const Box = styled.div`
+  top: 0;
+  left: 0px;
+  width: 200px;
+  height: 100vh;
+  background: green;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+
+  ${({ status }) =>
+    (status === "preEnter" || status === "exiting") &&
+    `
+      transform: translateX(-300px);
+    `}
+`;
+
+export const MenuModal = ({
+	isOpen
+}) => {
+
+  if(!isOpen) return null
+
+  const [{ status, isMounted }, toggle] = useTransition({
+    timeout: 500,
+    mountOnEnter: true,
+    unmountOnExit: true,
+    preEnter: true
+  });
+
+  function clickClose() {
+    console.log("close")
+    // props.callBack(false)
+  }
+
+  return (
+    <Container onClick={(event) => {
+      clickClose(event)
+    }}>
+      <button onClick={() => clickClose()}>Close</button>
+
+      {!isMounted && <button onClick={() => toggle(true)}>Show Message</button>}
+      {isMounted && (
+        <Box status={status}>
+          <button onClick={() => toggle(false)}>Close</button>
+          <h1>status: {status}</h1>
+          <p>This message is being transitioned in and out of the DOM.</p>
+        </Box>
+      )}
+    </Container>
+  );
+}
+
+export default MenuModal

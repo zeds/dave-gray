@@ -1,0 +1,67 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+/*
+【ルール】
+h1-h4までしか使わない
+pはh4と同じサイズ
+*/
+html {
+	font-size: 62.5%;
+}
+/* Html font-size = 16px */
+/* 1 REM = 16px */
+body {
+	font-size: 1.6rem;
+	font-family: 'Noto Sans';
+}
+h1 {
+	font-size: 5rem;
+}
+h2 {
+	font-size: 4rem;
+}
+h3 {
+	font-size: 3rem;
+}
+h4 {
+	font-size: 2rem;
+}
+
+p {
+	font-size: 2rem;
+}
+
+.container {
+	width: 100%;
+	height: 100vh;
+}
+
+.grid_container {
+	margin: 0 auto;
+	padding: 0 10px;
+	display: grid;
+	grid-template-columns: 1fr 5fr;
+}
+
+.grid_container p:nth-child(odd){
+	font-weight: bold;
+	text-align: right;
+	padding: 0 10px;
+	border-top: 1px solid black;
+}
+
+
+.grid_container p:nth-child(even){
+	padding: 0 10px;
+}
+
+
+@media screen and (max-width:500px) {
+	html {
+		 font-size: 40%;
+	}
+}

@@ -1,4 +1,4 @@
-cd 02_lesson
+[02_lesson]
 npm create vite@latest .
 
 > React
@@ -257,6 +257,10 @@ https://codezine.jp/article/detail/13518
 
 [14_router_modal_Tom]
 ログイン、新規登録モーダルを実装
+バーガーメニュー
+npm install react-transition-state
+npm i styled-components
+
 
 [16_sort]
 一覧を、名前順、価格順などでソートします。
@@ -414,6 +418,73 @@ yarn add web-vitals
 delete App.css, index.css and path.
 
 yarn dev
+
+
+👍[24_react_query]
+Use TanStack Query
+https://tanstack.com/query/latest/
+
+Dave Gray
+https://www.youtube.com/watch?v=lLWfZL-Y8lM
+
+GitHub
+https://github.com/gitdagray/react_query
+
+
+npm create vite@latest .
+
+> React
+> JavaScript + SWC
+
+※I am not sure SWC is stable or not.
+
+npm i
+npm i @fortawesome/fontawesome-svg-core
+npm i @fortawesome/free-solid-svg-icons
+npm i @fortawesome/react-fontawesome
+npm i react-scripts
+npm i react-query
+npm i axios
+
+npm i react-query-devtools
+※インストールできないのでdevtoolは使わない
+
+npm i json-server -g
+jsonサーバーを起動
+json-server -w data/db.json -p 3500
+
+npm run dev
+ToDoは実行できた。
+
+🔥[25_side_menu]
+新規にプロジェクトを作成
+npm create vite@latest .
+npm run dev
+npm install react-transition-state
+npm i styled-components
+
+https://www.npmjs.com/package/react-transition-state/v/1.1.5
+
+
+
+便利なコンポーネント
+https://wiki.nikiv.dev/programming-languages/javascript/js-libraries/react/react-components
+
+
+[26_css_rem]
+https://www.youtube.com/watch?v=zEFzBxM7g-k&t=3s
+
+https://suzunon.com/web-develop/css/responsive-font-size/
+レスポンシブ対応の記述にはremを使う。
+remを指定するべきでないところ
+・ボタンの中のテキスト pxを使う
+
+フォント
+https://www.w3schools.com/howto/tryit.asp?font=Noto%20Sans
+Noto Sans
+
+会社概要 レスポンシブ
+https://tanomasaki.com/company-overview-table/
 
 
 

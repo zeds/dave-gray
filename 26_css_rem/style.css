@@ -1,0 +1,40 @@
+
+html {
+	font-size: 62.5%;
+}
+/* Html font-size = 16px */
+/* 1 REM = 16px */
+
+
+body {
+	height: 100vh;
+}
+
+h1 {
+	text-align: center;
+	font-size: 7rem;
+	font-family: Sans-serif;
+}
+
+p {
+	text-align: center;
+	font-size: 2rem;
+	padding: 0 2.5rem;
+}
+
+.bordure {
+	border: 1rem solid black;
+	width: 60%;
+	margin: auto;
+  position: relative;
+  top: 30%;
+}
+
+@media screen and (max-width:1200px) {
+
+	html {
+		 font-size: 40%;
+	}
+	
+
+}
