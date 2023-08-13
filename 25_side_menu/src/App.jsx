@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import { useTransition } from "react-transition-state";
 import './App.css'
-import MenuModal from './MenuModal'
+import MenuModal from './components/MenuModal'
+import Navbar from './components/Navbar'
 
 
 const Container = styled.div`
@@ -10,7 +11,7 @@ const Container = styled.div`
   height: 100vh;
   margin: 0px;
   padding: 0;
-  background: black;
+  background: gray;
 `;
 
 
@@ -26,8 +27,8 @@ function App() {
   return (
     <>
       <Container onClick={() => handleClick()}>
-        <button onClick={() => handleClick()}>{open ? '閉じる' : '開く'}</button>
-        <MenuModal open={open}/>
+        <Navbar />
+        {/* <MenuModal open={open}/> */}
       </Container>
     </>
   );

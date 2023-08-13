@@ -1,18 +1,17 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import { useTransition } from "react-transition-state";
+import burger from '../assets/icons/burger.svg'
+
 
 const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  margin: 0px;
-  padding: 0;
-  background: gray;
-`;
+
+`
 
 const Box = styled.div`
+	position: absolute;
   top: 0;
-  left: 0px;
+  left: 0;
   width: 200px;
   height: 100vh;
   background: green;
@@ -44,16 +43,19 @@ const MenuModal = ({
   }, [toggle])
 
   return (
-    <Container>
+    <div>
       {open}
-      {!isMounted && <button onClick={() => toggle(true)}>Show Message</button>}
+      {!isMounted && <button onClick={() => toggle(true)}><img src={burger} /></button>}
       {isMounted && (
-        <Box status={status}>
-          <p>This message is being transitioned in and out of the DOM.</p>
-          <button onClick={() => toggle(false)}>Close</button>
-        </Box>
+
+			<>
+				<Box status={status}>
+					<p>This message is being transitioned in and out of the DOM.</p>
+					<button onClick={() => toggle(false)}>Close</button>
+				</Box>
+			</>
       )}
-    </Container>
+    </div>
   )
 }
 
