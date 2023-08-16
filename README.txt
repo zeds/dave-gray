@@ -37,6 +37,10 @@ npm i @fortawesome/free-solid-svg-icons
 npm i @fortawesome/react-fontawesome
 npm i json-server -g
 
+
+json-serverとは
+https://qiita.com/ryome/items/36da51f0f5973eab8720
+
 [run json server]
 $ json-server --watch data/db.json --port 3500
 http://localhost:3500/todos
@@ -486,6 +490,10 @@ Noto Sans
 会社概要 レスポンシブ
 https://tanomasaki.com/company-overview-table/
 
+
+[26_react_menu_right]
+右からでるバーガーメニュー
+https://onebitious.net/react_burger/
 
 
 ー以上

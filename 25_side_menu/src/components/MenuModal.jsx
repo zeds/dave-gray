@@ -5,13 +5,17 @@ import burger from '../assets/icons/burger.svg'
 
 
 const Container = styled.div`
-
+  display: flex;
+  justify-content: flex-end;
+  img {
+    width: 100px;
+  }
 `
 
 const Box = styled.div`
 	position: absolute;
   top: 0;
-  left: 0;
+  right: -300px;
   width: 200px;
   height: 100vh;
   background: green;
@@ -21,7 +25,7 @@ const Box = styled.div`
   ${({ status }) =>
     (status === "preEnter" || status === "exiting") &&
     `
-      transform: translateX(-300px);
+      transform: translateX(-500px);
     `}
 `;
 
@@ -43,7 +47,7 @@ const MenuModal = ({
   }, [toggle])
 
   return (
-    <div>
+    <Container>
       {open}
       {!isMounted && <button onClick={() => toggle(true)}><img src={burger} /></button>}
       {isMounted && (
@@ -55,7 +59,7 @@ const MenuModal = ({
 				</Box>
 			</>
       )}
-    </div>
+    </Container>
   )
 }
 
